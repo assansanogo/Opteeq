@@ -1,0 +1,23 @@
+{
+  "user": "",
+  "start": 1,
+  "folder": "image",
+  "bucket_raw": "",
+  "bucket_standardized": "",
+  "bucket_initial_annotation": "",
+  "dynamoDB": {
+    "region": "",
+    "table": ""
+  },
+  "batch_size": 5,
+  "annotator_list": [
+    "Ayman",
+    "Johann",
+    "Jonathan",
+    "Leo",
+    "Pamela",
+    "Samuel",
+    "Sunday",
+    "Wen"
+  ]
+}
