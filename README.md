@@ -42,6 +42,17 @@ Import google vision annotation to [VGG Image Annotator](https://www.robots.ox.a
 2. Set up [google cloud vision](https://cloud.google.com/vision/docs/quickstart-client-libraries)
 3. `python3 ec2.py` to used conversion locally without EC2 you can use  `via_json_local` function (
    tools/via/via_converter.py).
+   User data for EC2 (compatible Debian and Ubuntu):
+   ```
+   #!/bin/bash
+   sudo apt update
+   sudo apt install python3-pip -y
+   cd home/$USER
+   git clone https://github.com/assansanogo/Opteeq.git
+   cd Opteeq
+   pip3 install -r requirements.txt
+   ```
+
 4. Go to [VGG Image Annotator 2](https://www.robots.ox.ac.uk/~vgg/software/via/via.html), **open a VIA project** and
    choose output.json. (If image file aren't find, download the HTML file, project settings change default path)
 

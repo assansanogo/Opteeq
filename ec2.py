@@ -5,6 +5,7 @@ from tools.aws.awsTools import DynamoDB, BucketCounter
 from tools.via.via_converter import via_json
 import time
 import json
+from tqdm import tqdm
 
 
 def main(region: str, table_name: str, batch_size: int, bucket_in: str, bucket_out: str,
@@ -24,7 +25,7 @@ def main(region: str, table_name: str, batch_size: int, bucket_in: str, bucket_o
     table = DynamoDB(region, table_name)
     bucket = BucketCounter(bucket_out, annotator_names)
     if len(key := table.get_keys_annotator("0")) > batch_size:
-        for i in range(len(key) // batch_size):
+        for i in tqdm(range(len(key) // batch_size), desc="batch", leave=False):
             batch = key[i * batch_size: (i + 1) * batch_size]
             json = via_json(batch, bucket_in)
             annotator = bucket.put_object_annotator(json, f'{int(time.time())}_{i}.json')
