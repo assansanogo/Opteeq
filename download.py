@@ -4,6 +4,7 @@ Part D cf schema
 from tools.aws.awsTools import Bucket
 import os
 import json
+from tqdm import tqdm
 
 
 def main(annotator_name: str, bucket_json: str, bucket_image,
@@ -18,7 +19,7 @@ def main(annotator_name: str, bucket_json: str, bucket_image,
     """
     bucket = Bucket(bucket_image)
     json_set = download_via_json(annotator_name, bucket_json, local_storage)
-    for json_name in json_set:
+    for json_name in tqdm(json_set, desc="download json", leave=False):
         json_path = os.path.join(local_storage, "json", json_name)
         with open(json_path, "r") as file:
             json_via = json.load(file)
@@ -50,7 +51,7 @@ def download_via_json(annotator_name: str, bucket_name: str,
     file_bucket = set(bucket.list_object_search_key(annotator_name))
     files_local = set((os.listdir(local_storage)))
     to_download = file_bucket - files_local
-    for key in to_download:
+    for key in tqdm(to_download, desc='download image', leave=False):
         bucket.download(key, os.path.join(local_storage, "json"))
     return to_download
 

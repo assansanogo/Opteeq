@@ -5,6 +5,7 @@ import json
 import os
 import pathlib
 from tools.aws.awsTools import Bucket
+from tqdm import tqdm
 
 
 def upload(user: str, folder: str, start: int, bucket_raw: str):
@@ -18,7 +19,7 @@ def upload(user: str, folder: str, start: int, bucket_raw: str):
     :return: the final number auto increment in order to save it
     """
     bucket = Bucket(bucket_raw)
-    for filename in os.listdir(folder):
+    for filename in tqdm(os.listdir(folder), "upload"):
         bucket.upload(os.path.join(folder, filename),
                       f"{user}_{start}{pathlib.Path(filename).suffix}")
         start += 1

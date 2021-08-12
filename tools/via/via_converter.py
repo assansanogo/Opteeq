@@ -6,7 +6,7 @@ from tools.aws.awsTools import Bucket, Rekognition
 from structure.default import default
 from google.cloud import vision
 from google.cloud.vision_v1.types.image_annotator import AnnotateImageResponse
-
+from tqdm import tqdm
 
 class Local:
     """
@@ -59,7 +59,7 @@ def request_generator(list_image: list, source_path: str, local: bool = False) \
     """
     client = vision.ImageAnnotatorClient()
     source = get_source(local, source_path)
-    for file in list_image:
+    for file in tqdm(list_image, desc="current batch", leave=False):
         content = source.read(file)
         image = vision.Image(content=content)
         yield file, client.text_detection(image=image)
@@ -102,7 +102,7 @@ def via_json2(list_image: list, bucket: str, width=717, height=951) -> dict:
     """
     output = default
     rekognition = Rekognition(bucket)
-    for key in list_image:
+    for key in tqdm(list_image, desc='current batch', leave=False):
         json_response = rekognition.get_text(key)
         # part for add an image
         output["_via_image_id_list"].append(key)
