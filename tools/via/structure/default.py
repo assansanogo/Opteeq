@@ -1,3 +1,7 @@
+"""
+Default via2 json structure.
+"""
+
 default = {
     "_via_attributes": {
         "file": {},

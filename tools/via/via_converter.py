@@ -3,7 +3,7 @@ import json
 import os
 from typing import Iterator, Tuple, Union
 from tools.aws.awsTools import Bucket, Rekognition
-from structure.default import default
+from .structure.default import default
 from google.cloud import vision
 from google.cloud.vision_v1.types.image_annotator import AnnotateImageResponse
 from tqdm import tqdm
@@ -50,6 +50,7 @@ def request_generator(list_image: list, source_path: str, local: bool = False) \
     Return an iterator which return a tuple:
                             - name of image
                             - result google vision API request
+
     For each listed file. Can work with local file or s3.
 
     :param list_image: list all image to annotate with google vision api.
