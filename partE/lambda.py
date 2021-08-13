@@ -32,16 +32,21 @@ def lambda_handler(event, context):
     stand_keys = list(stand_keys)
 
     for stand_Key in stand_keys:
-        response = table.update_items(
+        response = table.update_item(
             Key = {'standKey':stand_Key},
-            Updateexpression="set finalAnotTime=:t, finalAnotKey=:k",
-            ExpressionAttributesValues={
+            UpdateExpression="set finalAnotTime=:t, finalAnotKey=:k",
+            ExpressionAttributeValues={
                 ':t':timestamp,
                 ':k':object_key
             },
             ReturnValues="UPDATED_NEW"
         )
- 
+
+
+    
+    
+    
+    
     
     return {
         'statusCode': 200
