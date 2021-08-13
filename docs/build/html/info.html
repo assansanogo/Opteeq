@@ -1,0 +1,344 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Opteeq &mdash; Opteeq 1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Code auto doc" href="modules.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Opteeq
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Opteeq</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#aws-structure">AWS structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#configuration">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#a-rename-upload">A) Rename upload</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#quick-run">Quick run</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#c-via-converter">C) Via converter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Quick run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#result">Result</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#d-download-json-and-image">D) Download json and image</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">Quick run</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#sphinx-documentation">Sphinx Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#generate-docs">Generate docs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Code auto doc</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Opteeq</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Opteeq</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/info.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="tex2jax_ignore mathjax_ignore section" id="opteeq">
+<h1>Opteeq<a class="headerlink" href="#opteeq" title="Permalink to this headline">¶</a></h1>
+<p>library to read digitalised paper receipts</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="aws-structure">
+<h1>AWS structure<a class="headerlink" href="#aws-structure" title="Permalink to this headline">¶</a></h1>
+<p><img alt="image" src="_images/aws_Diagram.png" /></p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="configuration">
+<h1>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h1>
+<p>Before use edit conf.json. You need to edit:</p>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">user</span></code>: your username.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bucket_raw</span></code>: bucket where raw image are upload</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bucket_standardized</span></code>: bucket where standardized image are upload</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bucket_initial_annotation</span></code>: bucket where initial json annotation are uploaded</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dynamoDB</span></code>: region and table name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">profile</span></code>: choose the profile to use if many CLI profile are set up on your computer otherwise let <code class="docutils literal notranslate"><span class="pre">default</span></code>.</p></li>
+</ol>
+<p>To add another profile <code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">configre</span> <span class="pre">--profile</span> <span class="pre">profilName</span></code> to list available profil <code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">configure</span> <span class="pre">list-profiles</span></code></p>
+<p>When you create the dynamoDB add an global secondary index on anotName and named annotator-index.</p>
+<p>If the part that you will use don’t need one of this parameter you can ignore it.</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="a-rename-upload">
+<h1>A) Rename upload<a class="headerlink" href="#a-rename-upload" title="Permalink to this headline">¶</a></h1>
+<p>Rename all the file from a folder and upload it to AWS S3 bucket.</p>
+<div class="section" id="quick-run">
+<h2>Quick run<a class="headerlink" href="#quick-run" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pip3</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code></p></li>
+<li><p>config conf.json</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">rename_upload.py</span></code></p></li>
+</ol>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="c-via-converter">
+<h1>C) Via converter<a class="headerlink" href="#c-via-converter" title="Permalink to this headline">¶</a></h1>
+<p>Import google vision annotation to <a class="reference external" href="https://www.robots.ox.ac.uk/~vgg/software/via/">VGG Image Annotator</a>
+.</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>:exclamation:   All image in folder image (or other define image folder) are imported. Be careful to the number of request !</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p></p></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id1">
+<h2>Quick run<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ol>
+<li><p><code class="docutils literal notranslate"><span class="pre">pip3</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code></p></li>
+<li><p>Set up <a class="reference external" href="https://cloud.google.com/vision/docs/quickstart-client-libraries">google cloud vision</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">ec2.py</span></code> to used conversion locally without EC2 you can use  <code class="docutils literal notranslate"><span class="pre">via_json_local</span></code> function (
+tools/via/via_converter.py).
+User data for EC2 (compatible Debian and Ubuntu):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#!/bin/bash
+sudo apt update
+sudo apt install python3-pip -y
+cd home/$USER
+git clone https://github.com/assansanogo/Opteeq.git
+cd Opteeq
+pip3 install -r requirements.txt
+</pre></div>
+</div>
+</li>
+<li><p>Go to <a class="reference external" href="https://www.robots.ox.ac.uk/~vgg/software/via/via.html">VGG Image Annotator 2</a>, <strong>open a VIA project</strong> and
+choose output.json. (If image file aren’t find, download the HTML file, project settings change default path)</p></li>
+</ol>
+</div>
+<div class="section" id="result">
+<h2>Result<a class="headerlink" href="#result" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><img alt="via0" src="_images/via0.png" /></p></th>
+<th class="text-align:center head"><p><img alt="via" src="_images/via.png" /></p></th>
+<th class="text-align:right head"><p><img alt="via2" src="_images/via2.png" /></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p></p></td>
+<td class="text-align:center"><p></p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="d-download-json-and-image">
+<h1>D) Download json and image<a class="headerlink" href="#d-download-json-and-image" title="Permalink to this headline">¶</a></h1>
+<p>Download all image and json for a given annotator name.</p>
+<div class="section" id="id2">
+<h2>Quick run<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pip3</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code></p></li>
+<li><p>config conf.json</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">download.py</span></code></p></li>
+</ol>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="sphinx-documentation">
+<h1>Sphinx Documentation<a class="headerlink" href="#sphinx-documentation" title="Permalink to this headline">¶</a></h1>
+<p>Documentation are in Html and Pdf in folder docs. It is also hosted <a class="reference external" href="https://souff.github.io/Opteeq/build/info.html">here</a>
+.</p>
+<div class="section" id="generate-docs">
+<h2>Generate docs<a class="headerlink" href="#generate-docs" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>Edit the README.md or the different docStrings.
+You can also add a restrured text file (rst) or mardown (md) file in source.</p></li>
+<li><p>Install required python library <code class="docutils literal notranslate"><span class="pre">pip3</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code>.
+You need sphinx, sphinx_rtd_theme and myst_parser.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx-build</span> <span class="pre">-b</span> <span class="pre">html</span> <span class="pre">docs/source</span> <span class="pre">docs/build/html</span> </code></p></li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="modules.html" class="btn btn-neutral float-right" title="Code auto doc" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Léo.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
