@@ -2,6 +2,8 @@
 
 library to read digitalised paper receipts
 
+[Sphinx Documentation](https://souff.github.io/Opteeq/info.html)
+
 # AWS structure
 
 ![image](tools/aws/aws_Diagram.png)
