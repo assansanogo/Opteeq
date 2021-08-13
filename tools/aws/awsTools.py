@@ -197,17 +197,19 @@ class DynamoDB:
         else:
             return response
 
-    def update_annotator(self, key: str, annotator: str) -> None:
+    def update_annotator(self, key: str, annotator: str, initAnotKey: str) -> None:
         """
-        Update the annotator value of the given key.
+        Update the annotator and initAnotKey value of the given key.
 
         :param key: primary key value
         :param annotator: new annotator name
+        :param initAnotKey: key of json in bucket initial annotation.
         """
         return self.update(Key={'standKey': key},
-                           UpdateExpression="set anotName=:a",
+                           UpdateExpression="set anotName=:a, initAnotKey=:b",
                            ExpressionAttributeValues={
                                ':a': annotator,
+                               ':b': initAnotKey
                            },
                            ReturnValues="UPDATED_NEW")
 

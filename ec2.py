@@ -34,7 +34,7 @@ def main(region: str, table_name: str, batch_size: int, bucket_in: str, bucket_o
             annotator = bucket.put_object_annotator(json, file_name)
             # todo find if it is possible to update all in one
             for key in batch:
-                table.update_annotator(key, annotator)
+                table.update_annotator(key, annotator, file_name)
 
 
 if __name__ == '__main__':
