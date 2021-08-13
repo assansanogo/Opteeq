@@ -8,6 +8,7 @@ from google.cloud import vision
 from google.cloud.vision_v1.types.image_annotator import AnnotateImageResponse
 from tqdm import tqdm
 
+
 class Local:
     """
     Read file from a given folder and store in memory.
@@ -30,21 +31,23 @@ class Local:
             return image_file.read()
 
 
-def get_source(local: bool, source_path: str) -> Union[Bucket, Local]:
+def get_source(local: bool, source_path: str, profile: str = "default") -> Union[Bucket, Local]:
     """
     return the right source in function of local or not.
 
     :param local: boolean, true local storage false s3.
     :param source_path: file path or s3 bucket name.
+    :param profile: Choose AWS CLI profile if more than 1 are set up
     :return: local object to read from local or Bucket object to read from s3.
     """
     if local:
         return Local(source_path)
     else:
-        return Bucket(source_path)
+        return Bucket(source_path, profile)
 
 
-def request_generator(list_image: list, source_path: str, local: bool = False) \
+def request_generator(list_image: list, source_path: str, local: bool = False,
+                      profile: str = "default") \
         -> Iterator[Tuple[str, AnnotateImageResponse]]:
     """
     Return an iterator which return a tuple:
@@ -56,27 +59,30 @@ def request_generator(list_image: list, source_path: str, local: bool = False) \
     :param list_image: list all image to annotate with google vision api.
     :param source_path: bucket name or path of the folder
     :param local: boolean False use bucket, true local storage
+    :param profile: Choose AWS CLI profile if more than 1 are set up
     :return: iterator, tuple name of image and google vision response
     """
     client = vision.ImageAnnotatorClient()
-    source = get_source(local, source_path)
+    source = get_source(local, source_path, profile)
     for file in tqdm(list_image, desc="current batch", leave=False):
         content = source.read(file)
         image = vision.Image(content=content)
         yield file, client.text_detection(image=image)
 
 
-def via_json(list_image: list, source_path: str, local: bool = False) -> dict:
+def via_json(list_image: list, source_path: str, local: bool = False,
+             profile: str = "default") -> dict:
     """
     Build dict for VGG Image Annotator with annotation from google cloud response.
 
     :param list_image: list all image to annotate with google vision api.
     :param source_path: path of the image folder or bucket name
     :param local: boolean False use bucket, true local storage
+    :param profile: Choose AWS CLI profile if more than 1 are set up
     :return: dict with via format
     """
     output = default
-    for file_name, response in request_generator(list_image, source_path, local):
+    for file_name, response in request_generator(list_image, source_path, local, profile):
         # part for add an image
         output["_via_image_id_list"].append(file_name)
         image = {"file_attributes": {}, "filename": file_name, "regions": [], "size": 1}

@@ -17,6 +17,9 @@ Before use edit conf.json. You need to edit:
 3. `bucket_standardized`: bucket where standardized image are upload
 4. `bucket_initial_annotation`: bucket where initial json annotation are uploaded
 5. `dynamoDB`: region and table name
+6. `profile`: choose the profile to use if many CLI profile are set up on your computer otherwise let `default`
+
+When you create the dynamoDB add an global secondary index on anotName and named annotator-index.
 
 If the part that you will use don't need one of this parameter you can ignore it.
 

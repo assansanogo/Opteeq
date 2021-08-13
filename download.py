@@ -8,7 +8,7 @@ from tqdm import tqdm
 
 
 def main(annotator_name: str, bucket_json: str, bucket_image,
-         local_storage: str = "download") -> None:
+         local_storage: str = "download", profile: str = "default") -> None:
     """
     download via json and image which aren't store in local. Edit json with path image folder.
 
@@ -16,8 +16,9 @@ def main(annotator_name: str, bucket_json: str, bucket_image,
     :param bucket_json: bucket where json via are stored
     :param bucket_image: bucket where image are stored
     :param local_storage: path of the local storage where json and image are stored
+    :param profile: Choose AWS CLI profile if more than 1 are set up
     """
-    bucket = Bucket(bucket_image)
+    bucket = Bucket(bucket_image, profile)
     json_set = download_via_json(annotator_name, bucket_json, local_storage)
     for json_name in tqdm(json_set, desc="download json", leave=False):
         json_path = os.path.join(local_storage, "json", json_name)
@@ -35,7 +36,7 @@ def main(annotator_name: str, bucket_json: str, bucket_image,
 
 
 def download_via_json(annotator_name: str, bucket_name: str,
-                      local_storage: str = "download") -> set:
+                      local_storage: str = "download", profile: str = "default") -> set:
     """
     download the via json which contains the right annotator name from the bucket.
     Check local storage, if a file is already store, don't download.
@@ -43,10 +44,11 @@ def download_via_json(annotator_name: str, bucket_name: str,
     :param annotator_name: name of the user
     :param bucket_name: bucket where json via are stored
     :param local_storage: path of the local storage where json via are stored
+    :param profile: Choose AWS CLI profile if more than 1 are set up
     :return: set of json download
     """
 
-    bucket = Bucket(bucket_name)
+    bucket = Bucket(bucket_name, profile)
     # use set for set operation
     file_bucket = set(bucket.list_object_search_key(annotator_name))
     files_local = set((os.listdir(local_storage)))
@@ -61,6 +63,7 @@ if __name__ == '__main__':
         conf = json.load(f)
     if conf["user"] and conf["start"] and conf["bucket_initial_annotation"] and conf[
         "bucket_standardized"]:
-        main(conf["user"], conf["bucket_initial_annotation"], conf["bucket_standardized"])
+        main(conf["user"], conf["bucket_initial_annotation"], conf["bucket_standardized"],
+             conf["profile"])
     else:
         print("edit config and add missing argument")

@@ -8,7 +8,7 @@ from tools.aws.awsTools import Bucket
 from tqdm import tqdm
 
 
-def upload(user: str, folder: str, start: int, bucket_raw: str):
+def upload(user: str, folder: str, start: int, bucket_raw: str, profile: str = "default"):
     """
     Upload all the files of folder in AWS bucket, rename file with user name and number auto increment
 
@@ -16,9 +16,10 @@ def upload(user: str, folder: str, start: int, bucket_raw: str):
     :param folder: folder to upload
     :param start: start for auto increment
     :param bucket_raw: name bucket
+    :param profile: Choose AWS CLI profile if more than 1 are set up
     :return: the final number auto increment in order to save it
     """
-    bucket = Bucket(bucket_raw)
+    bucket = Bucket(bucket_raw, profile)
     for filename in tqdm(os.listdir(folder), "upload"):
         bucket.upload(os.path.join(folder, filename),
                       f"{user}_{start}{pathlib.Path(filename).suffix}")
@@ -32,7 +33,8 @@ if __name__ == '__main__':
     with(open("conf.json", "r")) as f:
         conf = json.load(f)
     if conf["user"] and conf["bucket_raw"]:
-        conf["start"] = upload(conf["user"], conf["folder"], conf["start"], conf["bucket_raw"])
+        conf["start"] = upload(conf["user"], conf["folder"], conf["start"], conf["bucket_raw"],
+                               conf["profile"])
         with open("conf.json", "w") as f:
             json.dump(conf, f)
     else:

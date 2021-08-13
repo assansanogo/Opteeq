@@ -13,10 +13,12 @@ class Bucket:
     Aws bucket
     """
 
-    def __init__(self, bucket_name: str):
+    def __init__(self, bucket_name: str, profile: str = "default"):
         """
         :param bucket_name: bucket name
+        :param profile: Choose AWS CLI profile if more than 1 are set up
         """
+        boto3.setup_default_session(profile_name=profile)
         self.client = boto3.resource("s3").Bucket(bucket_name)
 
     def upload(self, file_path: str, object_name: str = None) -> None:
@@ -53,7 +55,7 @@ class Bucket:
         Download a file from Bucket
 
         :param key: object key
-        :param file_path: destination path directory
+        :param directory: destination path directory
         """
         self.client.download_file(key, os.path.join(directory, key))
 
@@ -94,12 +96,13 @@ class BucketCounter(Bucket):
     Aws bucket with a cycle on annotator names.
     """
 
-    def __init__(self, bucket_name: str, annotator_names: list):
+    def __init__(self, bucket_name: str, annotator_names: list, profile: str = "default"):
         """
         :param bucket_name: bucket name
         :param annotator_names: list the name of all the annotator
+        :param profile: Choose AWS CLI profile if more than 1 are set up
         """
-        super().__init__(bucket_name)
+        super().__init__(bucket_name, profile)
         self.annotator_cycle = cycle((lambda i: annotator_names[i:] + annotator_names[:i])(
             self.get_last_uploader_index(annotator_names) + 1))
 
@@ -138,7 +141,13 @@ class DynamoDB:
     Aws dynamoDB
     """
 
-    def __init__(self, region, table_name):
+    def __init__(self, region, table_name, profile: str = "default"):
+        """
+        :param region: region
+        :param table_name: dynamoDB table name
+        :param profile: Choose AWS CLI profile if more than 1 are set up
+        """
+        boto3.setup_default_session(profile_name=profile)
         self.client = boto3.resource('dynamodb', region_name=region).Table(table_name)
 
     def query(self, **kwargs) -> dict:
@@ -168,7 +177,7 @@ class DynamoDB:
         :param annotator: annotator name value
         :return: list all key of standardised image with the given annotator.
         """
-        items = self.query_index_eq("annotator-index", "annotator", annotator)["Items"]
+        items = self.query_index_eq("annotator-index", "anotName", annotator)["Items"]
         return [i["standardised"] for i in items]
 
     def update(self, **kwargs) -> Union[dict, None, Exception]:
@@ -196,7 +205,7 @@ class DynamoDB:
         :param annotator: new annotator name
         """
         return self.update(Key={'standardised': key},
-                           UpdateExpression="set annotator=:a",
+                           UpdateExpression="set anotName=:a",
                            ExpressionAttributeValues={
                                ':a': annotator,
                            },
@@ -204,11 +213,13 @@ class DynamoDB:
 
 
 class Rekognition:
-    def __init__(self, bucket=None, region="eu-west-1"):
+    def __init__(self, bucket=None, region="eu-west-1", profile: str = "default"):
         """
         :param bucket: bucket name
         :param region: region of the aws rekognition service
+        :param profile: Choose AWS CLI profile if more than 1 are set up
         """
+        boto3.setup_default_session(profile_name=profile)
         self.bucket = bucket
         self.client = boto3.client('rekognition', region)
 
