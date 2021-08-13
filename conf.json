@@ -2,6 +2,7 @@
   "user": "",
   "start": 1,
   "folder": "image",
+  "profile": "default",
   "bucket_raw": "",
   "bucket_standardized": "",
   "bucket_initial_annotation": "",
