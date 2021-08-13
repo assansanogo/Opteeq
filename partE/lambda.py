@@ -2,14 +2,18 @@ import json
 import os
 import csv
 import boto3
+import dateutil.parser as dp
 
 def lambda_handler(event, context):
     
-    # Decode json input event and extract bucket name and key
-
+    # Extract needed information from event
     bucket_name = event["Records"][0]["s3"]["bucket"]["name"]
     object_key = event["Records"][0]["s3"]["object"]["key"]
-    timestamp = event["Records"][0]["eventTime"]
+    timestamp_iso8601 = event["Records"][0]["eventTime"]
+
+    # Convert iso8601 timestamp to Unix epoch timestamp
+    timestamp_iso8601_parsed = dp.parse(timestamp_iso8601)
+    timestamp = round(timestamp_iso8601_parsed.timestamp())
 
     # Get Dynamodb table name from enviroment variable
     table_name = os.environ['dynamodb_table_name']
@@ -31,6 +35,7 @@ def lambda_handler(event, context):
                 stand_keys.add(row[0])
     stand_keys = list(stand_keys)
 
+    # Update DynamoDB table for all standard keys found in the annotations csv
     for stand_Key in stand_keys:
         response = table.update_item(
             Key = {'standKey':stand_Key},
@@ -41,13 +46,7 @@ def lambda_handler(event, context):
             },
             ReturnValues="UPDATED_NEW"
         )
-
-
-    
-    
-    
-    
     
     return {
         'statusCode': 200
-    }
+        }
