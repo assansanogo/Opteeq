@@ -7,7 +7,7 @@ from .structure.default import default
 from google.cloud import vision
 from google.cloud.vision_v1.types.image_annotator import AnnotateImageResponse
 from tqdm import tqdm
-
+from copy import deepcopy
 
 class Local:
     """
@@ -81,7 +81,7 @@ def via_json(list_image: list, source_path: str, local: bool = False,
     :param profile: Choose AWS CLI profile if more than 1 are set up
     :return: dict with via format
     """
-    output = default
+    output = deepcopy(default)
     for file_name, response in request_generator(list_image, source_path, local, profile):
         # part for add an image
         output["_via_image_id_list"].append(file_name)

@@ -178,7 +178,7 @@ class DynamoDB:
         :return: list all key of standardised image with the given annotator.
         """
         items = self.query_index_eq("annotator-index", "anotName", annotator)["Items"]
-        return [i["standardised"] for i in items]
+        return [i["standKey"] for i in items]
 
     def update(self, **kwargs) -> Union[dict, None, Exception]:
         """
@@ -204,7 +204,7 @@ class DynamoDB:
         :param key: primary key value
         :param annotator: new annotator name
         """
-        return self.update(Key={'standardised': key},
+        return self.update(Key={'standKey': key},
                            UpdateExpression="set anotName=:a",
                            ExpressionAttributeValues={
                                ':a': annotator,

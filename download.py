@@ -19,7 +19,7 @@ def main(annotator_name: str, bucket_json: str, bucket_image,
     :param profile: Choose AWS CLI profile if more than 1 are set up
     """
     bucket = Bucket(bucket_image, profile)
-    json_set = download_via_json(annotator_name, bucket_json, local_storage)
+    json_set = download_via_json(annotator_name, bucket_json, local_storage, profile)
     for json_name in tqdm(json_set, desc="download json", leave=False):
         json_path = os.path.join(local_storage, "json", json_name)
         with open(json_path, "r") as file:
@@ -63,7 +63,6 @@ if __name__ == '__main__':
         conf = json.load(f)
     if conf["user"] and conf["start"] and conf["bucket_initial_annotation"] and conf[
         "bucket_standardized"]:
-        main(conf["user"], conf["bucket_initial_annotation"], conf["bucket_standardized"],
-             conf["profile"])
+        main(conf["user"], conf["bucket_initial_annotation"], conf["bucket_standardized"], profile=conf["profile"])
     else:
         print("edit config and add missing argument")
