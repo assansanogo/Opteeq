@@ -54,7 +54,7 @@ Python is used to rename and upload raw images (.jpeg, .png, .tiff) of receipts 
 
 #### 1.1.1 Rename images
 
-Rename all the files from a folder and upload it to `bucket_standardized`
+Rename all the files from a folder and upload it to `bucket_raw`
 ```
 `pip3 install -r requirements.txt`
 config conf.json
@@ -119,8 +119,9 @@ Raw images are transformed using an AWS Lambda function into standardized images
 
 Standardized images are then pushed (uploaded) into `bucket_standardized` using Boto3. 
 
-### 1.3 Image auto-annotation
-Google Cloud Vision Optical Character Recognition (OCR) API is called to [VGG Image Annotator](https://www.robots.ox.ac.uk/~vgg/software/via/) to automatically annotate and create json files for each image. 
+### 1.3 Image automatic pre-annotation
+Google Cloud Vision Optical Character Recognition (OCR) API is called to pre-annotate the pictures with boxes arount the text. Annotations from Google Vision are then converted by batch to a json file that can be imported in [VGG Image Annotator](https://www.robots.ox.ac.uk/~vgg/software/via/). 
+The goal of this step is essentially to reduce and ease the manual labelling of the pictures that will be done in the next step.
 
 Before using edit conf.json. you need to edit:
 
@@ -133,16 +134,15 @@ Before using edit conf.json. you need to edit:
 
 To add another profile `aws configure --profile profilName` to list available profiles `aws configure list-profiles`
 
-When you create the dynamoDB add a global secondary index on anotName and named annotator-index.
-
 If the part that you will use doesn't need one of these parameters you can ignore it.
 
+When you create the dynamoDB add a global secondary index on anotName and named annotator-index.
 
 #### 1.3.2 Set up Google vision and annotator
 
 1. `pip3 install -r requirements.txt`
 2. Set up [google cloud vision](https://cloud.google.com/vision/docs/quickstart-client-libraries)
-3. `python3 ec2.py` to used conversion locally without EC2 you can use  `via_json_local` function (
+3. `python3 ec2.py` to do the conversion locally without EC2 you can use  `via_json_local` function (
    tools/via/via_converter.py). User data for EC2 (compatible Debian and Ubuntu):
    ```
    #!/bin/bash
