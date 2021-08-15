@@ -11,9 +11,9 @@ Data is stored in Amazon Simple Storage Service (S3) cloud storage buckets, and 
 ![image](tools/aws/aws_Diagram.png)
 
 # Table of Contents
-[Installation](#instalation)
+Installation
 
-Usage
+[Usage](#usage) 
 
 Step 1: Data labelling architecture
 
@@ -41,7 +41,7 @@ License
 
 Team
 
-# Installation / Configuration {#instalation}
+# Installation / Configuration
 
 Currently installation for each task is discussed below in each section in Usage -- should this be compiled together in this section later?
 
