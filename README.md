@@ -11,7 +11,7 @@ Data is stored in Amazon Simple Storage Service (S3) cloud storage buckets, and 
 ![image](tools/aws/aws_Diagram.png)
 
 # Table of Contents
-Installation
+[Installation](#instalation)
 
 Usage
 
@@ -41,7 +41,7 @@ License
 
 Team
 
-# Installation / Configuration
+# Installation / Configuration {#instalation}
 
 Currently installation for each task is discussed below in each section in Usage -- should this be compiled together in this section later?
 
