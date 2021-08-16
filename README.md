@@ -77,7 +77,7 @@ Download all image and json for a given annotator name.
 
 # Sphinx Documentation
 
-The documentation is in docs folder. It is also hosted [here](https://souff.github.io/Opteeq/build/info.html).
+The documentation is in docs folder. It is also hosted [here](https://assansanogo.github.io/Opteeq/build/html/info.html).
 
 ## Generate docs
 
