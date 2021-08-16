@@ -194,6 +194,8 @@ Please add details
 
 The documentation is in the docs folder. It is also hosted [here](https://souff.github.io/Opteeq/build/info.html).
 
+The documentation is in docs folder. It is also hosted [here](https://assansanogo.github.io/Opteeq/build/html/info.html).
+
 To generate documentation:
 
 1. Edit the README.md or the different docStrings. You can also add a reStructuredText file (rst) or markdown (md) file
