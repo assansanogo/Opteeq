@@ -44,8 +44,22 @@ to a noSQL database using Amazon DynamoDB.
 
 # Installation / Configuration
 
-Currently installation for each task is discussed below in each section in Usage -- should this be compiled together in
-this section later?
+## get the project from the repository:
+```
+git clone https://github.com/assansanogo/Opteeq.git
+```
+
+## Config the aws cli:
+
+To add another profile `aws configure --profile profilName` to list available profiles `aws configure list-profiles`.
+
+## Install library requirements
+
+```
+pip3 install -r requirements.txt
+```
+
+## Config the project
 
 Before using edit conf.json. you need to edit:
 
