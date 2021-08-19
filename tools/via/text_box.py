@@ -109,14 +109,15 @@ class AwsRekognition(Rekognition, TextBox):
         width = response["width"]
         height = response["height"]
         for box in response["TextDetections"]:
-            region.append(
-                {"region_attributes": {"Text": box["DetectedText"], "type": "6"},
-                 "shape_attributes": {
-                     "all_points_x": [point["X"] * width for point in
-                                      box["Geometry"]["Polygon"]],
-                     "all_points_y": [point["Y"] * height for point in
-                                      box["Geometry"]["Polygon"]],
-                     "name": "polygon"}})
+            if box["Type"] == "WORD":
+                region.append(
+                    {"region_attributes": {"Text": box["DetectedText"], "type": "6"},
+                     "shape_attributes": {
+                         "all_points_x": [point["X"] * width for point in
+                                          box["Geometry"]["Polygon"]],
+                         "all_points_y": [point["Y"] * height for point in
+                                          box["Geometry"]["Polygon"]],
+                         "name": "polygon"}})
         return region
 
 
