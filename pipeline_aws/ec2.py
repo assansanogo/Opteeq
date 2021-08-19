@@ -10,9 +10,9 @@ from tools.aws.awsTools import DynamoDB, BucketCounter
 from tools.via.via_converter import ViaConverter
 
 
-def main(cloud_provider, region: str, table_name: str, batch_size: int, bucket_in: str,
-         bucket_out: str,
-         annotator_names: list, profile: str = "default") -> None:
+def run_generation(cloud_provider, region: str, table_name: str, batch_size: int, bucket_in: str,
+                   bucket_out: str,
+                   annotator_names: list, profile: str = "default") -> None:
     """
     Get all image without annotator from dynamoDB. Generate json via with annotation by batch and
     upload to s3.
@@ -47,9 +47,11 @@ if __name__ == '__main__':
         conf = json.load(f)
     if conf["dynamoDB"]["region"] and conf["dynamoDB"]["table"] and \
             conf["bucket_standardized"] and conf["bucket_initial_annotation"]:
-        main(conf["cloud_provider"], conf["dynamoDB"]["region"], conf["dynamoDB"]["table"],
-             conf["batch_size"],
-             conf["bucket_standardized"], conf["bucket_initial_annotation"], conf["annotator_list"],
-             conf["profile"])
+        run_generation(conf["cloud_provider"], conf["dynamoDB"]["region"],
+                       conf["dynamoDB"]["table"],
+                       conf["batch_size"],
+                       conf["bucket_standardized"], conf["bucket_initial_annotation"],
+                       conf["annotator_list"],
+                       conf["profile"])
     else:
         print("edit config and add missing argument")

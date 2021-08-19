@@ -1,5 +1,3 @@
-# :eye: Opteeq
-
 # Description
 
 Opteeq is a library and web application that digitalises paper receipts. It automatically scans receipts using Google
@@ -20,16 +18,6 @@ to a noSQL database using Amazon DynamoDB.
 
 [Step 1: Data labelling architecture](#step-1-data-labelling-architecture)
 
-[1.1 Image uploading](#11-image-uploading)
-
-[1.2 Image standardization](#12-image-standardization)
-
-[1.3 Image auto-annotation](#13-image-automatic-pre-annotation)
-
-[1.4 Manual labelling](#14-manual-labelling)
-
-[1.5 Data uploading](#15-data-uploading)
-
 [Step 2: AI modelling (TBD)](#step-2-ai-modelling-tbd)
 
 [Step 3: Web application deployment (TBD)](#step-3-web-application-deployment-tbd)
@@ -45,7 +33,8 @@ to a noSQL database using Amazon DynamoDB.
 # Installation / Configuration
 
 ## get the project from the repository:
-```
+
+```shell
 git clone https://github.com/assansanogo/Opteeq.git
 ```
 
@@ -55,7 +44,7 @@ To add another profile `aws configure --profile profilName` to list available pr
 
 ## Install library requirements
 
-```
+```shell
 pip3 install -r requirements.txt
 ```
 
@@ -78,27 +67,66 @@ When you create the dynamoDB add a global secondary index on anotName and named 
 
 # Usage
 
-## Step 1: Data labelling architecture
+You can use all this script with the command behind or use the notebook pipeline if you prefer.
 
-### 1.1 Image uploading
+All this script is in a package it is recommended to lunch them with `-m`. If you don't use `-m` you can have import
+error or path error.
+
+## Upload image
+
+1. put the image in the image folder
+2. execute
+   ```shell
+   `python3 -m pipeline_aws.rename_upload`
+   ```
+
+## Generate json for via
+
+1. Start the Ec2 with this user data (compatible Debian and Ubuntu):
+
+   ```shell
+   #!/bin/bash
+   sudo apt update
+   sudo apt install python3-pip -y
+   cd home/$USER
+   git clone https://github.com/assansanogo/Opteeq.git
+   cd Opteeq
+   pip3 install -r requirements.txt
+   ```
+
+2. execute:
+   ```shell
+   python3 -m pipeline_aws.ec2
+   ```
+
+## Download image and json
+
+1. Execute:
+
+      ```shell
+      python3 -m pipeline_aws.donwload
+      ```
+
+2. Go to [VGG Image Annotator 2](https://www.robots.ox.ac.uk/~vgg/software/via/via.html), **open a VIA project** and
+   choose output.json. (If the image file can't be found, download the HTML file and change the default path in the
+   settings)
+
+
+# Step 1: Data labelling architecture
+
+## 1.1 Image uploading
 
 Python is used to rename and upload raw images (.jpeg, .png, .tiff) of receipts into an S3 bucket `bucket_raw`
 
-#### 1.1.1 Rename images
+### 1.1.1 Rename images
 
 Rename all the files from a folder and upload it to `bucket_raw`
 
-```
-`pip3 install -r requirements.txt`
-config conf.json
-`python3 rename_upload.py`
-```
-
-#### 1.1.2 Import raw images
+### 1.1.2 Import raw images
 
 **All images in folder image (or other defined image folder) are imported. Take note of the request ID number !**
 
-### 1.2 Image standardization
+## 1.2 Image standardization
 
 Raw images are transformed using an AWS Lambda function into standardized images.The Lambda function runs on an S3
 trigger based on a put event (the file upload). Image standardization includes a minimum image size check, image
@@ -119,59 +147,37 @@ resizing, text orientation detection and rotation.
 
 Standardized images are then pushed (uploaded) into `bucket_standardized` using Boto3.
 
-### 1.3 Image automatic pre-annotation
+## 1.3 Image automatic pre-annotation
 
 Google Cloud Vision Optical Character Recognition (OCR) API is called to pre-annotate the pictures with boxes arount the
 text. Annotations from Google Vision are then converted by batch to a json file that can be imported
 in [VGG Image Annotator](https://www.robots.ox.ac.uk/~vgg/software/via/). The goal of this step is essentially to reduce
 and ease the manual labelling of the pictures that will be done in the next step.
 
-#### 1.3.2 Set up Google vision and annotator
 
-1. `pip3 install -r requirements.txt`
-2. Set up [google cloud vision](https://cloud.google.com/vision/docs/quickstart-client-libraries)
-3. `python3 ec2.py` to do the conversion locally without EC2 you can use  `via_json_local` function (
-   tools/via/via_converter.py). User data for EC2 (compatible Debian and Ubuntu):
-   ```
-   #!/bin/bash
-   sudo apt update
-   sudo apt install python3-pip -y
-   cd home/$USER
-   git clone https://github.com/assansanogo/Opteeq.git
-   cd Opteeq
-   pip3 install -r requirements.txt
-   ```
-
-4. Go to [VGG Image Annotator 2](https://www.robots.ox.ac.uk/~vgg/software/via/via.html), **open a VIA project** and
-   choose output.json. (If the image file can't be find, download the HTML file and change the default path in the
-   settings)
-
-##### 1.3.3 Example of results
+### 1.3.1 Example of results
 
 | ![via0](tools/via/doc/via0.png)   |      ![via](tools/via/doc/via.png)      |  ![via2](tools/via/doc/via2.png) |
 |----------|:-------------:|------:|
 |          |               |       |
 
-### 1.4 Manual labelling
+## 1.4 Manual labelling
 
 Json files are manually labelled using VGG Annotator (?) by team members. Annotated json files are uploaded into **AWS
 Bucket 3**.
 
 Download all image and json for a given annotator name.
 
-1. `pip3 install -r requirements.txt`
-2. config conf.json
-3. `python3 download.py`
 
-### 1.5 Data uploading
+## 1.5 Data uploading
 
 Final database is exported as a .csv file.
 
-## Step 2: AI modelling (TBD)
+# Step 2: AI modelling (TBD)
 
 - Build AI model to detect and crop external region of interest before standardisation
 
-## Step 3: Web application deployment (TBD)
+# Step 3: Web application deployment (TBD)
 
 :::info Please add details
 :::

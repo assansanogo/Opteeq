@@ -9,8 +9,8 @@ from tqdm import tqdm
 from tools.aws.awsTools import Bucket
 
 
-def main(annotator_name: str, bucket_json: str, bucket_image,
-         local_storage: str = "download", profile: str = "default") -> None:
+def download(annotator_name: str, bucket_json: str, bucket_image,
+             local_storage: str = "download", profile: str = "default") -> None:
     """
     download via json and image which aren't store in local. Edit json with path image folder.
 
@@ -66,7 +66,7 @@ if __name__ == '__main__':
         conf = json.load(f)
     if conf["user"] and conf["start"] and conf["bucket_initial_annotation"] and \
             conf["bucket_standardized"]:
-        main(conf["user"], conf["bucket_initial_annotation"], conf["bucket_standardized"],
-             profile=conf["profile"])
+        download(conf["user"], conf["bucket_initial_annotation"], conf["bucket_standardized"],
+                 profile=conf["profile"])
     else:
         print("edit config and add missing argument")

@@ -9,3 +9,11 @@ Subpackages
 
    tools.aws
    tools.via
+
+Module contents
+---------------
+
+.. automodule:: tools
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,335 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Image_rotation_cnn package &mdash; Opteeq 1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="tools package" href="tools.html" />
+    <link rel="prev" title="pipeline_aws package" href="pipeline_aws.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Opteeq
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="info.html">Description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#aws-structure">AWS structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#table-of-contents">Table of Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#installation-configuration">Installation / Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#usage">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#step-1-data-labelling-architecture">Step 1: Data labelling architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#step-2-ai-modelling-tbd">Step 2: AI modelling (TBD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#step-3-web-application-deployment-tbd">Step 3: Web application deployment (TBD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#database-structure">Database structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#project-cost-estimation">Project cost estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#license">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#team">Team</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#sphinx-documentation">Sphinx Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">opteeq</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="pipeline_aws.html">pipeline_aws package</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Image_rotation_cnn package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-Image_rotation_cnn.prepare_database">Image_rotation_cnn.prepare_database module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-Image_rotation_cnn">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">tools package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index_code.html">Index</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Opteeq</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">opteeq</a> &raquo;</li>
+        
+      <li>Image_rotation_cnn package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/Image_rotation_cnn.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="image-rotation-cnn-package">
+<h1>Image_rotation_cnn package<a class="headerlink" href="#image-rotation-cnn-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-Image_rotation_cnn.prepare_database">
+<span id="image-rotation-cnn-prepare-database-module"></span><h2>Image_rotation_cnn.prepare_database module<a class="headerlink" href="#module-Image_rotation_cnn.prepare_database" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="Image_rotation_cnn.prepare_database.image_read">
+<span class="sig-prename descclassname"><span class="pre">Image_rotation_cnn.prepare_database.</span></span><span class="sig-name descname"><span class="pre">image_read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="headerlink" href="#Image_rotation_cnn.prepare_database.image_read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads a single image into a numpy array using OpenCV
+:param file: path to the image
+:type img: str
+:return: Image array
+:rtype: np.ndarray</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Image_rotation_cnn.prepare_database.prepare_1_image">
+<span class="sig-prename descclassname"><span class="pre">Image_rotation_cnn.prepare_database.</span></span><span class="sig-name descname"><span class="pre">prepare_1_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_folder</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Image_rotation_cnn.prepare_database.prepare_1_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resizes an image and rotate it 3 times to get 4 images that can be used to train the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file</strong> (<em>str</em>) – path to the original image</p></li>
+<li><p><strong>filename</strong> (<em>str</em>) – filename base of the 4 processed images</p></li>
+<li><p><strong>out_folder</strong> (<em>str</em>) – path to the folder to upload the 4 processed images</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Image_rotation_cnn.prepare_database.prepare_training_images">
+<span class="sig-prename descclassname"><span class="pre">Image_rotation_cnn.prepare_database.</span></span><span class="sig-name descname"><span class="pre">prepare_training_images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_folder</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_folder</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#Image_rotation_cnn.prepare_database.prepare_training_images" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses all image files in a folder to get 4 images / file that can be used to train the model.
+The N images in the original folder must all be in the normal orientation.
+The 4xN processed images in the output folder are squared with size 180 and rotated in 4
+orientations (0, 90, 180, and 270 degrees). The last 3 characters of the file names indicates the
+orientation : ‘000’, ‘090’, ‘180’ or ‘270’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>in_folder</strong> (<em>str</em>) – path to the folder with original images</p></li>
+<li><p><strong>out_folder</strong> (<em>str</em>) – path to the folder to upload the processed images</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a List of the files that were not processed</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>List of str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Image_rotation_cnn.prepare_database.resize_and_pad">
+<span class="sig-prename descclassname"><span class="pre">Image_rotation_cnn.prepare_database.</span></span><span class="sig-name descname"><span class="pre">resize_and_pad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">desired_size</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">180</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="headerlink" href="#Image_rotation_cnn.prepare_database.resize_and_pad" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resizes an image to a square image of the desired size, with a black pad.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img</strong> (<em>np.ndarray</em>) – Image array</p></li>
+<li><p><strong>desired_size</strong> (<em>int</em><em>, </em><em>optional</em>) – Final image size, defaults to 180</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Resized image array</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Image_rotation_cnn.prepare_database.rotate_image">
+<span class="sig-prename descclassname"><span class="pre">Image_rotation_cnn.prepare_database.</span></span><span class="sig-name descname"><span class="pre">rotate_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">90</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="headerlink" href="#Image_rotation_cnn.prepare_database.rotate_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rotates an image with the desired angle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img</strong> (<em>np.ndarray</em>) – Image array</p></li>
+<li><p><strong>angle</strong> (<em>int</em><em>, </em><em>optional</em>) – Angle of rotation in degrees, defaults to 90</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Rotated image array</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-Image_rotation_cnn">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-Image_rotation_cnn" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="tools.html" class="btn btn-neutral float-right" title="tools package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="pipeline_aws.html" class="btn btn-neutral float-left" title="pipeline_aws package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Léo.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

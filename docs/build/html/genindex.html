@@ -86,18 +86,20 @@
             
             
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="info.html">:eye: Opteeq</a></li>
-<li class="toctree-l1"><a class="reference internal" href="info.html#description">Description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html">Description</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#aws-structure">AWS structure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#table-of-contents">Table of Contents</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#installation-configuration">Installation / Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#usage">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#step-1-data-labelling-architecture">Step 1: Data labelling architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#step-2-ai-modelling-tbd">Step 2: AI modelling (TBD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#step-3-web-application-deployment-tbd">Step 3: Web application deployment (TBD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#database-structure">Database structure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#project-cost-estimation">Project cost estimation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#license">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#team">Team</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#sphinx-documentation">Sphinx Documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">Code documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">opteeq</a></li>
 </ul>
 
             
@@ -170,8 +172,8 @@
  <a href="#A"><strong>A</strong></a>
  | <a href="#B"><strong>B</strong></a>
  | <a href="#D"><strong>D</strong></a>
- | <a href="#E"><strong>E</strong></a>
  | <a href="#G"><strong>G</strong></a>
+ | <a href="#I"><strong>I</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#P"><strong>P</strong></a>
@@ -210,34 +212,18 @@
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li>
-    download
+      <li><a href="pipeline_aws.html#pipeline_aws.download.download">download() (in module pipeline_aws.download)</a>
 
       <ul>
-        <li><a href="download.html#module-download">module</a>
+        <li><a href="tools.aws.html#tools.aws.awsTools.Bucket.download">(tools.aws.awsTools.Bucket method)</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="tools.aws.html#tools.aws.awsTools.Bucket.download">download() (tools.aws.awsTools.Bucket method)</a>
-</li>
-      <li><a href="download.html#download.download_via_json">download_via_json() (in module download)</a>
+      <li><a href="pipeline_aws.html#pipeline_aws.download.download_via_json">download_via_json() (in module pipeline_aws.download)</a>
 </li>
       <li><a href="tools.aws.html#tools.aws.awsTools.DynamoDB">DynamoDB (class in tools.aws.awsTools)</a>
 </li>
-  </ul></td>
-</tr></table>
-
-<h2 id="E">E</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li>
-    ec2
-
-      <ul>
-        <li><a href="ec2.html#module-ec2">module</a>
-</li>
-      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -258,6 +244,30 @@
 </li>
       <li><a href="tools.aws.html#tools.aws.awsTools.Rekognition.get_text_s3">get_text_s3() (tools.aws.awsTools.Rekognition method)</a>
 </li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="Image_rotation_cnn.html#Image_rotation_cnn.prepare_database.image_read">image_read() (in module Image_rotation_cnn.prepare_database)</a>
+</li>
+      <li>
+    Image_rotation_cnn
+
+      <ul>
+        <li><a href="Image_rotation_cnn.html#module-Image_rotation_cnn">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    Image_rotation_cnn.prepare_database
+
+      <ul>
+        <li><a href="Image_rotation_cnn.html#module-Image_rotation_cnn.prepare_database">module</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -284,25 +294,33 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="download.html#download.main">main() (in module download)</a>
-
-      <ul>
-        <li><a href="ec2.html#ec2.main">(in module ec2)</a>
-</li>
-      </ul></li>
       <li>
     module
 
       <ul>
-        <li><a href="download.html#module-download">download</a>
+        <li><a href="Image_rotation_cnn.html#module-Image_rotation_cnn">Image_rotation_cnn</a>
 </li>
-        <li><a href="ec2.html#module-ec2">ec2</a>
+        <li><a href="Image_rotation_cnn.html#module-Image_rotation_cnn.prepare_database">Image_rotation_cnn.prepare_database</a>
 </li>
-        <li><a href="rename_upload.html#module-rename_upload">rename_upload</a>
+        <li><a href="pipeline_aws.html#module-pipeline_aws">pipeline_aws</a>
+</li>
+        <li><a href="pipeline_aws.html#module-pipeline_aws.download">pipeline_aws.download</a>
+</li>
+        <li><a href="pipeline_aws.html#module-pipeline_aws.ec2">pipeline_aws.ec2</a>
+</li>
+        <li><a href="pipeline_aws.html#module-pipeline_aws.rename_upload">pipeline_aws.rename_upload</a>
+</li>
+        <li><a href="tools.html#module-tools">tools</a>
+</li>
+        <li><a href="tools.aws.html#module-tools.aws">tools.aws</a>
 </li>
         <li><a href="tools.aws.html#module-tools.aws.awsTools">tools.aws.awsTools</a>
 </li>
+        <li><a href="tools.via.html#module-tools.via">tools.via</a>
+</li>
         <li><a href="tools.via.html#module-tools.via.storage">tools.via.storage</a>
+</li>
+        <li><a href="tools.via.structure.html#module-tools.via.structure">tools.via.structure</a>
 </li>
         <li><a href="tools.via.structure.html#module-tools.via.structure.default">tools.via.structure.default</a>
 </li>
@@ -317,6 +335,40 @@
 <h2 id="P">P</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    pipeline_aws
+
+      <ul>
+        <li><a href="pipeline_aws.html#module-pipeline_aws">module</a>
+</li>
+      </ul></li>
+      <li>
+    pipeline_aws.download
+
+      <ul>
+        <li><a href="pipeline_aws.html#module-pipeline_aws.download">module</a>
+</li>
+      </ul></li>
+      <li>
+    pipeline_aws.ec2
+
+      <ul>
+        <li><a href="pipeline_aws.html#module-pipeline_aws.ec2">module</a>
+</li>
+      </ul></li>
+      <li>
+    pipeline_aws.rename_upload
+
+      <ul>
+        <li><a href="pipeline_aws.html#module-pipeline_aws.rename_upload">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="Image_rotation_cnn.html#Image_rotation_cnn.prepare_database.prepare_1_image">prepare_1_image() (in module Image_rotation_cnn.prepare_database)</a>
+</li>
+      <li><a href="Image_rotation_cnn.html#Image_rotation_cnn.prepare_database.prepare_training_images">prepare_training_images() (in module Image_rotation_cnn.prepare_database)</a>
+</li>
       <li><a href="tools.via.html#tools.via.text_box.AwsRekognition.process_region">process_region() (tools.via.text_box.AwsRekognition method)</a>
 
       <ul>
@@ -325,8 +377,6 @@
         <li><a href="tools.via.html#tools.via.text_box.TextBox.process_region">(tools.via.text_box.TextBox method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="tools.aws.html#tools.aws.awsTools.Bucket.put_object">put_object() (tools.aws.awsTools.Bucket method)</a>
 </li>
       <li><a href="tools.aws.html#tools.aws.awsTools.BucketCounter.put_object_annotator">put_object_annotator() (tools.aws.awsTools.BucketCounter method)</a>
@@ -359,15 +409,6 @@
       </ul></li>
       <li><a href="tools.aws.html#tools.aws.awsTools.Rekognition">Rekognition (class in tools.aws.awsTools)</a>
 </li>
-      <li>
-    rename_upload
-
-      <ul>
-        <li><a href="rename_upload.html#module-rename_upload">module</a>
-</li>
-      </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="tools.via.html#tools.via.text_box.AwsRekognition.request">request() (tools.via.text_box.AwsRekognition method)</a>
 
       <ul>
@@ -376,7 +417,15 @@
         <li><a href="tools.via.html#tools.via.text_box.TextBox.request">(tools.via.text_box.TextBox method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="tools.via.html#tools.via.via_converter.ViaConverter.request_generator">request_generator() (tools.via.via_converter.ViaConverter method)</a>
+</li>
+      <li><a href="Image_rotation_cnn.html#Image_rotation_cnn.prepare_database.resize_and_pad">resize_and_pad() (in module Image_rotation_cnn.prepare_database)</a>
+</li>
+      <li><a href="Image_rotation_cnn.html#Image_rotation_cnn.prepare_database.rotate_image">rotate_image() (in module Image_rotation_cnn.prepare_database)</a>
+</li>
+      <li><a href="pipeline_aws.html#pipeline_aws.ec2.run_generation">run_generation() (in module pipeline_aws.ec2)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -401,6 +450,20 @@
       <li><a href="tools.via.html#tools.via.text_box.textbox_factory">textbox_factory() (in module tools.via.text_box)</a>
 </li>
       <li>
+    tools
+
+      <ul>
+        <li><a href="tools.html#module-tools">module</a>
+</li>
+      </ul></li>
+      <li>
+    tools.aws
+
+      <ul>
+        <li><a href="tools.aws.html#module-tools.aws">module</a>
+</li>
+      </ul></li>
+      <li>
     tools.aws.awsTools
 
       <ul>
@@ -408,14 +471,28 @@
 </li>
       </ul></li>
       <li>
+    tools.via
+
+      <ul>
+        <li><a href="tools.via.html#module-tools.via">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
     tools.via.storage
 
       <ul>
         <li><a href="tools.via.html#module-tools.via.storage">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    tools.via.structure
+
+      <ul>
+        <li><a href="tools.via.structure.html#module-tools.via.structure">module</a>
+</li>
+      </ul></li>
       <li>
     tools.via.structure.default
 
@@ -449,7 +526,7 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="rename_upload.html#rename_upload.upload">upload() (in module rename_upload)</a>
+      <li><a href="pipeline_aws.html#pipeline_aws.rename_upload.upload">upload() (in module pipeline_aws.rename_upload)</a>
 
       <ul>
         <li><a href="tools.aws.html#tools.aws.awsTools.Bucket.upload">(tools.aws.awsTools.Bucket method)</a>

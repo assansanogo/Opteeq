@@ -9,6 +9,9 @@ Subpackages
 
    tools.via.structure
 
+Submodules
+----------
+
 tools.via.storage module
 ------------------------
 
@@ -29,6 +32,14 @@ tools.via.via\_converter module
 -------------------------------
 
 .. automodule:: tools.via.via_converter
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: tools.via
    :members:
    :undoc-members:
    :show-inheritance:

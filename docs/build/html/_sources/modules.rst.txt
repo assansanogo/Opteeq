@@ -1,11 +1,10 @@
-Code documentation
-=====================
+opteeq
+=======
 
 .. toctree::
    :maxdepth: 4
 
-   download
-   ec2
-   rename_upload
+   pipeline_aws
+   Image_rotation_cnn
    tools
    index_code

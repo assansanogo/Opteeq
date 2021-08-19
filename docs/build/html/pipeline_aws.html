@@ -1,0 +1,336 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>pipeline_aws package &mdash; Opteeq 1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Image_rotation_cnn package" href="Image_rotation_cnn.html" />
+    <link rel="prev" title="opteeq" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Opteeq
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="info.html">Description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#aws-structure">AWS structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#table-of-contents">Table of Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#installation-configuration">Installation / Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#usage">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#step-1-data-labelling-architecture">Step 1: Data labelling architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#step-2-ai-modelling-tbd">Step 2: AI modelling (TBD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#step-3-web-application-deployment-tbd">Step 3: Web application deployment (TBD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#database-structure">Database structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#project-cost-estimation">Project cost estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#license">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#team">Team</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#sphinx-documentation">Sphinx Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">opteeq</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">pipeline_aws package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pipeline_aws.download">pipeline_aws.download module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pipeline_aws.ec2">pipeline_aws.ec2 module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pipeline_aws.rename_upload">pipeline_aws.rename_upload module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pipeline_aws">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Image_rotation_cnn.html">Image_rotation_cnn package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">tools package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index_code.html">Index</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Opteeq</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">opteeq</a> &raquo;</li>
+        
+      <li>pipeline_aws package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/pipeline_aws.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pipeline-aws-package">
+<h1>pipeline_aws package<a class="headerlink" href="#pipeline-aws-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-pipeline_aws.download">
+<span id="pipeline-aws-download-module"></span><h2>pipeline_aws.download module<a class="headerlink" href="#module-pipeline_aws.download" title="Permalink to this headline">¶</a></h2>
+<p>Part D cf schema</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="pipeline_aws.download.download">
+<span class="sig-prename descclassname"><span class="pre">pipeline_aws.download.</span></span><span class="sig-name descname"><span class="pre">download</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">annotator_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bucket_json</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bucket_image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_storage</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'download'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">profile</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'default'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pipeline_aws.download.download" title="Permalink to this definition">¶</a></dt>
+<dd><p>download via json and image which aren’t store in local. Edit json with path image folder.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>annotator_name</strong> – name of the user</p></li>
+<li><p><strong>bucket_json</strong> – bucket where json via are stored</p></li>
+<li><p><strong>bucket_image</strong> – bucket where image are stored</p></li>
+<li><p><strong>local_storage</strong> – path of the local storage where json and image are stored</p></li>
+<li><p><strong>profile</strong> – Choose AWS CLI profile if more than 1 are set up</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pipeline_aws.download.download_via_json">
+<span class="sig-prename descclassname"><span class="pre">pipeline_aws.download.</span></span><span class="sig-name descname"><span class="pre">download_via_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">annotator_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bucket_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_storage</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'download'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">profile</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'default'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">set</span></span></span><a class="headerlink" href="#pipeline_aws.download.download_via_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>download the via json which contains the right annotator name from the bucket.
+Check local storage, if a file is already store, don’t download.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>annotator_name</strong> – name of the user</p></li>
+<li><p><strong>bucket_name</strong> – bucket where json via are stored</p></li>
+<li><p><strong>local_storage</strong> – path of the local storage where json via are stored</p></li>
+<li><p><strong>profile</strong> – Choose AWS CLI profile if more than 1 are set up</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>set of json download</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-pipeline_aws.ec2">
+<span id="pipeline-aws-ec2-module"></span><h2>pipeline_aws.ec2 module<a class="headerlink" href="#module-pipeline_aws.ec2" title="Permalink to this headline">¶</a></h2>
+<p>Part C cf schema</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="pipeline_aws.ec2.run_generation">
+<span class="sig-prename descclassname"><span class="pre">pipeline_aws.ec2.</span></span><span class="sig-name descname"><span class="pre">run_generation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cloud_provider</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">region</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bucket_in</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bucket_out</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotator_names</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">profile</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'default'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pipeline_aws.ec2.run_generation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all image without annotator from dynamoDB. Generate json via with annotation by batch and
+upload to s3.
+update dynamoDB with annotator name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cloud_provider</strong> – cloud provider name “aws” for aws rekognition, “gcloud for gcloud vison</p></li>
+<li><p><strong>region</strong> – dynamoDB table region</p></li>
+<li><p><strong>table_name</strong> – dynamoDB table name</p></li>
+<li><p><strong>batch_size</strong> – batch size for via json</p></li>
+<li><p><strong>bucket_in</strong> – bucket with standardised image</p></li>
+<li><p><strong>bucket_out</strong> – bucket where via json are upload</p></li>
+<li><p><strong>annotator_names</strong> – list the name of all the annotator</p></li>
+<li><p><strong>profile</strong> – Choose AWS CLI profile if more than 1 are set up</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-pipeline_aws.rename_upload">
+<span id="pipeline-aws-rename-upload-module"></span><h2>pipeline_aws.rename_upload module<a class="headerlink" href="#module-pipeline_aws.rename_upload" title="Permalink to this headline">¶</a></h2>
+<p>Part A cf schema</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="pipeline_aws.rename_upload.upload">
+<span class="sig-prename descclassname"><span class="pre">pipeline_aws.rename_upload.</span></span><span class="sig-name descname"><span class="pre">upload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bucket_raw</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">profile</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'default'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pipeline_aws.rename_upload.upload" title="Permalink to this definition">¶</a></dt>
+<dd><p>Upload all the files of folder in AWS bucket, rename file with user name and number auto increment</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>user</strong> – user name</p></li>
+<li><p><strong>folder</strong> – folder to upload</p></li>
+<li><p><strong>start</strong> – start for auto increment</p></li>
+<li><p><strong>bucket_raw</strong> – name bucket</p></li>
+<li><p><strong>profile</strong> – Choose AWS CLI profile if more than 1 are set up</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the final number auto increment in order to save it</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-pipeline_aws">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pipeline_aws" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="Image_rotation_cnn.html" class="btn btn-neutral float-right" title="Image_rotation_cnn package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="modules.html" class="btn btn-neutral float-left" title="opteeq" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Léo.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>:eye: Opteeq &mdash; Opteeq 1.0 documentation</title>
+  <title>Description &mdash; Opteeq 1.0 documentation</title>
   
 
   
@@ -41,7 +41,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Code documentation" href="modules.html" />
+    <link rel="next" title="opteeq" href="modules.html" />
     <link rel="prev" title="&lt;no title&gt;" href="index.html" /> 
 </head>
 
@@ -88,37 +88,45 @@
             
             
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">:eye: Opteeq</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Description</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#aws-structure">AWS structure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#installation-configuration">Installation / Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#installation-configuration">Installation / Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#get-the-project-from-the-repository">get the project from the repository:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#config-the-aws-cli">Config the aws cli:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-library-requirements">Install library requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#config-the-project">Config the project</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="#usage">Usage</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#step-1-data-labelling-architecture">Step 1: Data labelling architecture</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#image-uploading">1.1 Image uploading</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#rename-images">1.1.1 Rename images</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#import-raw-images">1.1.2 Import raw images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#upload-image">Upload image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generate-json-for-via">Generate json for via</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#download-image-and-json">Download image and json</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#image-standardization">1.2 Image standardization</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#image-automatic-pre-annotation">1.3 Image automatic pre-annotation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#set-up-google-vision-and-annotator">1.3.2 Set up Google vision and annotator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#step-1-data-labelling-architecture">Step 1: Data labelling architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#image-uploading">1.1 Image uploading</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rename-images">1.1.1 Rename images</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#import-raw-images">1.1.2 Import raw images</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#manual-labelling">1.4 Manual labelling</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#data-uploading">1.5 Data uploading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#image-standardization">1.2 Image standardization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#image-automatic-pre-annotation">1.3 Image automatic pre-annotation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example-of-results">1.3.1 Example of results</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#step-2-ai-modelling-tbd">Step 2: AI modelling (TBD)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#step-3-web-application-deployment-tbd">Step 3: Web application deployment (TBD)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#manual-labelling">1.4 Manual labelling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-uploading">1.5 Data uploading</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="#step-2-ai-modelling-tbd">Step 2: AI modelling (TBD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#step-3-web-application-deployment-tbd">Step 3: Web application deployment (TBD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#database-structure">Database structure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#project-cost-estimation">Project cost estimation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#license">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#team">Team</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#sphinx-documentation">Sphinx Documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">Code documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">opteeq</a></li>
 </ul>
 
             
@@ -167,7 +175,7 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>:eye: Opteeq</li>
+      <li>Description</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -186,10 +194,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="tex2jax_ignore mathjax_ignore section" id="eye-opteeq">
-<h1>:eye: Opteeq<a class="headerlink" href="#eye-opteeq" title="Permalink to this headline">¶</a></h1>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="description">
+  <div class="tex2jax_ignore mathjax_ignore section" id="description">
 <h1>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h1>
 <p>Opteeq is a library and web application that digitalises paper receipts. It automatically scans receipts using Google
 Vision, formats and labels them, then uses a text detection model (TBD) to store and extracts key information.</p>
@@ -205,11 +210,6 @@ to a noSQL database using Amazon DynamoDB.</p>
 <p><a class="reference external" href="#installation--configuration">Installation</a></p>
 <p><a class="reference external" href="#usage">Usage</a></p>
 <p><a class="reference external" href="#step-1-data-labelling-architecture">Step 1: Data labelling architecture</a></p>
-<p><a class="reference external" href="#11-image-uploading">1.1 Image uploading</a></p>
-<p><a class="reference external" href="#12-image-standardization">1.2 Image standardization</a></p>
-<p><a class="reference external" href="#13-image-automatic-pre-annotation">1.3 Image auto-annotation</a></p>
-<p><a class="reference external" href="#14-manual-labelling">1.4 Manual labelling</a></p>
-<p><a class="reference external" href="#15-data-uploading">1.5 Data uploading</a></p>
 <p><a class="reference external" href="#step-2-ai-modelling-tbd">Step 2: AI modelling (TBD)</a></p>
 <p><a class="reference external" href="#step-3-web-application-deployment-tbd">Step 3: Web application deployment (TBD)</a></p>
 <p><a class="reference external" href="#database-structure">Database structure</a></p>
@@ -219,8 +219,24 @@ to a noSQL database using Amazon DynamoDB.</p>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="installation-configuration">
 <h1>Installation / Configuration<a class="headerlink" href="#installation-configuration" title="Permalink to this headline">¶</a></h1>
-<p>Currently installation for each task is discussed below in each section in Usage – should this be compiled together in
-this section later?</p>
+<div class="section" id="get-the-project-from-the-repository">
+<h2>get the project from the repository:<a class="headerlink" href="#get-the-project-from-the-repository" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/assansanogo/Opteeq.git
+</pre></div>
+</div>
+</div>
+<div class="section" id="config-the-aws-cli">
+<h2>Config the aws cli:<a class="headerlink" href="#config-the-aws-cli" title="Permalink to this headline">¶</a></h2>
+<p>To add another profile <code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">configure</span> <span class="pre">--profile</span> <span class="pre">profilName</span></code> to list available profiles <code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">configure</span> <span class="pre">list-profiles</span></code>.</p>
+</div>
+<div class="section" id="install-library-requirements">
+<h2>Install library requirements<a class="headerlink" href="#install-library-requirements" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip3 install -r requirements.txt
+</pre></div>
+</div>
+</div>
+<div class="section" id="config-the-project">
+<h2>Config the project<a class="headerlink" href="#config-the-project" title="Permalink to this headline">¶</a></h2>
 <p>Before using edit conf.json. you need to edit:</p>
 <ol class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">user</span></code>: your username.</p></li>
@@ -234,29 +250,74 @@ this section later?</p>
 <p>If the part that you will use doesn’t need one of these parameters you can ignore it.</p>
 <p>When you create the dynamoDB add a global secondary index on anotName and named annotator-index.</p>
 </div>
+</div>
 <div class="tex2jax_ignore mathjax_ignore section" id="usage">
 <h1>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="step-1-data-labelling-architecture">
-<h2>Step 1: Data labelling architecture<a class="headerlink" href="#step-1-data-labelling-architecture" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="image-uploading">
-<h3>1.1 Image uploading<a class="headerlink" href="#image-uploading" title="Permalink to this headline">¶</a></h3>
-<p>Python is used to rename and upload raw images (.jpeg, .png, .tiff) of receipts into an S3 bucket <code class="docutils literal notranslate"><span class="pre">bucket_raw</span></code></p>
-<div class="section" id="rename-images">
-<h4>1.1.1 Rename images<a class="headerlink" href="#rename-images" title="Permalink to this headline">¶</a></h4>
-<p>Rename all the files from a folder and upload it to <code class="docutils literal notranslate"><span class="pre">bucket_raw</span></code></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>`pip3 install -r requirements.txt`
-config conf.json
-`python3 rename_upload.py`
+<p>You can use all this script with the command behind or use the notebook pipeline if you prefer.</p>
+<p>All this script is in a package it is recommended to lunch them with <code class="docutils literal notranslate"><span class="pre">-m</span></code>. If you don’t use <code class="docutils literal notranslate"><span class="pre">-m</span></code> you can have import
+error or path error.</p>
+<div class="section" id="upload-image">
+<h2>Upload image<a class="headerlink" href="#upload-image" title="Permalink to this headline">¶</a></h2>
+<ol>
+<li><p>put the image in the image folder</p></li>
+<li><p>execute</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="sb">`</span>python3 -m pipeline_aws.rename_upload<span class="sb">`</span>
 </pre></div>
 </div>
+</li>
+</ol>
+</div>
+<div class="section" id="generate-json-for-via">
+<h2>Generate json for via<a class="headerlink" href="#generate-json-for-via" title="Permalink to this headline">¶</a></h2>
+<ol>
+<li><p>Start the Ec2 with this user data (compatible Debian and Ubuntu):</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+sudo apt update
+sudo apt install python3-pip -y
+<span class="nb">cd</span> home/<span class="nv">$USER</span>
+git clone https://github.com/assansanogo/Opteeq.git
+<span class="nb">cd</span> Opteeq
+pip3 install -r requirements.txt
+</pre></div>
+</div>
+</li>
+<li><p>execute:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python3 -m pipeline_aws.ec2
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="download-image-and-json">
+<h2>Download image and json<a class="headerlink" href="#download-image-and-json" title="Permalink to this headline">¶</a></h2>
+<ol>
+<li><p>Execute:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python3 -m pipeline_aws.donwload
+</pre></div>
+</div>
+</li>
+<li><p>Go to <a class="reference external" href="https://www.robots.ox.ac.uk/~vgg/software/via/via.html">VGG Image Annotator 2</a>, <strong>open a VIA project</strong> and
+choose output.json. (If the image file can’t be found, download the HTML file and change the default path in the
+settings)</p></li>
+</ol>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="step-1-data-labelling-architecture">
+<h1>Step 1: Data labelling architecture<a class="headerlink" href="#step-1-data-labelling-architecture" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="image-uploading">
+<h2>1.1 Image uploading<a class="headerlink" href="#image-uploading" title="Permalink to this headline">¶</a></h2>
+<p>Python is used to rename and upload raw images (.jpeg, .png, .tiff) of receipts into an S3 bucket <code class="docutils literal notranslate"><span class="pre">bucket_raw</span></code></p>
+<div class="section" id="rename-images">
+<h3>1.1.1 Rename images<a class="headerlink" href="#rename-images" title="Permalink to this headline">¶</a></h3>
+<p>Rename all the files from a folder and upload it to <code class="docutils literal notranslate"><span class="pre">bucket_raw</span></code></p>
 </div>
 <div class="section" id="import-raw-images">
-<h4>1.1.2 Import raw images<a class="headerlink" href="#import-raw-images" title="Permalink to this headline">¶</a></h4>
+<h3>1.1.2 Import raw images<a class="headerlink" href="#import-raw-images" title="Permalink to this headline">¶</a></h3>
 <p><strong>All images in folder image (or other defined image folder) are imported. Take note of the request ID number !</strong></p>
 </div>
 </div>
 <div class="section" id="image-standardization">
-<h3>1.2 Image standardization<a class="headerlink" href="#image-standardization" title="Permalink to this headline">¶</a></h3>
+<h2>1.2 Image standardization<a class="headerlink" href="#image-standardization" title="Permalink to this headline">¶</a></h2>
 <p>Raw images are transformed using an AWS Lambda function into standardized images.The Lambda function runs on an S3
 trigger based on a put event (the file upload). Image standardization includes a minimum image size check, image
 resizing, text orientation detection and rotation.</p>
@@ -276,34 +337,13 @@ using OpenCV.</p></li>
 <p>Standardized images are then pushed (uploaded) into <code class="docutils literal notranslate"><span class="pre">bucket_standardized</span></code> using Boto3.</p>
 </div>
 <div class="section" id="image-automatic-pre-annotation">
-<h3>1.3 Image automatic pre-annotation<a class="headerlink" href="#image-automatic-pre-annotation" title="Permalink to this headline">¶</a></h3>
+<h2>1.3 Image automatic pre-annotation<a class="headerlink" href="#image-automatic-pre-annotation" title="Permalink to this headline">¶</a></h2>
 <p>Google Cloud Vision Optical Character Recognition (OCR) API is called to pre-annotate the pictures with boxes arount the
 text. Annotations from Google Vision are then converted by batch to a json file that can be imported
 in <a class="reference external" href="https://www.robots.ox.ac.uk/~vgg/software/via/">VGG Image Annotator</a>. The goal of this step is essentially to reduce
 and ease the manual labelling of the pictures that will be done in the next step.</p>
-<div class="section" id="set-up-google-vision-and-annotator">
-<h4>1.3.2 Set up Google vision and annotator<a class="headerlink" href="#set-up-google-vision-and-annotator" title="Permalink to this headline">¶</a></h4>
-<ol>
-<li><p><code class="docutils literal notranslate"><span class="pre">pip3</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code></p></li>
-<li><p>Set up <a class="reference external" href="https://cloud.google.com/vision/docs/quickstart-client-libraries">google cloud vision</a></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">ec2.py</span></code> to do the conversion locally without EC2 you can use  <code class="docutils literal notranslate"><span class="pre">via_json_local</span></code> function (
-tools/via/via_converter.py). User data for EC2 (compatible Debian and Ubuntu):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#!/bin/bash
-sudo apt update
-sudo apt install python3-pip -y
-cd home/$USER
-git clone https://github.com/assansanogo/Opteeq.git
-cd Opteeq
-pip3 install -r requirements.txt
-</pre></div>
-</div>
-</li>
-<li><p>Go to <a class="reference external" href="https://www.robots.ox.ac.uk/~vgg/software/via/via.html">VGG Image Annotator 2</a>, <strong>open a VIA project</strong> and
-choose output.json. (If the image file can’t be find, download the HTML file and change the default path in the
-settings)</p></li>
-</ol>
 <div class="section" id="example-of-results">
-<h5>1.3.3 Example of results<a class="headerlink" href="#example-of-results" title="Permalink to this headline">¶</a></h5>
+<h3>1.3.1 Example of results<a class="headerlink" href="#example-of-results" title="Permalink to this headline">¶</a></h3>
 <table class="colwidths-auto docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p><img alt="via0" src="_images/via0.png" /></p></th>
@@ -320,34 +360,27 @@ settings)</p></li>
 </table>
 </div>
 </div>
-</div>
 <div class="section" id="manual-labelling">
-<h3>1.4 Manual labelling<a class="headerlink" href="#manual-labelling" title="Permalink to this headline">¶</a></h3>
+<h2>1.4 Manual labelling<a class="headerlink" href="#manual-labelling" title="Permalink to this headline">¶</a></h2>
 <p>Json files are manually labelled using VGG Annotator (?) by team members. Annotated json files are uploaded into <strong>AWS
 Bucket 3</strong>.</p>
 <p>Download all image and json for a given annotator name.</p>
-<ol class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">pip3</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code></p></li>
-<li><p>config conf.json</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">download.py</span></code></p></li>
-</ol>
 </div>
 <div class="section" id="data-uploading">
-<h3>1.5 Data uploading<a class="headerlink" href="#data-uploading" title="Permalink to this headline">¶</a></h3>
+<h2>1.5 Data uploading<a class="headerlink" href="#data-uploading" title="Permalink to this headline">¶</a></h2>
 <p>Final database is exported as a .csv file.</p>
 </div>
 </div>
-<div class="section" id="step-2-ai-modelling-tbd">
-<h2>Step 2: AI modelling (TBD)<a class="headerlink" href="#step-2-ai-modelling-tbd" title="Permalink to this headline">¶</a></h2>
+<div class="tex2jax_ignore mathjax_ignore section" id="step-2-ai-modelling-tbd">
+<h1>Step 2: AI modelling (TBD)<a class="headerlink" href="#step-2-ai-modelling-tbd" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Build AI model to detect and crop external region of interest before standardisation</p></li>
 </ul>
 </div>
-<div class="section" id="step-3-web-application-deployment-tbd">
-<h2>Step 3: Web application deployment (TBD)<a class="headerlink" href="#step-3-web-application-deployment-tbd" title="Permalink to this headline">¶</a></h2>
+<div class="tex2jax_ignore mathjax_ignore section" id="step-3-web-application-deployment-tbd">
+<h1>Step 3: Web application deployment (TBD)<a class="headerlink" href="#step-3-web-application-deployment-tbd" title="Permalink to this headline">¶</a></h1>
 <p>:::info Please add details
 :::</p>
-</div>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="database-structure">
 <h1>Database structure<a class="headerlink" href="#database-structure" title="Permalink to this headline">¶</a></h1>
@@ -433,7 +466,7 @@ myst_parser.</p></li>
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="modules.html" class="btn btn-neutral float-right" title="Code documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="modules.html" class="btn btn-neutral float-right" title="opteeq" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
         <a href="index.html" class="btn btn-neutral float-left" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
