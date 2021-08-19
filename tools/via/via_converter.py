@@ -1,140 +1,85 @@
-import io
 import json
-import os
+from copy import deepcopy
 from typing import Iterator, Tuple, Union
-from tools.aws.awsTools import Bucket, Rekognition
-from .structure.default import default
-from google.cloud import vision
+
 from google.cloud.vision_v1.types.image_annotator import AnnotateImageResponse
 from tqdm import tqdm
-from copy import deepcopy
 
-class Local:
-    """
-    Read file from a given folder and store in memory.
-    """
+from .storage import storage_factory
+from .structure.default import default
+from .text_box import textbox_factory
 
-    def __init__(self, folder: str):
+
+class ViaConverter:
+    def __init__(self, cloud_name: str, local: bool, source_path: str, profile: str = "default"):
         """
-        :param folder: folder path
+        Object to convert text detection from cloud to via json.
+        Possible to use with file store locally or in aws bucket.
+        Possible to use vision from gcloud or rekognition from aws for text detection.
+
+        :param cloud_name: cloud provider name "aws" for aws, "gcloud for gcloud
+        :param source_path: path of the image folder or bucket name
+        :param local: boolean False use bucket, true local storage
+        :param profile: Choose AWS CLI profile if more than 1 are set up
         """
-        self.folder = folder
+        self.storage = storage_factory(local, source_path, profile=profile)
+        self.provider = textbox_factory(cloud_name, profile=profile)
 
-    def read(self, file) -> bytes:
+    def request_generator(self, list_image: list) -> \
+            Iterator[Tuple[str, Union[dict, AnnotateImageResponse]]]:
         """
-        read file and store in memory
+        Return an iterator which return a tuple:
+                                - name of image
+                                - result of the cloud text detection (aws or gcloud)
 
-        :param file: file name
-        :return: image bytes
+        For each listed file. The file use can be store locally or in aws bucket.
+
+        :param list_image: list all image to annotate.
+        :return: iterator, tuple name of image and google vision response  for gcloud
+            or python dict for aws.
         """
-        with io.open(os.path.join(self.folder, file), 'rb') as image_file:
-            return image_file.read()
 
+        for file in tqdm(list_image, desc="current batch", leave=False):
+            response = self.provider.request(self.storage.read(file))
+            yield file, response
 
-def get_source(local: bool, source_path: str, profile: str = "default") -> Union[Bucket, Local]:
-    """
-    return the right source in function of local or not.
+    def via_json(self, list_image: list) -> dict:
+        """
+        Build dict for VGG Image Annotator with annotation from cloud.
 
-    :param local: boolean, true local storage false s3.
-    :param source_path: file path or s3 bucket name.
-    :param profile: Choose AWS CLI profile if more than 1 are set up
-    :return: local object to read from local or Bucket object to read from s3.
-    """
-    if local:
-        return Local(source_path)
-    else:
-        return Bucket(source_path, profile)
+        :param list_image: list all image to annotate.
+        :return: dict with via format
+        """
+        output = deepcopy(default)
+        for file_name, response in self.request_generator(list_image):
+            # part for add an image
+            output["_via_image_id_list"].append(file_name)
+            image = {"file_attributes": {}, "filename": file_name,
+                     "regions": self.provider.process_region(response), "size": 1}
+            output["_via_img_metadata"][file_name] = image.copy()
+        return output
 
+    def via_json_save_locally(self, list_file: Union[None, list] = None) -> None:
+        """
+        Save locally in json the result of the via json for all the image in folder.
 
-def request_generator(list_image: list, source_path: str, local: bool = False,
-                      profile: str = "default") \
-        -> Iterator[Tuple[str, AnnotateImageResponse]]:
-    """
-    Return an iterator which return a tuple:
-                            - name of image
-                            - result google vision API request
-
-    For each listed file. Can work with local file or s3.
-
-    :param list_image: list all image to annotate with google vision api.
-    :param source_path: bucket name or path of the folder
-    :param local: boolean False use bucket, true local storage
-    :param profile: Choose AWS CLI profile if more than 1 are set up
-    :return: iterator, tuple name of image and google vision response
-    """
-    client = vision.ImageAnnotatorClient()
-    source = get_source(local, source_path, profile)
-    for file in tqdm(list_image, desc="current batch", leave=False):
-        content = source.read(file)
-        image = vision.Image(content=content)
-        yield file, client.text_detection(image=image)
-
-
-def via_json(list_image: list, source_path: str, local: bool = False,
-             profile: str = "default") -> dict:
-    """
-    Build dict for VGG Image Annotator with annotation from google cloud response.
-
-    :param list_image: list all image to annotate with google vision api.
-    :param source_path: path of the image folder or bucket name
-    :param local: boolean False use bucket, true local storage
-    :param profile: Choose AWS CLI profile if more than 1 are set up
-    :return: dict with via format
-    """
-    output = deepcopy(default)
-    for file_name, response in request_generator(list_image, source_path, local, profile):
-        # part for add an image
-        output["_via_image_id_list"].append(file_name)
-        image = {"file_attributes": {}, "filename": file_name, "regions": [], "size": 1}
-        for box in response.text_annotations:
-            image["regions"].append(
-                {"region_attributes": {"Text": box.description, "type": "6"}, "shape_attributes": {
-                    "all_points_x": [point.x for point in box.bounding_poly.vertices],
-                    "all_points_y": [point.y for point in box.bounding_poly.vertices],
-                    "name": "polygon"}})
-        output["_via_img_metadata"][file_name] = image.copy()
-    return output
-
-
-def via_json2(list_image: list, bucket: str, width=717, height=951) -> dict:
-    """
-    Build dict for VGG Image Annotator with annotation from aws rekognition.
-    All image need to be upload on S3 and resize before.
-
-    :param list_image: list all image to annotate with google vision api.
-    :param bucket: bucket name
-    :param width: image width
-    :param height: image height
-    :return: dict with via format
-    """
-    output = default
-    rekognition = Rekognition(bucket)
-    for key in tqdm(list_image, desc='current batch', leave=False):
-        json_response = rekognition.get_text(key)
-        # part for add an image
-        output["_via_image_id_list"].append(key)
-        image = {"file_attributes": {}, "filename": key, "regions": [], "size": 1}
-        for box in json_response["TextDetections"]:
-            image["regions"].append(
-                {"region_attributes": {"type": 6, "Text": box["DetectedText"]},
-                 "shape_attributes": {
-                     "all_points_x": [point["X"] * width for point in box["Geometry"]["Polygon"]],
-                     "all_points_y": [point["Y"] * height for point in box["Geometry"]["Polygon"]],
-                     "name": "polygon"}})
-        output["_via_img_metadata"][key] = image.copy()
-    return output
-
-
-def via_json_local(folder: str) -> None:
-    """
-    via json function apply on local file and create json.
-
-    :param folder: path of the folder which contains image
-    """
-    list_file = os.listdir(folder)
-    with open("via.json", "w") as f:
-        json.dump(via_json(list_file, folder, local=True), f)
+        :param list_file: list all image to annotate. if None use all file in buckets or folder.
+        """
+        if not list_file:
+            list_file = self.storage.list_files()
+        with open("via.json", "w") as f:
+            json.dump(self.via_json(list_file), f)
 
 
 if __name__ == '__main__':
-    via_json_local("../../image")
+    # via_converter = ViaConverter(cloud_name="gcloud", local=True, source_path="../../image")
+    # gcloud localy
+    # ViaConverter("gcloud", True, "../image").via_json_save_locally()
+    # gcloud with s3 storage
+    # ViaConverter("gcloud", False, "dsti-lab-leo").via_json_save_locally()
+    # aws rekognition with local
+    # ViaConverter("aws", True, "../image").via_json_save_locally()
+    # aws rekognition with bucket storage
+    # ViaConverter("aws", False, "dsti-lab-leo").via_json_save_locally()
+    # TODO add unit test with moto for boto3
+    pass

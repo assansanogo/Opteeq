@@ -1,16 +1,16 @@
 {
-  "user": "",
-  "start": 1,
+  "user": "Leo",
+  "start": 64,
   "folder": "image",
-  "profile": "default",
-  "bucket_raw": "",
-  "bucket_standardized": "",
-  "bucket_initial_annotation": "",
+  "profile": "opteeq",
+  "bucket_raw": "opteeq-raw-images",
+  "bucket_standardized": "opteeq-standardised-images",
+  "bucket_initial_annotation": "opteeq-initial-annotations",
   "dynamoDB": {
-    "region": "",
-    "table": ""
+    "region": "eu-west-1",
+    "table": "opteeq-dataset-table"
   },
-  "batch_size": 5,
+  "batch_size": 2,
   "annotator_list": [
     "Ayman",
     "Johann",
@@ -20,5 +20,6 @@
     "Samuel",
     "Sunday",
     "Wen"
-  ]
+  ],
+  "cloud_provider": "aws"
 }

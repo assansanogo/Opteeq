@@ -4,8 +4,10 @@ Part A cf schema
 import json
 import os
 import pathlib
-from tools.aws.awsTools import Bucket
+
 from tqdm import tqdm
+
+from tools.aws.awsTools import Bucket
 
 
 def upload(user: str, folder: str, start: int, bucket_raw: str, profile: str = "default"):

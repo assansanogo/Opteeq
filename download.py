@@ -1,10 +1,12 @@
 """
 Part D cf schema
 """
-from tools.aws.awsTools import Bucket
-import os
 import json
+import os
+
 from tqdm import tqdm
+
+from tools.aws.awsTools import Bucket
 
 
 def main(annotator_name: str, bucket_json: str, bucket_image,
@@ -61,8 +63,9 @@ def download_via_json(annotator_name: str, bucket_name: str,
 if __name__ == '__main__':
     with(open("conf.json", "r")) as f:
         conf = json.load(f)
-    if conf["user"] and conf["start"] and conf["bucket_initial_annotation"] and conf[
-        "bucket_standardized"]:
-        main(conf["user"], conf["bucket_initial_annotation"], conf["bucket_standardized"], profile=conf["profile"])
+    if conf["user"] and conf["start"] and conf["bucket_initial_annotation"] and\
+            conf["bucket_standardized"]:
+        main(conf["user"], conf["bucket_initial_annotation"], conf["bucket_standardized"],
+             profile=conf["profile"])
     else:
         print("edit config and add missing argument")

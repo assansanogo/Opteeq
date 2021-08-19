@@ -1,11 +1,12 @@
+import json
+import logging
+import os
+from itertools import cycle
+from typing import Union
+
 import boto3
 from boto3.dynamodb.conditions import Key
-import logging
 from botocore.exceptions import ClientError
-import os
-import json
-from typing import Union
-from itertools import cycle
 
 
 class Bucket:
@@ -31,7 +32,7 @@ class Bucket:
         if object_name is None:
             object_name = os.path.basename(file_path)
         try:
-            self.client.upload_file(file_path, object_name)
+            self.client.upload_file(Filename=file_path, Key=object_name)
         except ClientError as e:
             logging.error(e)
 
@@ -57,7 +58,7 @@ class Bucket:
         :param key: object key
         :param directory: destination path directory
         """
-        self.client.download_file(key, os.path.join(directory, key))
+        self.client.download_file(Key=key, Filename=os.path.join(directory, key))
 
     def read(self, key: str) -> bytes:
         """
@@ -68,6 +69,7 @@ class Bucket:
         """
         return self.client.Object(key).get()["Body"].read()
 
+    @property
     def get_last_put(self) -> Union[str, None]:
         """
         get the key of the last put object
@@ -80,6 +82,13 @@ class Bucket:
             return sorted_files[0].key
         else:
             return None
+
+    def list_files(self) -> list:
+        """
+        list all file
+        :return: list of all files.
+        """
+        return [i.key for i in self.client.objects.all()]
 
     def list_object_search_key(self, key_part: str) -> list:
         """
@@ -113,7 +122,7 @@ class BucketCounter(Bucket):
         :return: index of last uploader, -1 if error
         """
         try:
-            return annotator_names.index(self.get_last_put().split("_")[0])
+            return annotator_names.index(self.get_last_put.split("_")[0])
         # value error not in list, attribute error try to split None
         except (ValueError, AttributeError):
             # -1: the next item will be the first
@@ -197,19 +206,19 @@ class DynamoDB:
         else:
             return response
 
-    def update_annotator(self, key: str, annotator: str, initAnotKey: str) -> None:
+    def update_annotator(self, key: str, annotator: str, init_annot_key: str) -> None:
         """
-        Update the annotator and initAnotKey value of the given key.
+        Update the annotator and init_annot_key value of the given key.
 
         :param key: primary key value
         :param annotator: new annotator name
-        :param initAnotKey: key of json in bucket initial annotation.
+        :param init_annot_key: key of json in bucket initial annotation.
         """
         return self.update(Key={'standKey': key},
                            UpdateExpression="set anotName=:a, initAnotKey=:b",
                            ExpressionAttributeValues={
                                ':a': annotator,
-                               ':b': initAnotKey
+                               ':b': init_annot_key
                            },
                            ReturnValues="UPDATED_NEW")
 
@@ -225,11 +234,20 @@ class Rekognition:
         self.bucket = bucket
         self.client = boto3.client('rekognition', region)
 
-    def get_text(self, key: str) -> dict:
+    def get_text_s3(self, key: str) -> dict:
         """
-        Get text annotation for an image.
+        Get text annotation for an image store in s3 bucket.
 
         :param key: key of image in the bucket
         :return: dict response from aws rekognition
         """
         return self.client.detect_text(Image={'S3Object': {'Bucket': self.bucket, 'Name': key}})
+
+    def get_text(self, img: bytes) -> dict:
+        """
+        Get text annotation for an image (bytes).
+
+        :param img: image in bytes.
+        :return: dict response from aws rekognition
+        """
+        return self.client.detect_text(Image={'Bytes': img})

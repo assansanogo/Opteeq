@@ -1,4 +1,4 @@
-download.py
+download module
 ===============
 
 .. automodule:: download

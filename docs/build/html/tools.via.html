@@ -99,10 +99,10 @@
 <li class="toctree-l1"><a class="reference internal" href="info.html#license">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#team">Team</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#sphinx-documentation">Sphinx Documentation</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Code auto doc</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="download.html">download.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ec2.html">ec2.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rename_upload.html">rename_upload.py</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Code documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="download.html">download module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ec2.html">ec2 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rename_upload.html">rename_upload module</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="tools.html">tools package</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="tools.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="tools.aws.html">tools.aws package</a></li>
@@ -162,7 +162,7 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-          <li><a href="modules.html">Code auto doc</a> &raquo;</li>
+          <li><a href="modules.html">Code documentation</a> &raquo;</li>
         
           <li><a href="tools.html">tools package</a> &raquo;</li>
         
@@ -187,21 +187,46 @@
             
   <div class="section" id="tools-via-package">
 <h1>tools.via package<a class="headerlink" href="#tools-via-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="tools.via.structure.html">tools.via.structure package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools.via.structure.html">tools.via.structure package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tools.via.structure.html#module-tools.via.structure.default">tools.via.structure.default module</a></li>
+</ul>
+</li>
 </ul>
 </div>
-<div class="section" id="module-tools.via.via_converter">
-<span id="tools-via-via-converter-module"></span><h2>tools.via.via_converter module<a class="headerlink" href="#module-tools.via.via_converter" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-tools.via.storage">
+<span id="tools-via-storage-module"></span><h2>tools.via.storage module<a class="headerlink" href="#module-tools.via.storage" title="Permalink to this headline">¶</a></h2>
+<p>Manage storage between local and aws buckets.</p>
 <dl class="py class">
-<dt class="sig sig-object py" id="tools.via.via_converter.Local">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tools.via.via_converter.</span></span><span class="sig-name descname"><span class="pre">Local</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tools.via.via_converter.Local" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dt class="sig sig-object py" id="tools.via.storage.AwsStorage">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tools.via.storage.</span></span><span class="sig-name descname"><span class="pre">AwsStorage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bucket_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">profile</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'default'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tools.via.storage.AwsStorage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="tools.aws.html#tools.aws.awsTools.Bucket" title="tools.aws.awsTools.Bucket"><code class="xref py py-class docutils literal notranslate"><span class="pre">tools.aws.awsTools.Bucket</span></code></a>, <a class="reference internal" href="#tools.via.storage.Storage" title="tools.via.storage.Storage"><code class="xref py py-class docutils literal notranslate"><span class="pre">tools.via.storage.Storage</span></code></a></p>
+<p>Aws bucket storage</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tools.via.storage.Local">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tools.via.storage.</span></span><span class="sig-name descname"><span class="pre">Local</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tools.via.storage.Local" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tools.via.storage.Storage" title="tools.via.storage.Storage"><code class="xref py py-class docutils literal notranslate"><span class="pre">tools.via.storage.Storage</span></code></a></p>
 <p>Read file from a given folder and store in memory.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="tools.via.via_converter.Local.read">
-<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bytes</span></span></span><a class="headerlink" href="#tools.via.via_converter.Local.read" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="tools.via.storage.Local.list_files">
+<span class="sig-name descname"><span class="pre">list_files</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#tools.via.storage.Local.list_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>list all file in the storage.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>list of all files</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tools.via.storage.Local.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bytes</span></span></span><a class="headerlink" href="#tools.via.storage.Local.read" title="Permalink to this definition">¶</a></dt>
 <dd><p>read file and store in memory</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -215,62 +240,230 @@
 
 </dd></dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="tools.via.via_converter.get_source">
-<span class="sig-prename descclassname"><span class="pre">tools.via.via_converter.</span></span><span class="sig-name descname"><span class="pre">get_source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">local</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">profile</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'default'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="tools.aws.html#tools.aws.awsTools.Bucket" title="tools.aws.awsTools.Bucket"><span class="pre">tools.aws.awsTools.Bucket</span></a><span class="p"><span class="pre">,</span> </span><a class="reference internal" href="#tools.via.via_converter.Local" title="tools.via.via_converter.Local"><span class="pre">tools.via.via_converter.Local</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tools.via.via_converter.get_source" title="Permalink to this definition">¶</a></dt>
-<dd><p>return the right source in function of local or not.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="tools.via.storage.Storage">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tools.via.storage.</span></span><span class="sig-name descname"><span class="pre">Storage</span></span><a class="headerlink" href="#tools.via.storage.Storage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Storage interface</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tools.via.storage.Storage.list_files">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">list_files</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#tools.via.storage.Storage.list_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>list all file in the storage.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>local</strong> – boolean, true local storage false s3.</p></li>
-<li><p><strong>source_path</strong> – file path or s3 bucket name.</p></li>
-<li><p><strong>profile</strong> – Choose AWS CLI profile if more than 1 are set up</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>local object to read from local or Bucket object to read from s3.</p>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>list of all files.</p>
 </dd>
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="tools.via.storage.Storage.read">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bytes</span></span></span><a class="headerlink" href="#tools.via.storage.Storage.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a file and return it in bytes.
+Need to implement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file</strong> – file</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>file bytes</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="py function">
-<dt class="sig sig-object py" id="tools.via.via_converter.request_generator">
-<span class="sig-prename descclassname"><span class="pre">tools.via.via_converter.</span></span><span class="sig-name descname"><span class="pre">request_generator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list_image</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">profile</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'default'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">google.cloud.vision_v1.types.image_annotator.AnnotateImageResponse</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tools.via.via_converter.request_generator" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="tools.via.storage.storage_factory">
+<span class="sig-prename descclassname"><span class="pre">tools.via.storage.</span></span><span class="sig-name descname"><span class="pre">storage_factory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">local</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#tools.via.storage.Storage" title="tools.via.storage.Storage"><span class="pre">tools.via.storage.Storage</span></a></span></span><a class="headerlink" href="#tools.via.storage.storage_factory" title="Permalink to this definition">¶</a></dt>
+<dd><p>factory return the the good storage object (local or aws) in function of local variable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>local</strong> – boolean False use bucket, true local storage</p></li>
+<li><p><strong>storage_path</strong> – path of the image folder or bucket name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Keyword</dt>
+<dd class="field-even"><dl class="field-list simple">
+<dt class="field-odd">key bucket_name (str)</dt>
+<dd class="field-odd"><p>name of the bucket.</p>
+</dd>
+<dt class="field-even">key profile (str)</dt>
+<dd class="field-even"><p>Choose AWS CLI profile if more than 1 are set up.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Storage object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-tools.via.text_box">
+<span id="tools-via-text-box-module"></span><h2>tools.via.text_box module<a class="headerlink" href="#module-tools.via.text_box" title="Permalink to this headline">¶</a></h2>
+<p>Generating image box with cloud service.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="tools.via.text_box.AwsRekognition">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tools.via.text_box.</span></span><span class="sig-name descname"><span class="pre">AwsRekognition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">region</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'eu-west-1'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">profile</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'default'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tools.via.text_box.AwsRekognition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="tools.aws.html#tools.aws.awsTools.Rekognition" title="tools.aws.awsTools.Rekognition"><code class="xref py py-class docutils literal notranslate"><span class="pre">tools.aws.awsTools.Rekognition</span></code></a>, <a class="reference internal" href="#tools.via.text_box.TextBox" title="tools.via.text_box.TextBox"><code class="xref py py-class docutils literal notranslate"><span class="pre">tools.via.text_box.TextBox</span></code></a></p>
+<p>text detection with aws rekognition</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tools.via.text_box.AwsRekognition.process_region">
+<span class="sig-name descname"><span class="pre">process_region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">response</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#tools.via.text_box.AwsRekognition.process_region" title="Permalink to this definition">¶</a></dt>
+<dd><p>convert aws rekognition response region in standardized format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>response</strong> – aws rekognition response</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Region standardized, python list.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tools.via.text_box.AwsRekognition.request">
+<span class="sig-name descname"><span class="pre">request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bytes</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#tools.via.text_box.AwsRekognition.request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make text detection request with aws rekognition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>img</strong> – image in bytes</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>aws rekognition response.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tools.via.text_box.GcloudVision">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tools.via.text_box.</span></span><span class="sig-name descname"><span class="pre">GcloudVision</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tools.via.text_box.GcloudVision" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tools.via.text_box.TextBox" title="tools.via.text_box.TextBox"><code class="xref py py-class docutils literal notranslate"><span class="pre">tools.via.text_box.TextBox</span></code></a></p>
+<p>text detection with google cloud vision.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tools.via.text_box.GcloudVision.process_region">
+<span class="sig-name descname"><span class="pre">process_region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">response</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">google.cloud.vision_v1.types.image_annotator.AnnotateImageResponse</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#tools.via.text_box.GcloudVision.process_region" title="Permalink to this definition">¶</a></dt>
+<dd><p>convert vision response region in standardized format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>response</strong> – google vision annotate image response object.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Region standardized, python list.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tools.via.text_box.GcloudVision.request">
+<span class="sig-name descname"><span class="pre">request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bytes</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.cloud.vision_v1.types.image_annotator.AnnotateImageResponse</span></span></span><a class="headerlink" href="#tools.via.text_box.GcloudVision.request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make text detection request with google vision.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>img</strong> – image in bytes</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>google cloud vision annotate image response object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tools.via.text_box.TextBox">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tools.via.text_box.</span></span><span class="sig-name descname"><span class="pre">TextBox</span></span><a class="headerlink" href="#tools.via.text_box.TextBox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Interface for Generating box with cloud service on image.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tools.via.text_box.TextBox.process_region">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">process_region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">response</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">google.cloud.vision_v1.types.image_annotator.AnnotateImageResponse</span><span class="p"><span class="pre">,</span> </span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#tools.via.text_box.TextBox.process_region" title="Permalink to this definition">¶</a></dt>
+<dd><p>convert text region detection response from cloud provider in a standardized format.
+:param response: response from cloud provider
+:return: list</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tools.via.text_box.TextBox.request">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bytes</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">google.cloud.vision_v1.types.image_annotator.AnnotateImageResponse</span><span class="p"><span class="pre">,</span> </span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tools.via.text_box.TextBox.request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make text detection request on cloud provider.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>img</strong> – image in bytes</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>cloud response</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tools.via.text_box.textbox_factory">
+<span class="sig-prename descclassname"><span class="pre">tools.via.text_box.</span></span><span class="sig-name descname"><span class="pre">textbox_factory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cloud_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#tools.via.text_box.TextBox" title="tools.via.text_box.TextBox"><span class="pre">tools.via.text_box.TextBox</span></a></span></span><a class="headerlink" href="#tools.via.text_box.textbox_factory" title="Permalink to this definition">¶</a></dt>
+<dd><p>factory to create the textbox object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cloud_name</strong> – cloud provider name “aws” for aws, “gcloud for gcloud.</p></li>
+<li><p><strong>Arguments</strong> – <dl class="field-list simple">
+<dt class="field-odd">key region (str)</dt>
+<dd class="field-odd"><p>aws service region</p>
+</dd>
+<dt class="field-even">key profile (str)</dt>
+<dd class="field-even"><p>Choose AWS CLI profile if more than 1 are set up</p>
+</dd>
+</dl>
+</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>TextBox object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-tools.via.via_converter">
+<span id="tools-via-via-converter-module"></span><h2>tools.via.via_converter module<a class="headerlink" href="#module-tools.via.via_converter" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tools.via.via_converter.ViaConverter">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tools.via.via_converter.</span></span><span class="sig-name descname"><span class="pre">ViaConverter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cloud_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">profile</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'default'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tools.via.via_converter.ViaConverter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tools.via.via_converter.ViaConverter.request_generator">
+<span class="sig-name descname"><span class="pre">request_generator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list_image</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">,</span> </span><span class="pre">google.cloud.vision_v1.types.image_annotator.AnnotateImageResponse</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tools.via.via_converter.ViaConverter.request_generator" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="simple">
 <dt>Return an iterator which return a tuple:</dt><dd><ul class="simple">
 <li><p>name of image</p></li>
-<li><p>result google vision API request</p></li>
+<li><p>result of the cloud text detection (aws or gcloud)</p></li>
 </ul>
 </dd>
 </dl>
-<p>For each listed file. Can work with local file or s3.</p>
+<p>For each listed file. The file use can be store locally or in aws bucket.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>list_image</strong> – list all image to annotate with google vision api.</p></li>
-<li><p><strong>source_path</strong> – bucket name or path of the folder</p></li>
-<li><p><strong>local</strong> – boolean False use bucket, true local storage</p></li>
-<li><p><strong>profile</strong> – Choose AWS CLI profile if more than 1 are set up</p></li>
-</ul>
+<dd class="field-odd"><p><strong>list_image</strong> – list all image to annotate.</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>iterator, tuple name of image and google vision response</p>
+<dd class="field-even"><p>iterator, tuple name of image and google vision response  for gcloud
+or python dict for aws.</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="tools.via.via_converter.via_json">
-<span class="sig-prename descclassname"><span class="pre">tools.via.via_converter.</span></span><span class="sig-name descname"><span class="pre">via_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list_image</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">profile</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'default'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#tools.via.via_converter.via_json" title="Permalink to this definition">¶</a></dt>
-<dd><p>Build dict for VGG Image Annotator with annotation from google cloud response.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tools.via.via_converter.ViaConverter.via_json">
+<span class="sig-name descname"><span class="pre">via_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list_image</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#tools.via.via_converter.ViaConverter.via_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build dict for VGG Image Annotator with annotation from cloud.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>list_image</strong> – list all image to annotate with google vision api.</p></li>
-<li><p><strong>source_path</strong> – path of the image folder or bucket name</p></li>
-<li><p><strong>local</strong> – boolean False use bucket, true local storage</p></li>
-<li><p><strong>profile</strong> – Choose AWS CLI profile if more than 1 are set up</p></li>
-</ul>
+<dd class="field-odd"><p><strong>list_image</strong> – list all image to annotate.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>dict with via format</p>
@@ -278,35 +471,17 @@
 </dl>
 </dd></dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="tools.via.via_converter.via_json2">
-<span class="sig-prename descclassname"><span class="pre">tools.via.via_converter.</span></span><span class="sig-name descname"><span class="pre">via_json2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list_image</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bucket</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">717</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">951</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#tools.via.via_converter.via_json2" title="Permalink to this definition">¶</a></dt>
-<dd><p>Build dict for VGG Image Annotator with annotation from aws rekognition.
-All image need to be upload on S3 and resize before.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tools.via.via_converter.ViaConverter.via_json_save_locally">
+<span class="sig-name descname"><span class="pre">via_json_save_locally</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list_file</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">None</span><span class="p"><span class="pre">,</span> </span><span class="pre">list</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#tools.via.via_converter.ViaConverter.via_json_save_locally" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save locally in json the result of the via json for all the image in folder.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>list_image</strong> – list all image to annotate with google vision api.</p></li>
-<li><p><strong>bucket</strong> – bucket name</p></li>
-<li><p><strong>width</strong> – image width</p></li>
-<li><p><strong>height</strong> – image height</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>dict with via format</p>
+<dd class="field-odd"><p><strong>list_file</strong> – list all image to annotate. if None use all file in buckets or folder.</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="tools.via.via_converter.via_json_local">
-<span class="sig-prename descclassname"><span class="pre">tools.via.via_converter.</span></span><span class="sig-name descname"><span class="pre">via_json_local</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#tools.via.via_converter.via_json_local" title="Permalink to this definition">¶</a></dt>
-<dd><p>via json function apply on local file and create json.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>folder</strong> – path of the folder which contains image</p>
-</dd>
-</dl>
 </dd></dl>
 
 </div>

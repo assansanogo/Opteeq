@@ -1,4 +1,4 @@
-rename\_upload.py
+rename\_upload module
 =====================
 
 .. automodule:: rename_upload

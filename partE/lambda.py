@@ -4,8 +4,8 @@ import csv
 import boto3
 import dateutil.parser as dp
 
+
 def lambda_handler(event, context):
-    
     # Extract needed information from event
     bucket_name = event["Records"][0]["s3"]["bucket"]["name"]
     object_key = event["Records"][0]["s3"]["object"]["key"]
@@ -28,7 +28,7 @@ def lambda_handler(event, context):
 
     # Extract all standard keys in the csv
     stand_keys = set()
-    with open(local_file_name, newline = '') as csvfile:
+    with open(local_file_name, newline='') as csvfile:
         reader = csv.reader(csvfile, delimiter=',')
         for row in reader:
             if row[0].endswith('.jpg'):
@@ -38,15 +38,15 @@ def lambda_handler(event, context):
     # Update DynamoDB table for all standard keys found in the annotations csv
     for stand_Key in stand_keys:
         response = table.update_item(
-            Key = {'standKey':stand_Key},
+            Key={'standKey': stand_Key},
             UpdateExpression="set finalAnotTime=:t, finalAnotKey=:k",
             ExpressionAttributeValues={
-                ':t':timestamp,
-                ':k':object_key
+                ':t': timestamp,
+                ':k': object_key
             },
             ReturnValues="UPDATED_NEW"
         )
-    
+
     return {
         'statusCode': 200
-        }
+    }

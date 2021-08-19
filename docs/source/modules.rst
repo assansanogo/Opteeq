@@ -1,5 +1,5 @@
-Code auto doc
-==============
+Code documentation
+=====================
 
 .. toctree::
    :maxdepth: 4
