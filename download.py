@@ -1,10 +1,12 @@
 """
 Part D cf schema
 """
-from tools.aws.awsTools import Bucket
-import os
 import json
+import os
+
 from tqdm import tqdm
+
+from tools.aws.awsTools import Bucket
 
 
 def main(annotator_name: str, bucket_json: str, bucket_image,
@@ -26,7 +28,8 @@ def main(annotator_name: str, bucket_json: str, bucket_image,
             json_via = json.load(file)
             path_folder = os.path.join(local_storage, "image", json_name.split(".")[0])
             os.mkdir(path_folder)
-            for key in json_via["_via_img_metadata"].keys():
+            for key in tqdm(json_via["_via_img_metadata"].keys(), desc="image/curent json",
+                            leave=False):
                 bucket.download(key, path_folder)
         # auto set image path folder
         with open(json_path, "w") as file:
@@ -51,9 +54,9 @@ def download_via_json(annotator_name: str, bucket_name: str,
     bucket = Bucket(bucket_name, profile)
     # use set for set operation
     file_bucket = set(bucket.list_object_search_key(annotator_name))
-    files_local = set((os.listdir(local_storage)))
+    files_local = set(os.listdir(os.path.join(local_storage, "json")))
     to_download = file_bucket - files_local
-    for key in tqdm(to_download, desc='download image', leave=False):
+    for key in to_download:
         bucket.download(key, os.path.join(local_storage, "json"))
     return to_download
 
@@ -61,8 +64,9 @@ def download_via_json(annotator_name: str, bucket_name: str,
 if __name__ == '__main__':
     with(open("conf.json", "r")) as f:
         conf = json.load(f)
-    if conf["user"] and conf["start"] and conf["bucket_initial_annotation"] and conf[
-        "bucket_standardized"]:
-        main(conf["user"], conf["bucket_initial_annotation"], conf["bucket_standardized"], profile=conf["profile"])
+    if conf["user"] and conf["start"] and conf["bucket_initial_annotation"] and \
+            conf["bucket_standardized"]:
+        main(conf["user"], conf["bucket_initial_annotation"], conf["bucket_standardized"],
+             profile=conf["profile"])
     else:
         print("edit config and add missing argument")

@@ -99,10 +99,10 @@
 <li class="toctree-l1"><a class="reference internal" href="info.html#license">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#team">Team</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#sphinx-documentation">Sphinx Documentation</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Code auto doc</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="download.html">download.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ec2.html">ec2.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rename_upload.html">rename_upload.py</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Code documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="download.html">download module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ec2.html">ec2 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rename_upload.html">rename_upload module</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="tools.html">tools package</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="tools.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l4 current"><a class="current reference internal" href="#">tools.aws package</a></li>
@@ -162,7 +162,7 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-          <li><a href="modules.html">Code auto doc</a> &raquo;</li>
+          <li><a href="modules.html">Code documentation</a> &raquo;</li>
         
           <li><a href="tools.html">tools package</a> &raquo;</li>
         
@@ -185,8 +185,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-tools.aws.awsTools">
-<span id="tools-aws-package"></span><h1>tools.aws package<a class="headerlink" href="#module-tools.aws.awsTools" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="tools-aws-package">
+<h1>tools.aws package<a class="headerlink" href="#tools-aws-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-tools.aws.awsTools">
+<span id="tools-aws-awstools-module"></span><h2>tools.aws.awsTools module<a class="headerlink" href="#module-tools.aws.awsTools" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="tools.aws.awsTools.Bucket">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tools.aws.awsTools.</span></span><span class="sig-name descname"><span class="pre">Bucket</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bucket_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">profile</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'default'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tools.aws.awsTools.Bucket" title="Permalink to this definition">¶</a></dt>
@@ -206,15 +208,22 @@
 </dl>
 </dd></dl>
 
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="tools.aws.awsTools.Bucket.get_last_put">
-<span class="sig-name descname"><span class="pre">get_last_put</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tools.aws.awsTools.Bucket.get_last_put" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">get_last_put</span></span><em class="property"><span class="pre">:</span> <span class="pre">Optional[str]</span></em><a class="headerlink" href="#tools.aws.awsTools.Bucket.get_last_put" title="Permalink to this definition">¶</a></dt>
 <dd><p>get the key of the last put object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>key of the last put object, return None if the bucket is empty</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tools.aws.awsTools.Bucket.list_files">
+<span class="sig-name descname"><span class="pre">list_files</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#tools.aws.awsTools.Bucket.list_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>list all file
+:return: list of all files.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -371,14 +380,14 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tools.aws.awsTools.DynamoDB.update_annotator">
-<span class="sig-name descname"><span class="pre">update_annotator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotator</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initAnotKey</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#tools.aws.awsTools.DynamoDB.update_annotator" title="Permalink to this definition">¶</a></dt>
-<dd><p>Update the annotator and initAnotKey value of the given key.</p>
+<span class="sig-name descname"><span class="pre">update_annotator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotator</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_annot_key</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#tools.aws.awsTools.DynamoDB.update_annotator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the annotator and init_annot_key value of the given key.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>key</strong> – primary key value</p></li>
 <li><p><strong>annotator</strong> – new annotator name</p></li>
-<li><p><strong>initAnotKey</strong> – key of json in bucket initial annotation.</p></li>
+<li><p><strong>init_annot_key</strong> – key of json in bucket initial annotation.</p></li>
 </ul>
 </dd>
 </dl>
@@ -392,8 +401,22 @@
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="tools.aws.awsTools.Rekognition.get_text">
-<span class="sig-name descname"><span class="pre">get_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#tools.aws.awsTools.Rekognition.get_text" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get text annotation for an image.</p>
+<span class="sig-name descname"><span class="pre">get_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bytes</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#tools.aws.awsTools.Rekognition.get_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get text annotation for an image (bytes).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>img</strong> – image in bytes.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dict response from aws rekognition</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tools.aws.awsTools.Rekognition.get_text_s3">
+<span class="sig-name descname"><span class="pre">get_text_s3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#tools.aws.awsTools.Rekognition.get_text_s3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get text annotation for an image store in s3 bucket.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>key</strong> – key of image in the bucket</p>
@@ -406,6 +429,7 @@
 
 </dd></dl>
 
+</div>
 </div>
 
 

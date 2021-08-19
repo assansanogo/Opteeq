@@ -1,4 +1,4 @@
-ec2.py
+ec2 module
 ==========
 
 .. automodule:: ec2
