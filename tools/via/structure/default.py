@@ -21,7 +21,6 @@ default = {
                     "2": "Total Text",
                     "3": "Total Amount",
                     "4": "Date",
-                    "5": "Receipt",
                     "6": "Other"
                 },
                 "type": "radio"
