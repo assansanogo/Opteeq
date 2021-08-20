@@ -20,6 +20,22 @@ Image\_rotation\_cnn.prepare\_function module
    :undoc-members:
    :show-inheritance:
 
+Image\_rotation\_cnn.predict module
+---------------------------------------------
+
+.. automodule:: Image_rotation_cnn.predict
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Image\_rotation\_cnn.train\_model module
+---------------------------------------------
+
+.. automodule:: Image_rotation_cnn.train_model
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 

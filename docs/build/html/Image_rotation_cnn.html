@@ -105,8 +105,10 @@
 <li class="toctree-l2"><a class="reference internal" href="pipeline_aws.html">pipeline_aws package</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Image_rotation_cnn package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-Image_rotation_cnn.prepare_database">Image_rotation_cnn.prepare_database module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#image-rotation-cnn-prepare-database-module">Image_rotation_cnn.prepare_database module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-Image_rotation_cnn.prepare_functions">Image_rotation_cnn.prepare_function module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#image-rotation-cnn-predict-module">Image_rotation_cnn.predict module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#image-rotation-cnn-train-model-module">Image_rotation_cnn.train_model module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-Image_rotation_cnn">Module contents</a></li>
 </ul>
 </li>
@@ -188,97 +190,8 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-Image_rotation_cnn.prepare_database">
-<span id="image-rotation-cnn-prepare-database-module"></span><h2>Image_rotation_cnn.prepare_database module<a class="headerlink" href="#module-Image_rotation_cnn.prepare_database" title="Permalink to this headline">¶</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="Image_rotation_cnn.prepare_database.image_read">
-<span class="sig-prename descclassname"><span class="pre">Image_rotation_cnn.prepare_database.</span></span><span class="sig-name descname"><span class="pre">image_read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="headerlink" href="#Image_rotation_cnn.prepare_database.image_read" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reads a single image into a numpy array using OpenCV
-:param file: path to the image
-:type img: str
-:return: Image array
-:rtype: np.ndarray</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="Image_rotation_cnn.prepare_database.prepare_1_image">
-<span class="sig-prename descclassname"><span class="pre">Image_rotation_cnn.prepare_database.</span></span><span class="sig-name descname"><span class="pre">prepare_1_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_folder</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Image_rotation_cnn.prepare_database.prepare_1_image" title="Permalink to this definition">¶</a></dt>
-<dd><p>Resizes an image and rotate it 3 times to get 4 images that can be used to train the model.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>file</strong> (<em>str</em>) – path to the original image</p></li>
-<li><p><strong>filename</strong> (<em>str</em>) – filename base of the 4 processed images</p></li>
-<li><p><strong>out_folder</strong> (<em>str</em>) – path to the folder to upload the 4 processed images</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="Image_rotation_cnn.prepare_database.prepare_training_images">
-<span class="sig-prename descclassname"><span class="pre">Image_rotation_cnn.prepare_database.</span></span><span class="sig-name descname"><span class="pre">prepare_training_images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_folder</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_folder</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#Image_rotation_cnn.prepare_database.prepare_training_images" title="Permalink to this definition">¶</a></dt>
-<dd><p>Uses all image files in a folder to get 4 images / file that can be used to train the model.
-The N images in the original folder must all be in the normal orientation.
-The 4xN processed images in the output folder are squared with size 180 and rotated in 4
-orientations (0, 90, 180, and 270 degrees). The last 3 characters of the file names indicates the
-orientation : ‘000’, ‘090’, ‘180’ or ‘270’.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>in_folder</strong> (<em>str</em>) – path to the folder with original images</p></li>
-<li><p><strong>out_folder</strong> (<em>str</em>) – path to the folder to upload the processed images</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>a List of the files that were not processed</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>List of str</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="Image_rotation_cnn.prepare_database.resize_and_pad">
-<span class="sig-prename descclassname"><span class="pre">Image_rotation_cnn.prepare_database.</span></span><span class="sig-name descname"><span class="pre">resize_and_pad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">desired_size</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">180</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="headerlink" href="#Image_rotation_cnn.prepare_database.resize_and_pad" title="Permalink to this definition">¶</a></dt>
-<dd><p>Resizes an image to a square image of the desired size, with a black pad.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>img</strong> (<em>np.ndarray</em>) – Image array</p></li>
-<li><p><strong>desired_size</strong> (<em>int</em><em>, </em><em>optional</em>) – Final image size, defaults to 180</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Resized image array</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>np.ndarray</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="Image_rotation_cnn.prepare_database.rotate_image">
-<span class="sig-prename descclassname"><span class="pre">Image_rotation_cnn.prepare_database.</span></span><span class="sig-name descname"><span class="pre">rotate_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">90</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="headerlink" href="#Image_rotation_cnn.prepare_database.rotate_image" title="Permalink to this definition">¶</a></dt>
-<dd><p>Rotates an image with the desired angle.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>img</strong> (<em>np.ndarray</em>) – Image array</p></li>
-<li><p><strong>angle</strong> (<em>int</em><em>, </em><em>optional</em>) – Angle of rotation in degrees, defaults to 90</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Rotated image array</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>np.ndarray</p>
-</dd>
-</dl>
-</dd></dl>
-
+<div class="section" id="image-rotation-cnn-prepare-database-module">
+<h2>Image_rotation_cnn.prepare_database module<a class="headerlink" href="#image-rotation-cnn-prepare-database-module" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-Image_rotation_cnn.prepare_functions">
 <span id="image-rotation-cnn-prepare-function-module"></span><h2>Image_rotation_cnn.prepare_function module<a class="headerlink" href="#module-Image_rotation_cnn.prepare_functions" title="Permalink to this headline">¶</a></h2>
@@ -309,7 +222,7 @@ orientation : ‘000’, ‘090’, ‘180’ or ‘270’.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="Image_rotation_cnn.prepare_functions.prepare_training_images">
-<span class="sig-prename descclassname"><span class="pre">Image_rotation_cnn.prepare_functions.</span></span><span class="sig-name descname"><span class="pre">prepare_training_images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_folder</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_folder</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#Image_rotation_cnn.prepare_functions.prepare_training_images" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">Image_rotation_cnn.prepare_functions.</span></span><span class="sig-name descname"><span class="pre">prepare_training_images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_folder</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_folder</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#Image_rotation_cnn.prepare_functions.prepare_training_images" title="Permalink to this definition">¶</a></dt>
 <dd><p>Uses all image files in a folder to get 4 images / file that can be used to train the model.
 The N images in the original folder must all be in the normal orientation.
 The 4xN processed images in the output folder are squared with size 180 and rotated in 4
@@ -371,6 +284,12 @@ orientation : ‘000’, ‘090’, ‘180’ or ‘270’.</p>
 </dl>
 </dd></dl>
 
+</div>
+<div class="section" id="image-rotation-cnn-predict-module">
+<h2>Image_rotation_cnn.predict module<a class="headerlink" href="#image-rotation-cnn-predict-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="image-rotation-cnn-train-model-module">
+<h2>Image_rotation_cnn.train_model module<a class="headerlink" href="#image-rotation-cnn-train-model-module" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-Image_rotation_cnn">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-Image_rotation_cnn" title="Permalink to this headline">¶</a></h2>
