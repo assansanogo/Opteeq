@@ -2,7 +2,6 @@
 from keras.preprocessing import image
 import numpy as np
 from keras.models import load_model
-import os
 
 model = load_model('model/model.keras')
 
@@ -24,6 +23,7 @@ def predict_orientation(image_path: str, threshold: float) -> int:
     # Remember that the model was trained on inputs
     # that were preprocessed in the following way:
     img_tensor /= 255.
+    
     label_map = {0: 0, 1: 180, 2: 270, 3: 90}
     prediction_poba = model.predict(img_tensor)
     if prediction_poba.max() > threshold:
