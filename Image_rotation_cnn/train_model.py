@@ -180,18 +180,18 @@ plt.tight_layout()
 plt.show()
 
 
-# Fit model (uncomment below to launch the model training)
+# Fit model
 epochs=3 if FAST_RUN else 50
-# history = model.fit_generator(
-#     train_generator, 
-#     epochs=epochs,
-#     validation_data=test_generator,
-#     validation_steps=total_test//batch_size,
-#     steps_per_epoch=total_train//batch_size,
-#     callbacks=callbacks
-# )
+history = model.fit_generator(
+    train_generator, 
+    epochs=epochs,
+    validation_data=test_generator,
+    validation_steps=total_test//batch_size,
+    steps_per_epoch=total_train//batch_size,
+    callbacks=callbacks
+)
 
-# Saving model
+#Saving model
 model.save(os.path.join("model","model.keras"))
 
 

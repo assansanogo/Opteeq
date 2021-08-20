@@ -4,7 +4,7 @@ import numpy as np
 from keras.models import load_model
 import os
 
-#model = load_model('model/model.keras')
+model = load_model('model/model.keras')
 
 def predict_orientation(image_path: str, threshold: float) -> int:
     """Predicts and returns the orientation of a ticket image.
