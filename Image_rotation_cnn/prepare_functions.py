@@ -36,7 +36,7 @@ def image_read(file: str) -> np.ndarray:
     """
     Reads a single image into a numpy array using OpenCV.
     :param file: path to the image
-    :type img: str
+    :type file: str
     :return: Image array
     :rtype: np.ndarray
     """
