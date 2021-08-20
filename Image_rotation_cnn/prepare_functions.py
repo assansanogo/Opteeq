@@ -33,9 +33,8 @@ def resize_and_pad(img: np.ndarray, desired_size: int = 180) -> np.ndarray:
     return new_img
 
 def image_read(file: str) -> np.ndarray:
-    """
-    Reads a single image into a numpy array using OpenCV.
-    
+    """Reads a single image into a numpy array using OpenCV.
+
     :param file: path to the image
     :type file: str
     :return: Image array
