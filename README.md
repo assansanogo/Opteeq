@@ -104,7 +104,7 @@ error or path error.
 1. Execute:
 
       ```shell
-      python3 -m pipeline_aws.donwload
+      python -m pipeline_aws.download
       ```
 
 2. Go to [VGG Image Annotator 2](https://www.robots.ox.ac.uk/~vgg/software/via/via.html), **open a VIA project** and
