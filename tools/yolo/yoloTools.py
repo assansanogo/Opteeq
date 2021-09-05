@@ -4,6 +4,7 @@ import pandas as pd
 import csv
 import json
 import os
+import cv2
 
 def clean_via_file(via_file: str) -> str:
     """Cleans annotation csv file from via to differentiate the separators "," from the actual ","
@@ -140,11 +141,29 @@ def convert_via_to_yolo(via_file: str, out_dir: str):
              1 0.420312 0.395833 0.140625 0.166667
         '''
 
+def check_yolo_txt(image_path: str):
+    """Opens a new window showing the image and the boxes found in the corresponding yolo txt file.
+    yolo txt file must be in the same folder as the image.
+    
+    :param image_path: path to the image
+    :type image_path: str
+    """
+    txt_path = image_path[:-3] + 'txt'
+    image = cv2.imread(image_path)
+    resized = cv2.resize(image, (500,500), interpolation = cv2.INTER_AREA)
+    with(open(txt_path, "r")) as txt:
+        for line in txt:
+            rect_class = int(line.split(' ')[0])
+            x = float(line.split(' ')[1])
+            y = float(line.split(' ')[2])
+            width = float(line.split(' ')[3])
+            height = float(line.split(' ')[4])
+            x1 = int((x - (width / 2)) * 500)
+            y1 = int((y - (height / 2)) * 500)
+            x2 = int((x + (width / 2)) * 500)
+            y2 = int((y + (height / 2)) * 500)
+            cv2.rectangle(resized, (x1, y1), (x2, y2), ((rect_class==1)*255, (rect_class==2)*255, (rect_class==3)*255), 1)
 
-
-via_file = 'tools/yolo/1629378395_1_csv.csv'
-out_dir = 'tools/yolo/data'
-convert_via_to_yolo(via_file, out_dir)
-
-
-'''
+    cv2.imshow('Image',resized)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
