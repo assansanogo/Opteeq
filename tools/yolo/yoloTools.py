@@ -1,5 +1,9 @@
 from tools.image.imageTools import get_img_shape
+from tools.aws.awsTools import Bucket
+import pandas as pd
 import csv
+import json
+import os
 
 def clean_via_file(via_file: str) -> str:
     """Cleans annotation csv file from via to differentiate the separators "," from the actual ","
@@ -49,21 +53,84 @@ def get_image_names(clean_via_file: str) -> 'list[str]':
     images_list = list(images_list)
     return images_list
 
-def convert_via_to_yolo(via_file: str) -> str:
-    """Converts annotation csv file from via to a txt file with yolo input format. 
-    Returns the path to the txt file .
+def cut_overlength(center: float, length: float) -> 'tuple[float,float]':
+    """Trims a box in case it goes outside of the image and returns
+    the new coordinates of the center and length.
+    
+    :param center: coordinate (x or y) of the box center
+    :type center: float
+    :param length: width or height of the box
+    :type length: float
+    :return: new values of the center and of the length
+    :rtype: tuple[float, float]
+    """
+    if (center - (length/2) < 0) and (center + (length/2) <= 1) :
+        overlength = (length/2) - center
+        new_center = center + overlength/2
+        new_length = length - overlength
+    elif (center - (length/2) >= 0) and (center + (length/2) > 1) :
+        overlength = center + (length/2) - 1
+        new_center = center - overlength/2
+        new_length = length - overlength
+    elif (center - (length/2) < 0) and (center + (length/2) > 1) :
+        new_center = 0.5
+        new_length = 1
+    else:
+        new_center = center
+        new_length = length
+    return (new_center,new_length)
+
+def convert_via_to_yolo(via_file: str, out_dir: str):
+    """Downloads the images annotated in the via csv file and creates one txt file / image
+    with the class and coordinates of the boxes as per yolo input format.
 
     :param via_file: path to the via csv file
     :type via_file: str
-    :return: path to the txt file formatted for yolo
-    :rtype: str
+    :param out_dir: path to the outputs directory
+    :type out_dir: str
     """
     via_clean = clean_via_file(via_file)
     images = get_image_names(via_clean)
+    
+    with(open("conf.json", "r")) as f:
+        conf = json.load(f)
+    if conf["bucket_standardized"] and conf['profile']:
+        images_bucket = Bucket(conf["bucket_standardized"], conf['profile'])
+    else:
+        print("edit config file and add missing arguments")
+    
+    images_boxes = pd.read_csv(via_clean,sep='|',header=0)
+    images_boxes = images_boxes[['filename','region_shape_attributes','region_attributes']]
+
+    class_mapping = {'6': 0, '1': 1, '2': 0, '3': 3, '4':2}
+
     for image in images:
+        # Download image from s3 :
+        images_bucket.download(image,out_dir)
+        # Get image size :
+        height, width, _ = get_img_shape(os.path.join(out_dir,image))
+        # Filter DataFrame to get the rows of this image :
+        boxes = images_boxes[images_boxes['filename'] == image]
+        # Prepare path of the txt file :
+        txt_file = os.path.join(out_dir,image[:-3]+'txt')
+
+        for index, box in boxes.iterrows():
+            box_shape = eval(box.region_shape_attributes.strip('"').replace('""""','"'))
+            box_attributes = eval(box.region_attributes.strip('"').replace('""""','"'))
+            box_class = class_mapping[box_attributes['type']]
+            x = round((max(box_shape['all_points_x']) + min(box_shape['all_points_x'])) / (2 * width),6)
+            y = round((max(box_shape['all_points_y']) + min(box_shape['all_points_y'])) / (2 * height),6)
+            box_width = round((max(box_shape['all_points_x']) - min(box_shape['all_points_x'])) / (width),6)
+            box_height = round((max(box_shape['all_points_y']) - min(box_shape['all_points_y'])) / (height),6)
+            
+            x, box_width = cut_overlength(x, box_width)
+            y, box_height = cut_overlength(y, box_height)
+            with open(txt_file, 'a') as txt:
+                _ = txt.write(f'{box_class} {x} {y} {box_width} {box_height}\n')
+
+
         '''TO DO
-        1/ Download image from s3
-        2/ Get the size of the image
+
         3/ Calculate coordinates of each box (x,y of the box center + width, height). 
         Coordinates must be relative (from 0.0 to 1.0)
         4/ Create a txt with same name as the image and one line / box with this
@@ -74,13 +141,10 @@ def convert_via_to_yolo(via_file: str) -> str:
         '''
 
 
-'''
+
 via_file = 'tools/yolo/1629378395_1_csv.csv'
-file_path = clean_via_file(via_file)
-import pandas as pd
-dat = pd.read_csv('tools/yolo/1629378395_1_csv_clean.csv',sep='|',header=0)
-dat.columns
-d = eval(dat.region_shape_attributes[0].strip('"').replace('""""','"'))
-(max(d['all_points_x'])-min(d['all_points_x']))/2
-dat.head()
+out_dir = 'tools/yolo/data'
+convert_via_to_yolo(via_file, out_dir)
+
+
 '''
