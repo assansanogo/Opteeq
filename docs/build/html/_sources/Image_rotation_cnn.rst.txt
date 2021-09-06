@@ -4,6 +4,14 @@ Image\_rotation\_cnn package
 Submodules
 ----------
 
+Image\_rotation\_cnn.predict module
+-----------------------------------
+
+.. automodule:: Image_rotation_cnn.predict
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Image\_rotation\_cnn.prepare\_database module
 ---------------------------------------------
 
@@ -13,25 +21,9 @@ Image\_rotation\_cnn.prepare\_database module
    :show-inheritance:
 
 Image\_rotation\_cnn.prepare\_functions module
----------------------------------------------
+----------------------------------------------
 
 .. automodule:: Image_rotation_cnn.prepare_functions
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Image\_rotation\_cnn.predict module
----------------------------------------------
-
-.. automodule:: Image_rotation_cnn.predict
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Image\_rotation\_cnn.train\_model module
----------------------------------------------
-
-.. automodule:: Image_rotation_cnn.train_model
    :members:
    :undoc-members:
    :show-inheritance:
