@@ -15,7 +15,7 @@ IMAGE_WIDTH = 180
 IMAGE_HEIGHT = 180
 IMAGE_SIZE = (IMAGE_WIDTH, IMAGE_HEIGHT)
 IMAGE_CHANNELS = 3
-IMAGE_FOLDER = 'Data'
+IMAGE_FOLDER = os.path.join('Image_rotation_cnn','Data')
 
 #Datasets Preparation
 filenames = os.listdir(IMAGE_FOLDER)

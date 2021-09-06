@@ -1,6 +1,5 @@
 from tools.image.imageTools import resize_and_pad, rotate_image, image_read
 import cv2
-import numpy as np
 import os
 
 
