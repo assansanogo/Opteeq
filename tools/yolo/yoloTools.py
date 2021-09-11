@@ -83,7 +83,8 @@ def cut_overlength(center: float, length: float) -> 'tuple[float,float]':
 
 def convert_via_to_yolo(via_file: str, out_dir: str):
     """Downloads the images annotated in the via csv file and creates one txt file / image
-    with the class and coordinates of the boxes as per yolo input format.
+    with the class and coordinates of the boxes as per yolo input format : 
+     <object-class> <x> <y> <width> <height>
 
     :param via_file: path to the via csv file
     :type via_file: str
@@ -128,18 +129,6 @@ def convert_via_to_yolo(via_file: str, out_dir: str):
             y, box_height = cut_overlength(y, box_height)
             with open(txt_file, 'a') as txt:
                 _ = txt.write(f'{box_class} {x} {y} {box_width} {box_height}\n')
-
-
-        '''TO DO
-
-        3/ Calculate coordinates of each box (x,y of the box center + width, height). 
-        Coordinates must be relative (from 0.0 to 1.0)
-        4/ Create a txt with same name as the image and one line / box with this
-        format : <object-class> <x> <y> <width> <height>
-        ex : 1 0.716797 0.395833 0.216406 0.147222
-             0 0.687109 0.379167 0.255469 0.158333
-             1 0.420312 0.395833 0.140625 0.166667
-        '''
 
 def check_yolo_txt(image_path: str):
     """Opens a new window showing the image and the boxes found in the corresponding yolo txt file.
