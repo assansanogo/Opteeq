@@ -4,10 +4,10 @@ tools.yolo package
 Submodules
 ----------
 
-tools.yolo.yoloTools module
+tools.yolo.preprocessing module
 ---------------------------
 
-.. automodule:: tools.yolo.yoloTools
+.. automodule:: tools.yolo.preprocessing
    :members:
    :undoc-members:
    :show-inheritance:
