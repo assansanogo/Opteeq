@@ -1,11 +1,12 @@
 from tools.yolo.preprocessing import clean_via_file
 from tools.image.imageTools import get_img_shape
 import cv2
+import numpy as np
 import pandas as pd
 import os
 
 def divide_boxes(via_file: str) -> dict:
-    """Divides the boxes containing several words in the via annotations file given a s parameter.
+    """Divides the boxes containing several words in the via annotations file given as parameter.
     Returns a dictionnary with the information of each box : filename, class, word, x, y, width, height.
 
     :param via_file: path to the via csv file
@@ -96,5 +97,76 @@ def check_box_dictionnary(image_path: str, box_dict: dict):
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
-mydict = divide_boxes('tools/cutie/1629378395_1_csv.csv')
-check_box_dictionnary('tools/yolo/data/f94dd838-259e-4ac6-811c-92c61b0d80c4.jpg', mydict)
+def generate_grids(image_dir: str, box_dict: dict, nb_cols: int, nb_lines : int) -> dict:
+    """Generates a grid of words per image, based on the boxes dictionnary given as parameter.
+    Returns the grid information in a dictionnary with the format :
+    { image_name : { (col,line) : [word, class] } }
+    
+    :param image_dir: images directory path
+    :type image_dir: str
+    :param box_dict: dictionnary prepared with divide_boxes function
+    :type box_dict: dict
+    :param nb_cols: number of columns wanted in the grid
+    :type nb_cols: int
+    :param nb_lines: number of lines wanted in the grid
+    :type nb_lines: int
+    :return: dictionnary containing the coordinates of the words in the grid 
+    :rtype: dict
+
+    """
+    images = list(set(box_dict['filename']))
+    grid = {}
+    for image in images:
+        grid[image] = {}
+        im_height, im_width, _ = get_img_shape(os.path.join(image_dir,image))
+        indexes = [idx for (idx, name) in enumerate(box_dict['filename']) if name == image]
+        for idx in indexes:
+            word_col = int((box_dict['x'][idx] / im_width) * nb_cols)
+            word_line = int((box_dict['y'][idx] / im_height) * nb_lines)
+            grid[image][(word_col,word_line)] = [box_dict['word'][idx], box_dict['class'][idx]]
+    return grid
+
+def visualize_grid(gridmap: dict, nb_cols: int, nb_lines : int, filename: str):
+    """TBD
+    
+    :param gridmap: dictionnary prepared with generate_grids function
+    :type gridmap: dict
+    :param nb_cols: number of columns in the grids
+    :type nb_cols: int
+    :param nb_lines: number of lines in the grids
+    :type nb_lines: int
+    :param filename: name of the image file to be checked
+    :type filename: str
+
+    """
+    image = np.zeros((800,800,3), np.uint8) + 255
+    font = cv2.FONT_HERSHEY_COMPLEX_SMALL
+    fontScale = 0.3
+    thickness = 1
+    for key, value in gridmap[filename].items():
+        x = int((key[0] * 800) / nb_cols)
+        y = int((key[1] * 800) / nb_lines)
+        cell_word = value[0]
+        cell_class = value[1]
+        color = ((cell_class==1)*50 + (cell_class==2)*255, (cell_class==1)*150 + (cell_class==3)*255\
+                        ,(cell_class==1)*255 + (cell_class==4)*255)
+        cv2.putText(image,cell_word,(x, y),font,fontScale,color,thickness)
+    for line_idx in range(nb_lines + 1):
+        start_point = (0, int(line_idx*800/nb_lines)+5)
+        end_point = (1000, int(line_idx*800/nb_lines)+5)
+        cv2.line(image, start_point, end_point, (0,0,0), 1)
+    for col_idx in range(nb_cols + 1):
+        start_point = (int(col_idx*800/nb_cols - 5), 0)
+        end_point = (int(col_idx*800/nb_cols) - 5, 1000)
+        cv2.line(image, start_point, end_point, (0,0,0), 1)
+
+    cv2.imshow(filename, image)
+    cv2.waitKey()
+    cv2.destroyAllWindows()
+
+#box_dict = divide_boxes('tools/cutie/1629378395_1_csv.csv')
+#check_box_dictionnary('tools/yolo/data/f94dd838-259e-4ac6-811c-92c61b0d80c4.jpg', box_dict)
+#mygrid = generate_grids('tools/yolo/data',box_dict, 20, 50)
+#filename = '5d87e1bb-31fa-4e5e-baec-34dfbf937a99.jpg'
+#visualize_grid(mygrid, 20, 50, filename)
+

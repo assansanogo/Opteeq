@@ -157,4 +157,4 @@ def check_yolo_txt(image_path: str):
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
-check_yolo_txt('tools/yolo/data/eabef3a8-ad7e-4a4f-b035-a58f18d8393f.jpg')
+#check_yolo_txt('tools/yolo/data/eabef3a8-ad7e-4a4f-b035-a58f18d8393f.jpg')
