@@ -40,7 +40,9 @@
 
     
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Index" href="index_code.html" />
+    <link rel="prev" title="tools.yolo package" href="tools.yolo.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -85,7 +87,7 @@
               
             
             
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="info.html">Description</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#aws-structure">AWS structure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#table-of-contents">Table of Contents</a></li>
@@ -99,7 +101,24 @@
 <li class="toctree-l1"><a class="reference internal" href="info.html#license">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#team">Team</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#sphinx-documentation">Sphinx Documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">opteeq</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">opteeq</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="pipeline_aws.html">pipeline_aws package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Image_rotation_cnn.html">Image_rotation_cnn package</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="tools.html">tools package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="tools.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="tools.aws.html">tools.aws package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tools.via.html">tools.via package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tools.image.html">tools.image package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tools.yolo.html">tools.yolo package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">tools.cutie package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#module-tools">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index_code.html">Index</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -148,6 +167,10 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
+          <li><a href="modules.html">opteeq</a> &raquo;</li>
+        
+          <li><a href="tools.html">tools package</a> &raquo;</li>
+        
       <li>tools.cutie package</li>
     
     
@@ -191,7 +214,7 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="tools.cutie.preprocessing.divide_boxes">
 <span class="sig-prename descclassname"><span class="pre">tools.cutie.preprocessing.</span></span><span class="sig-name descname"><span class="pre">divide_boxes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">via_file</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#tools.cutie.preprocessing.divide_boxes" title="Permalink to this definition">¶</a></dt>
-<dd><p>Divides the boxes containing several words in the via annotations file given a s parameter.
+<dd><p>Divides the boxes containing several words in the via annotations file given as parameter.
 Returns a dictionnary with the information of each box : filename, class, word, x, y, width, height.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -202,6 +225,46 @@ Returns a dictionnary with the information of each box : filename, class, word, 
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tools.cutie.preprocessing.generate_grids">
+<span class="sig-prename descclassname"><span class="pre">tools.cutie.preprocessing.</span></span><span class="sig-name descname"><span class="pre">generate_grids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_dir</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">box_dict</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_cols</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_lines</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#tools.cutie.preprocessing.generate_grids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a grid of words per image, based on the boxes dictionnary given as parameter.
+Returns the grid information in a dictionnary with the format :
+{ image_name : { (col,line) : [word, class] } }</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image_dir</strong> (<em>str</em>) – images directory path</p></li>
+<li><p><strong>box_dict</strong> (<em>dict</em>) – dictionnary prepared with divide_boxes function</p></li>
+<li><p><strong>nb_cols</strong> (<em>int</em>) – number of columns wanted in the grid</p></li>
+<li><p><strong>nb_lines</strong> (<em>int</em>) – number of lines wanted in the grid</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dictionnary containing the coordinates of the words in the grid</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tools.cutie.preprocessing.visualize_grid">
+<span class="sig-prename descclassname"><span class="pre">tools.cutie.preprocessing.</span></span><span class="sig-name descname"><span class="pre">visualize_grid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gridmap</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_cols</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_lines</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tools.cutie.preprocessing.visualize_grid" title="Permalink to this definition">¶</a></dt>
+<dd><p>TBD</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gridmap</strong> (<em>dict</em>) – dictionnary prepared with generate_grids function</p></li>
+<li><p><strong>nb_cols</strong> (<em>int</em>) – number of columns in the grids</p></li>
+<li><p><strong>nb_lines</strong> (<em>int</em>) – number of lines in the grids</p></li>
+<li><p><strong>filename</strong> (<em>str</em>) – name of the image file to be checked</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -217,6 +280,10 @@ Returns a dictionnary with the information of each box : filename, class, word, 
            
           </div>
           <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="index_code.html" class="btn btn-neutral float-right" title="Index" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="tools.yolo.html" class="btn btn-neutral float-left" title="tools.yolo package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
 
   <hr/>
 
