@@ -135,7 +135,13 @@ def generate_grids(image_dir: str, box_dict: dict, nb_cols: int, nb_lines : int)
         for idx in indexes:
             word_col = int(((box_dict['x'][idx] - xmin) / ticket_width) * nb_cols)
             word_line = int(((box_dict['y'][idx] - ymin) / ticket_height) * nb_lines)
-            grid[image][(word_col,word_line)] = [box_dict['word'][idx], box_dict['class'][idx]]
+            check_existing_key = False
+            while check_existing_key == False:
+                if (word_col,word_line) not in grid[image]:
+                    grid[image][(word_col,word_line)] = [box_dict['word'][idx], box_dict['class'][idx]]
+                    check_existing_key = True
+                else:
+                    word_col += 1    
     return grid
 
 def visualize_grid(gridmap: dict, nb_cols: int, nb_lines : int, filename: str):
@@ -177,10 +183,10 @@ def visualize_grid(gridmap: dict, nb_cols: int, nb_lines : int, filename: str):
     cv2.waitKey()
     cv2.destroyAllWindows()
 
-# box_dict = divide_boxes('tools/cutie/1629378395_1_csv.csv')
-# check_box_dictionary('tools/yolo/data/f94dd838-259e-4ac6-811c-92c61b0d80c4.jpg', box_dict)
-# mygrid = generate_grids('tools/yolo/data',box_dict, 15, 30)
-# files = [file for file in os.listdir('tools/yolo/data') if file[-1] == 'g']
+#box_dict = divide_boxes('tools/cutie/1629378395_1_csv.csv')
+#check_box_dictionary('tools/yolo/data/f94dd838-259e-4ac6-811c-92c61b0d80c4.jpg', box_dict)
+#mygrid = generate_grids('tools/yolo/data',box_dict, 15, 30)
+#files = [file for file in os.listdir('tools/yolo/data') if file[-1] == 'g']
 # filename = '5d87e1bb-31fa-4e5e-baec-34dfbf937a99.jpg'
-# visualize_grid(mygrid, 15, 30, files[1])
+#visualize_grid(mygrid, 15, 30, files[1])
 
