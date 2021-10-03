@@ -198,14 +198,14 @@
 <div class="section" id="module-tools.cutie.preprocessing">
 <span id="tools-cutie-preprocessing-module"></span><h2>tools.cutie.preprocessing module<a class="headerlink" href="#module-tools.cutie.preprocessing" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
-<dt class="sig sig-object py" id="tools.cutie.preprocessing.check_box_dictionnary">
-<span class="sig-prename descclassname"><span class="pre">tools.cutie.preprocessing.</span></span><span class="sig-name descname"><span class="pre">check_box_dictionnary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">box_dict</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tools.cutie.preprocessing.check_box_dictionnary" title="Permalink to this definition">¶</a></dt>
-<dd><p>Opens a new window showing the image and the boxes found in the dictionnary given as parameter.</p>
+<dt class="sig sig-object py" id="tools.cutie.preprocessing.check_box_dictionary">
+<span class="sig-prename descclassname"><span class="pre">tools.cutie.preprocessing.</span></span><span class="sig-name descname"><span class="pre">check_box_dictionary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">box_dict</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tools.cutie.preprocessing.check_box_dictionary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Opens a new window showing the image and the boxes found in the dictionary given as parameter.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>image_path</strong> (<em>str</em>) – path to the image</p></li>
-<li><p><strong>box_dict</strong> (<em>dict</em>) – dictionnary prepared with divide_boxes function</p></li>
+<li><p><strong>box_dict</strong> (<em>dict</em>) – dictionary prepared with divide_boxes function</p></li>
 </ul>
 </dd>
 </dl>
@@ -215,13 +215,13 @@
 <dt class="sig sig-object py" id="tools.cutie.preprocessing.divide_boxes">
 <span class="sig-prename descclassname"><span class="pre">tools.cutie.preprocessing.</span></span><span class="sig-name descname"><span class="pre">divide_boxes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">via_file</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#tools.cutie.preprocessing.divide_boxes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Divides the boxes containing several words in the via annotations file given as parameter.
-Returns a dictionnary with the information of each box : filename, class, word, x, y, width, height.</p>
+Returns a dictionary with the information of each box : filename, class, word, x, y, width, height.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>via_file</strong> (<em>str</em>) – path to the via csv file</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>dictionnary with the boxes information</p>
+<dd class="field-even"><p>dictionary with the boxes information</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>dict</p>
@@ -232,20 +232,20 @@ Returns a dictionnary with the information of each box : filename, class, word, 
 <dl class="py function">
 <dt class="sig sig-object py" id="tools.cutie.preprocessing.generate_grids">
 <span class="sig-prename descclassname"><span class="pre">tools.cutie.preprocessing.</span></span><span class="sig-name descname"><span class="pre">generate_grids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_dir</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">box_dict</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_cols</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_lines</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#tools.cutie.preprocessing.generate_grids" title="Permalink to this definition">¶</a></dt>
-<dd><p>Generates a grid of words per image, based on the boxes dictionnary given as parameter.
-Returns the grid information in a dictionnary with the format :
+<dd><p>Generates a grid of words per image, based on the boxes dictionary given as parameter.
+Returns the grid information in a dictionary with the format :
 { image_name : { (col,line) : [word, class] } }</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>image_dir</strong> (<em>str</em>) – images directory path</p></li>
-<li><p><strong>box_dict</strong> (<em>dict</em>) – dictionnary prepared with divide_boxes function</p></li>
+<li><p><strong>box_dict</strong> (<em>dict</em>) – dictionary prepared with divide_boxes function</p></li>
 <li><p><strong>nb_cols</strong> (<em>int</em>) – number of columns wanted in the grid</p></li>
 <li><p><strong>nb_lines</strong> (<em>int</em>) – number of lines wanted in the grid</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>dictionnary containing the coordinates of the words in the grid</p>
+<dd class="field-even"><p>dictionary containing the coordinates of the words in the grid</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>dict</p>
@@ -256,11 +256,12 @@ Returns the grid information in a dictionnary with the format :
 <dl class="py function">
 <dt class="sig sig-object py" id="tools.cutie.preprocessing.visualize_grid">
 <span class="sig-prename descclassname"><span class="pre">tools.cutie.preprocessing.</span></span><span class="sig-name descname"><span class="pre">visualize_grid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gridmap</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_cols</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_lines</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tools.cutie.preprocessing.visualize_grid" title="Permalink to this definition">¶</a></dt>
-<dd><p>TBD</p>
+<dd><p>Opens a new window showing the visual representation of the image given as parameter.
+Image grid has to be prepared with the generate_grids function and given as parameter.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>gridmap</strong> (<em>dict</em>) – dictionnary prepared with generate_grids function</p></li>
+<li><p><strong>gridmap</strong> (<em>dict</em>) – dictionary prepared with generate_grids function</p></li>
 <li><p><strong>nb_cols</strong> (<em>int</em>) – number of columns in the grids</p></li>
 <li><p><strong>nb_lines</strong> (<em>int</em>) – number of lines in the grids</p></li>
 <li><p><strong>filename</strong> (<em>str</em>) – name of the image file to be checked</p></li>

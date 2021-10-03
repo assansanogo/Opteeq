@@ -5,7 +5,7 @@ Submodules
 ----------
 
 tools.yolo.preprocessing module
----------------------------
+-------------------------------
 
 .. automodule:: tools.yolo.preprocessing
    :members:

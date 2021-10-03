@@ -195,9 +195,9 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="tools-yolo-preprocessing-module">
-<h2>tools.yolo.preprocessing module<a class="headerlink" href="#tools-yolo-preprocessing-module" title="Permalink to this headline">¶</a></h2>
-<span class="target" id="module-tools.yolo.preprocessing"></span><dl class="py function">
+<div class="section" id="module-tools.yolo.preprocessing">
+<span id="tools-yolo-preprocessing-module"></span><h2>tools.yolo.preprocessing module<a class="headerlink" href="#module-tools.yolo.preprocessing" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
 <dt class="sig sig-object py" id="tools.yolo.preprocessing.check_yolo_txt">
 <span class="sig-prename descclassname"><span class="pre">tools.yolo.preprocessing.</span></span><span class="sig-name descname"><span class="pre">check_yolo_txt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tools.yolo.preprocessing.check_yolo_txt" title="Permalink to this definition">¶</a></dt>
 <dd><p>Opens a new window showing the image and the boxes found in the corresponding yolo txt file.
@@ -229,7 +229,7 @@ Returns the path to the clean csv file .</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tools.yolo.preprocessing.convert_via_to_yolo">
-<span class="sig-prename descclassname"><span class="pre">tools.yolo.preprocessing.</span></span><span class="sig-name descname"><span class="pre">convert_via_to_yolo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">via_file</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_dir</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tools.yolo.preprocessing.convert_via_to_yolo" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tools.yolo.preprocessing.</span></span><span class="sig-name descname"><span class="pre">convert_via_to_yolo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">via_file</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_dir</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blurring</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tools.yolo.preprocessing.convert_via_to_yolo" title="Permalink to this definition">¶</a></dt>
 <dd><p>Downloads the images annotated in the via csv file and creates one txt file / image
 with the class and coordinates of the boxes as per yolo input format :</p>
 <blockquote>
@@ -240,6 +240,8 @@ with the class and coordinates of the boxes as per yolo input format :</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>via_file</strong> (<em>str</em>) – path to the via csv file</p></li>
 <li><p><strong>out_dir</strong> (<em>str</em>) – path to the outputs directory</p></li>
+<li><p><strong>blurring</strong> (<em>bool</em>) – if True, original data is augmented with a random blurring</p></li>
+<li><p><strong>noise</strong> (<em>bool</em>) – if True, original data is augmented with a random noise</p></li>
 </ul>
 </dd>
 </dl>
