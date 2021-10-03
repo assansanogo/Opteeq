@@ -41,6 +41,16 @@ def image_read(file: str) -> np.ndarray:
     img = cv2.imread(file)
     return img
 
+def image_write(image: np.ndarray, filepath: str):
+    """Writes a jpg file base on the numpy array given as parameter using OpenCV.
+
+    :param image: numpy array of the image
+    :type file: np.ndarray
+    :param filepath: path of the file to write
+    :type filepath: str
+    """
+    cv2.imwrite(filepath, image)
+
 def rotate_image(img: np.ndarray, angle: int = 90) -> np.ndarray:
     """Rotates an image with the desired angle.
 
