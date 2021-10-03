@@ -1,6 +1,8 @@
-from tools.image.imageTools import get_img_shape
+from tools.image.imageTools import get_img_shape, add_blurring, add_noise, image_read, image_write
 from tools.aws.awsTools import Bucket
+from shutil import copyfile
 import pandas as pd
+import random
 import csv
 import json
 import os
@@ -81,7 +83,7 @@ def cut_overlength(center: float, length: float) -> 'tuple[float,float]':
         new_length = length
     return (new_center,new_length)
 
-def convert_via_to_yolo(via_file: str, out_dir: str):
+def convert_via_to_yolo(via_file: str, out_dir: str, blurring: bool = False, noise: bool = False):
     """Downloads the images annotated in the via csv file and creates one txt file / image
     with the class and coordinates of the boxes as per yolo input format : 
      <object-class> <x> <y> <width> <height>
@@ -90,6 +92,10 @@ def convert_via_to_yolo(via_file: str, out_dir: str):
     :type via_file: str
     :param out_dir: path to the outputs directory
     :type out_dir: str
+    :param blurring: if True, original data is augmented with a random blurring
+    :type blurring: bool
+    :param noise: if True, original data is augmented with a random noise
+    :type noise: bool
     """
     via_clean = clean_via_file(via_file)
     images = get_image_names(via_clean)
@@ -109,11 +115,25 @@ def convert_via_to_yolo(via_file: str, out_dir: str):
     for image in images:
         # Download image from s3 :
         images_bucket.download(image,out_dir)
+        if blurring == True:
+            image_array = image_read(os.path.join(out_dir,image))
+            blurring_box_width = random.choice([7,9,11,13])
+            blurring_box_height = random.choice([7,9,11,13])
+            image_b = add_blurring(image_array,blurring_box_width,blurring_box_height)
+            image_b_name = image[:-4] + '_b' + '.jpg'
+            image_write(image_b, os.path.join(out_dir,image_b_name))
+        if noise == True:
+            image_array = image_read(os.path.join(out_dir,image))
+            noise_var = random.randint(1000,10000)
+            image_n = add_noise(image_array,noise_var)
+            image_n_name = image[:-4] + '_n' + '.jpg'
+            image_write(image_n, os.path.join(out_dir,image_n_name))
+        
         # Get image size :
         height, width, _ = get_img_shape(os.path.join(out_dir,image))
         # Filter DataFrame to get the rows of this image :
         boxes = images_boxes[images_boxes['filename'] == image]
-        # Prepare path of the txt file :
+        # Prepare path of the txt files :
         txt_file = os.path.join(out_dir,image[:-3]+'txt')
 
         for index, box in boxes.iterrows():
@@ -129,6 +149,14 @@ def convert_via_to_yolo(via_file: str, out_dir: str):
             y, box_height = cut_overlength(y, box_height)
             with open(txt_file, 'a') as txt:
                 _ = txt.write(f'{box_class} {x} {y} {box_width} {box_height}\n')
+        
+        if blurring == True:
+            blurred_txt_path =  os.path.join(out_dir,image[:-4]+'_b.txt')
+            copyfile(txt_file, blurred_txt_path)
+        
+        if noise == True:
+            noised_txt_path =  os.path.join(out_dir,image[:-4]+'_n.txt')
+            copyfile(txt_file, noised_txt_path)
 
 def check_yolo_txt(image_path: str):
     """Opens a new window showing the image and the boxes found in the corresponding yolo txt file.
