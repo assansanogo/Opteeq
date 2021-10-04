@@ -89,15 +89,12 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="info.html">Description</a></li>
-<li class="toctree-l1"><a class="reference internal" href="info.html#aws-structure">AWS structure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#table-of-contents">Table of Contents</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#installation-configuration">Installation / Configuration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="info.html#usage">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#step-1-data-labelling-architecture">Step 1: Data labelling architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#step-2-ai-modelling-tbd">Step 2: AI modelling (TBD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#step-3-web-application-deployment-tbd">Step 3: Web application deployment (TBD)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="info.html#database-structure">Database structure</a></li>
-<li class="toctree-l1"><a class="reference internal" href="info.html#project-cost-estimation">Project cost estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#usage">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#license">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#team">Team</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#sphinx-documentation">Sphinx Documentation</a></li>
@@ -231,10 +228,8 @@ Returns the path to the clean csv file .</p>
 <dt class="sig sig-object py" id="tools.yolo.preprocessing.convert_via_to_yolo">
 <span class="sig-prename descclassname"><span class="pre">tools.yolo.preprocessing.</span></span><span class="sig-name descname"><span class="pre">convert_via_to_yolo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">via_file</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_dir</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blurring</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tools.yolo.preprocessing.convert_via_to_yolo" title="Permalink to this definition">¶</a></dt>
 <dd><p>Downloads the images annotated in the via csv file and creates one txt file / image
-with the class and coordinates of the boxes as per yolo input format :</p>
-<blockquote>
-<div><p>&lt;object-class&gt; &lt;x&gt; &lt;y&gt; &lt;width&gt; &lt;height&gt;</p>
-</div></blockquote>
+with the class and coordinates of the boxes as per yolo input format :
+&lt;object-class&gt; &lt;x&gt; &lt;y&gt; &lt;width&gt; &lt;height&gt;</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -249,7 +244,7 @@ with the class and coordinates of the boxes as per yolo input format :</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tools.yolo.preprocessing.cut_overlength">
-<span class="sig-prename descclassname"><span class="pre">tools.yolo.preprocessing.</span></span><span class="sig-name descname"><span class="pre">cut_overlength</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">center</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tools.yolo.preprocessing.cut_overlength" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tools.yolo.preprocessing.</span></span><span class="sig-name descname"><span class="pre">cut_overlength</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">center</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#tools.yolo.preprocessing.cut_overlength" title="Permalink to this definition">¶</a></dt>
 <dd><p>Trims a box in case it goes outside of the image and returns
 the new coordinates of the center and length.</p>
 <dl class="field-list simple">
@@ -270,7 +265,7 @@ the new coordinates of the center and length.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tools.yolo.preprocessing.get_image_names">
-<span class="sig-prename descclassname"><span class="pre">tools.yolo.preprocessing.</span></span><span class="sig-name descname"><span class="pre">get_image_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clean_via_file</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tools.yolo.preprocessing.get_image_names" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tools.yolo.preprocessing.</span></span><span class="sig-name descname"><span class="pre">get_image_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clean_via_file</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#tools.yolo.preprocessing.get_image_names" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a list of the image file names annotated in the cleaned via file given as input.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>

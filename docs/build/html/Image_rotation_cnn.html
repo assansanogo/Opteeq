@@ -89,15 +89,12 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="info.html">Description</a></li>
-<li class="toctree-l1"><a class="reference internal" href="info.html#aws-structure">AWS structure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#table-of-contents">Table of Contents</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#installation-configuration">Installation / Configuration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="info.html#usage">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#step-1-data-labelling-architecture">Step 1: Data labelling architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#step-2-ai-modelling-tbd">Step 2: AI modelling (TBD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#step-3-web-application-deployment-tbd">Step 3: Web application deployment (TBD)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="info.html#database-structure">Database structure</a></li>
-<li class="toctree-l1"><a class="reference internal" href="info.html#project-cost-estimation">Project cost estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#usage">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#license">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#team">Team</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#sphinx-documentation">Sphinx Documentation</a></li>
@@ -106,8 +103,8 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Image_rotation_cnn package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-Image_rotation_cnn.predict">Image_rotation_cnn.predict module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-Image_rotation_cnn.prepare_database">Image_rotation_cnn.prepare_database module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-Image_rotation_cnn.prepare_functions">Image_rotation_cnn.prepare_functions module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#image-rotation-cnn-prepare-database-module">Image_rotation_cnn.prepare_database module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#image-rotation-cnn-prepare-functions-module">Image_rotation_cnn.prepare_functions module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-Image_rotation_cnn">Module contents</a></li>
 </ul>
 </li>
@@ -215,82 +212,11 @@ a probability superior to the threshold given as parameter.</p>
 </dd></dl>
 
 </div>
-<div class="section" id="module-Image_rotation_cnn.prepare_database">
-<span id="image-rotation-cnn-prepare-database-module"></span><h2>Image_rotation_cnn.prepare_database module<a class="headerlink" href="#module-Image_rotation_cnn.prepare_database" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="image-rotation-cnn-prepare-database-module">
+<h2>Image_rotation_cnn.prepare_database module<a class="headerlink" href="#image-rotation-cnn-prepare-database-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-Image_rotation_cnn.prepare_functions">
-<span id="image-rotation-cnn-prepare-functions-module"></span><h2>Image_rotation_cnn.prepare_functions module<a class="headerlink" href="#module-Image_rotation_cnn.prepare_functions" title="Permalink to this headline">¶</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="Image_rotation_cnn.prepare_functions.prepare_1_image">
-<span class="sig-prename descclassname"><span class="pre">Image_rotation_cnn.prepare_functions.</span></span><span class="sig-name descname"><span class="pre">prepare_1_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_folder</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Image_rotation_cnn.prepare_functions.prepare_1_image" title="Permalink to this definition">¶</a></dt>
-<dd><p>Resizes an image, rotates it 3 times, adds blurring and noise to get 12 images that
-can be used to train a model.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>file</strong> (<em>str</em>) – path to the original image</p></li>
-<li><p><strong>filename</strong> (<em>str</em>) – filename base of the processed images</p></li>
-<li><p><strong>out_folder</strong> (<em>str</em>) – path to the folder to upload the 12 processed images</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="Image_rotation_cnn.prepare_functions.prepare_testing_images">
-<span class="sig-prename descclassname"><span class="pre">Image_rotation_cnn.prepare_functions.</span></span><span class="sig-name descname"><span class="pre">prepare_testing_images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_folder</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_folder</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#Image_rotation_cnn.prepare_functions.prepare_testing_images" title="Permalink to this definition">¶</a></dt>
-<dd><p>Resizes and adds pads to the image files in a folder and turns some of them to obtain a balanced
-dataset that can be used to test a model.
-The N images in the original folder must all be in the normal orientation.
-The N processed images in the output folder are squared with size 224, and rotated 
-at 0, 90, 180, or 270 degrees.
-The last 3 characters of the file names indicate the orientation : ‘000’,</p>
-<blockquote>
-<div><p>‘090’, ‘180’ or ‘270’.</p>
-</div></blockquote>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>in_folder</strong> (<em>str</em>) – path to the folder with original images</p></li>
-<li><p><strong>out_folder</strong> (<em>str</em>) – path to the folder to upload the processed images</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>a Tuple with the number of images uploaded and a List of the files that were not processed</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(int, List of str)</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="Image_rotation_cnn.prepare_functions.prepare_training_images">
-<span class="sig-prename descclassname"><span class="pre">Image_rotation_cnn.prepare_functions.</span></span><span class="sig-name descname"><span class="pre">prepare_training_images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_folder</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_folder</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#Image_rotation_cnn.prepare_functions.prepare_training_images" title="Permalink to this definition">¶</a></dt>
-<dd><p>Uses all image files in a folder to get 12 images / file that can be used to train a model.
-The N images in the original folder must all be in the normal orientation.
-The 12xN processed images in the output folder are squared with size 224, rotated in 4
-orientations (0, 90, 180, and 270 degrees) and with additional noise or blurring.
-The last 3 characters of the file names indicate the orientation : ‘000’,</p>
-<blockquote>
-<div><p>‘090’, ‘180’ or ‘270’.</p>
-</div></blockquote>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>in_folder</strong> (<em>str</em>) – path to the folder with original images</p></li>
-<li><p><strong>out_folder</strong> (<em>str</em>) – path to the folder to upload the processed images</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>a Tuple with the number of images uploaded and a List of the files that were not processed</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(int, List of str)</p>
-</dd>
-</dl>
-</dd></dl>
-
+<div class="section" id="image-rotation-cnn-prepare-functions-module">
+<h2>Image_rotation_cnn.prepare_functions module<a class="headerlink" href="#image-rotation-cnn-prepare-functions-module" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-Image_rotation_cnn">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-Image_rotation_cnn" title="Permalink to this headline">¶</a></h2>

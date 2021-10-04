@@ -88,15 +88,12 @@
             
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="info.html">Description</a></li>
-<li class="toctree-l1"><a class="reference internal" href="info.html#aws-structure">AWS structure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#table-of-contents">Table of Contents</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#installation-configuration">Installation / Configuration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="info.html#usage">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#step-1-data-labelling-architecture">Step 1: Data labelling architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#step-2-ai-modelling-tbd">Step 2: AI modelling (TBD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#step-3-web-application-deployment-tbd">Step 3: Web application deployment (TBD)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="info.html#database-structure">Database structure</a></li>
-<li class="toctree-l1"><a class="reference internal" href="info.html#project-cost-estimation">Project cost estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#usage">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#license">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#team">Team</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#sphinx-documentation">Sphinx Documentation</a></li>
@@ -171,7 +168,6 @@
   <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="info.html">Description</a></li>
-<li class="toctree-l1"><a class="reference internal" href="info.html#aws-structure">AWS structure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#table-of-contents">Table of Contents</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#installation-configuration">Installation / Configuration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="info.html#get-the-project-from-the-repository">get the project from the repository:</a></li>
@@ -180,31 +176,40 @@
 <li class="toctree-l2"><a class="reference internal" href="info.html#config-the-project">Config the project</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="info.html#usage">Usage</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="info.html#upload-image">Upload image</a></li>
-<li class="toctree-l2"><a class="reference internal" href="info.html#generate-json-for-via">Generate json for via</a></li>
-<li class="toctree-l2"><a class="reference internal" href="info.html#download-image-and-json">Download image and json</a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#step-1-data-labelling-architecture">Step 1: Data labelling architecture</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="info.html#image-uploading">1.1 Image uploading</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="info.html#rename-images">1.1.1 Rename images</a></li>
-<li class="toctree-l3"><a class="reference internal" href="info.html#import-raw-images">1.1.2 Import raw images</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="info.html#aws-structure">AWS structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="info.html#image-uploading">1.1 Image uploading</a></li>
 <li class="toctree-l2"><a class="reference internal" href="info.html#image-standardization">1.2 Image standardization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="info.html#image-automatic-pre-annotation">1.3 Image automatic pre-annotation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="info.html#example-of-results">1.3.1 Example of results</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="info.html#manual-labelling">1.4 Manual labelling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="info.html#data-uploading">1.5 Data uploading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="info.html#pipeline-cost-estimation">1.5 Pipeline cost estimation</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="info.html#step-2-ai-modelling-tbd">Step 2: AI modelling (TBD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#step-2-ai-modelling-tbd">Step 2: AI modelling (TBD)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="info.html#yolov4">2.1 Yolov4</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="info.html#data-preprocessing">2.1.1 Data preprocessing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="info.html#model-training">2.1.2 Model training</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="info.html#cutie">2.2 Cutie</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="info.html#id1">2.2.1 Data preprocessing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="info.html#id2">2.1.2 Model training</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="info.html#models-benchmarking">2.3 Models Benchmarking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="info.html#conclusion">2.4 Conclusion</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#step-3-web-application-deployment-tbd">Step 3: Web application deployment (TBD)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="info.html#database-structure">Database structure</a></li>
-<li class="toctree-l1"><a class="reference internal" href="info.html#project-cost-estimation">Project cost estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#usage">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="info.html#upload-image">Upload image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="info.html#generate-json-for-via">Generate json for via</a></li>
+<li class="toctree-l2"><a class="reference internal" href="info.html#download-image-and-json">Download image and json</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#license">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#team">Team</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#sphinx-documentation">Sphinx Documentation</a></li>
@@ -220,8 +225,8 @@
 <li class="toctree-l2"><a class="reference internal" href="Image_rotation_cnn.html">Image_rotation_cnn package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Image_rotation_cnn.html#submodules">Submodules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Image_rotation_cnn.html#module-Image_rotation_cnn.predict">Image_rotation_cnn.predict module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Image_rotation_cnn.html#module-Image_rotation_cnn.prepare_database">Image_rotation_cnn.prepare_database module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Image_rotation_cnn.html#module-Image_rotation_cnn.prepare_functions">Image_rotation_cnn.prepare_functions module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Image_rotation_cnn.html#image-rotation-cnn-prepare-database-module">Image_rotation_cnn.prepare_database module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Image_rotation_cnn.html#image-rotation-cnn-prepare-functions-module">Image_rotation_cnn.prepare_functions module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Image_rotation_cnn.html#module-Image_rotation_cnn">Module contents</a></li>
 </ul>
 </li>
