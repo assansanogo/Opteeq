@@ -154,8 +154,8 @@ TOTAL    | total cost for first month without free tier      | $15,46   |
 2. Install nvidia driver (use your package manager and distribution
    documentation ([debian](https://wiki.debian.org/fr/NvidiaGraphicsDrivers)
    , [other](https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html)...))
-3.
-Install [nvidia docker](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#install-guide)**
+3. Install
+   [nvidia docker](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#install-guide)**
 
 ** Nvidia docker is only available on: Amazon Linux, Open Suse, Debian, Centos, RHEL and Ubuntu.
 
