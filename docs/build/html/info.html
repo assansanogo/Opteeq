@@ -113,6 +113,12 @@
 <li class="toctree-l2"><a class="reference internal" href="#yolov4">2.1 Yolov4</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#data-preprocessing">2.1.1 Data preprocessing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#model-training">2.1.2 Model training</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installation">2.1.3 Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#install-nvidia-docker">2.1.3.1 install nvidia docker</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#build-the-docker-image">2.1.3.2 Build the docker image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#train-yolo">2.1.3.3 Train yolo</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#cutie">2.2 Cutie</a><ul>
@@ -385,6 +391,45 @@ for all the pictures found in the annotation file.</p>
 </div>
 <div class="section" id="model-training">
 <h3>2.1.2 Model training<a class="headerlink" href="#model-training" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="installation">
+<h3>2.1.3 Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="install-nvidia-docker">
+<h4>2.1.3.1 install nvidia docker<a class="headerlink" href="#install-nvidia-docker" title="Permalink to this headline">¶</a></h4>
+<ol class="simple">
+<li><p>Install <a class="reference external" href="https://docs.docker.com/engine/install/">docker</a> and <a class="reference external" href="https://docs.docker.com/compose/install/">docker compose</a></p></li>
+<li><p>Install nvidia driver (use your package manager and distribution
+documentation (<a class="reference external" href="https://wiki.debian.org/fr/NvidiaGraphicsDrivers">debian</a>
+, <a class="reference external" href="https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html">other</a>…))</p></li>
+<li><p>Install <a class="reference external" href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#install-guide">nvidia docker</a>**</p></li>
+</ol>
+<p>** Nvidia docker is only available on: Amazon Linux, Open Suse, Debian, Centos, RHEL and Ubuntu.</p>
+<p>For debian/ubuntu distribution you can directly run:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sh yolo/install_dependencies.sh
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="build-the-docker-image">
+<h3>2.1.3.2 Build the docker image<a class="headerlink" href="#build-the-docker-image" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker-compose build
+</pre></div>
+</div>
+</div>
+<div class="section" id="train-yolo">
+<h3>2.1.3.3 Train yolo<a class="headerlink" href="#train-yolo" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Start the container</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker-compose up
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Put all the configuration file, image and lebel in data folder.</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sh train.sh
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="cutie">

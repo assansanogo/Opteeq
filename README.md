@@ -145,6 +145,46 @@ TOTAL    | total cost for first month without free tier      | $15,46   |
 
 ### 2.1.2 Model training
 
+### 2.1.3 Installation
+
+#### 2.1.3.1 install nvidia docker
+
+1. Install [docker](https://docs.docker.com/engine/install/)
+   and [docker compose](https://docs.docker.com/compose/install/)
+2. Install nvidia driver (use your package manager and distribution
+   documentation ([debian](https://wiki.debian.org/fr/NvidiaGraphicsDrivers)
+   , [other](https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html)...))
+3.
+Install [nvidia docker](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#install-guide)**
+
+** Nvidia docker is only available on: Amazon Linux, Open Suse, Debian, Centos, RHEL and Ubuntu.
+
+For debian/ubuntu distribution you can directly run:
+
+```shell
+sh yolo/install_dependencies.sh
+```
+
+### 2.1.3.2 Build the docker image
+
+```shell
+docker-compose build
+```
+
+### 2.1.3.3 Train yolo
+
+1. Start the container
+
+```shell
+docker-compose up
+```
+
+2. Put all the configuration file, image and lebel in data folder.
+
+```shell
+sh train.sh
+```
+
 ## 2.2 Cutie
 
 ### 2.2.1 Data preprocessing
