@@ -1,4 +1,4 @@
-from prepare_functions import prepare_training_images
+from Image_rotation_cnn.prepare_functions import prepare_training_images
 import sys
 
 if __name__ == '__main__':

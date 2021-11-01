@@ -7,3 +7,8 @@ python-dateutil~=2.8.1
 Pillow~=8.3.1
 
 opencv-python
+
+# Doc Sphynx
+myst-parser==0.15.1
+Sphinx==4.1.2
+sphinx-rtd-theme==0.5.2

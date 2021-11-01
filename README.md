@@ -1,20 +1,15 @@
 # Description
 
-Opteeq is a library and web application that digitalises paper receipts. It automatically scans receipts using Google
-Vision, formats and labels them, then uses a text detection model (TBD) to store and extracts key information.
+Opteeq is a student project. The Objective of the project is to build a python library and a web application allowing to
+extract key information from paper receipts: Place, Date and Total Amount of expense. The project consists of 3 steps:
 
-Data is stored in Amazon Simple Storage Service (S3) cloud storage buckets, and key information is extracted and saved
-to a noSQL database using Amazon DynamoDB.
-
-# AWS structure
-
-![image](tools/aws/aws_Diagram.png)
+1. Data Labelling (finished)
+2. AI modelling (on going)
+3. Web application deployment (not started)
 
 # Table of Contents
 
-[Installation](#installation--configuration)
-
-[Usage](#usage)
+[Installation / Configuration](#installation--configuration)
 
 [Step 1: Data labelling architecture](#step-1-data-labelling-architecture)
 
@@ -22,9 +17,7 @@ to a noSQL database using Amazon DynamoDB.
 
 [Step 3: Web application deployment (TBD)](#step-3-web-application-deployment-tbd)
 
-[Database structure](#database-structure)
-
-[Project cost estimation](#project-cost-estimation)
+[Usage](#usage)
 
 [License](#license)
 
@@ -65,6 +58,148 @@ If the part that you will use doesn't need one of these parameters you can ignor
 
 When you create the dynamoDB add a global secondary index on anotName and named annotator-index.
 
+# Step 1: Data labelling architecture
+
+A database of ~1300 ticket pictures has been collected. In order to help with the tedious labelling work, a pipeline has
+been developped in AWS to pre-annotate the pictures.   
+Each receipt added to the database are standardized and scanned using AWS Rekognition for text recognition. The pipeline
+then reformats the annotations and computes json files containing batches of 20 images. These json files can be imported
+into VGG Image Anotator for the final manual part of the labelling.
+
+All the data is stored in Amazon Simple Storage Service (S3) cloud storage buckets, and key information is extracted and
+saved to a noSQL database using Amazon DynamoDB.
+
+## AWS structure
+
+![image](tools/aws/aws_Diagram.png)
+
+## 1.1 Image uploading
+
+Python script is used to rename and upload all raw images (.jpeg, .png, .tiff) of receipts into an S3
+bucket `bucket_raw` and rename them with the name of the uploader and an index.
+
+## 1.2 Image standardization
+
+Raw images are transformed using an AWS Lambda function into standardized images.The Lambda function runs on an S3
+trigger based on a put event (the file upload). Image standardization includes a minimum image size check, image
+resizing, text orientation detection and rotation.
+
+*The steps include:*
+
+1. Raw images are read from `bucket_standardized` using Boto3 and OpenCV.
+2. The text orientation of the image is checked
+3. The image is rotated if needed
+4. The image size is compared with the Google Cloud Vision API recommended image size for document text recognition (
+   1067x768)
+5. The image is resized either using height or width (1067 or 768) while keeping the same aspect ratio to avoid
+   distorting the image
+6. The processed image is written locally to ‘tmp’ directory with a unique filename - ‘IMG-{uuid4}-{unix_timestamp}.jpg’
+   using OpenCV.
+7. Additional datapoints are added to the database including a unique ID, image name, raw name, and uploader name.
+
+Standardized images are then pushed (uploaded) into `bucket_standardized` using Boto3.
+
+## 1.3 Image automatic pre-annotation
+
+AWS Rekognition API is called to pre-annotate the pictures with boxes arount the text. Annotations from Rekognition are
+then converted by batch to a json file that can be imported
+in [VGG Image Annotator](https://www.robots.ox.ac.uk/~vgg/software/via/). The goal of this step is essentially to reduce
+and ease the manual labelling of the pictures that will be done in the next step.
+
+### 1.3.1 Example of results
+
+| ![via0](tools/via/doc/via0.png)   |      ![via](tools/via/doc/via.png)      |  ![via2](tools/via/doc/via2.png) |
+|----------|:-------------:|------:|
+|          |               |       |
+
+## 1.4 Manual labelling
+
+Json files are imported in VGG Image Annotator. The only remaining part is to assign the Date, Place and Total Amount
+classes to the relevant boxes. This is perfomed manually by team members. Final annotations are exported as csv files
+and uploaded into **AWS Bucket 3**. A Lambda function runs on an S3 trigger based on a put event to update the database
+for all the pictures found in the annotation file.
+
+## 1.5 Pipeline cost estimation
+
+| Product | Description | Cost (USD/month) |
+| -------- | -------- | -------- |
+| AWS S3 Buckets    | Cloud storage | 1,38    |
+Amazon Simple Queue Service (SQS)    | web service for storing messages in transit between computers      | 0,01    | |
+Amazon Lambda Function    | serverless compute service that runs code in response to events       | 0,44    ||
+Amazon Elastic Compute Cloud (Amazon EC2)    | allows users to rent virtual computers to run their own computer applications      | 1,01    ||
+Rekognition    | API for text detection image processing      | 10,00   ||
+Cloudwatch    | monitoring and management service for AWS      | 2,58   ||
+DynamoDB   | NoSQL database service      | 0,04   ||
+TOTAL    | total cost for first month without free tier      | $15,46   |
+
+**Notes:**
+
+- With Free-tier, total costs should be below $10 for 10,000 images.
+- After labelling, the files will be moved to Glacier as a zip.
+
+# Step 2: AI modelling (TBD)
+
+## 2.1 Yolov4
+
+### 2.1.1 Data preprocessing
+
+### 2.1.2 Model training
+
+### 2.1.3 Installation
+
+#### 2.1.3.1 install nvidia docker
+
+1. Install [docker](https://docs.docker.com/engine/install/)
+   and [docker compose](https://docs.docker.com/compose/install/)
+2. Install nvidia driver (use your package manager and distribution
+   documentation ([debian](https://wiki.debian.org/fr/NvidiaGraphicsDrivers)
+   , [other](https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html)...))
+3. Install
+   [nvidia docker](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#install-guide)**
+
+** Nvidia docker is only available on: Amazon Linux, Open Suse, Debian, Centos, RHEL and Ubuntu.
+
+For debian/ubuntu distribution you can directly run:
+
+```shell
+sh yolo/install_dependencies.sh
+```
+
+### 2.1.3.2 Build the docker image
+
+```shell
+docker-compose build
+```
+
+### 2.1.3.3 Train yolo
+
+1. Start the container
+
+```shell
+docker-compose up
+```
+
+2. Put all the configuration file, image and lebel in data folder.
+
+```shell
+sh train.sh
+```
+
+## 2.2 Cutie
+
+### 2.2.1 Data preprocessing
+
+### 2.1.2 Model training
+
+## 2.3 Models Benchmarking
+
+## 2.4 Conclusion
+
+# Step 3: Web application deployment (TBD)
+
+:::info Please add details
+:::
+
 # Usage
 
 You can use all this script with the command behind or use the notebook pipeline if you prefer.
@@ -104,110 +239,16 @@ error or path error.
 1. Execute:
 
       ```shell
-      python3 -m pipeline_aws.donwload
+      python -m pipeline_aws.download
       ```
 
 2. Go to [VGG Image Annotator 2](https://www.robots.ox.ac.uk/~vgg/software/via/via.html), **open a VIA project** and
    choose output.json. (If the image file can't be found, download the HTML file and change the default path in the
    settings)
 
-
-# Step 1: Data labelling architecture
-
-## 1.1 Image uploading
-
-Python is used to rename and upload raw images (.jpeg, .png, .tiff) of receipts into an S3 bucket `bucket_raw`
-
-### 1.1.1 Rename images
-
-Rename all the files from a folder and upload it to `bucket_raw`
-
-### 1.1.2 Import raw images
-
-**All images in folder image (or other defined image folder) are imported. Take note of the request ID number !**
-
-## 1.2 Image standardization
-
-Raw images are transformed using an AWS Lambda function into standardized images.The Lambda function runs on an S3
-trigger based on a put event (the file upload). Image standardization includes a minimum image size check, image
-resizing, text orientation detection and rotation.
-
-*The steps include:*
-
-1. Raw images are read from `bucket_standardized` using Boto3 and OpenCV.
-2. The text orientation of the image is checked
-3. The image is rotated if needed
-4. The image size is compared with the Google Cloud Vision API recommended image size for document text recognition (
-   1067x768)
-5. The image is resized either using height or width (1067 or 768) while keeping the same aspect ratio to avoid
-   distorting the image
-6. The processed image is written locally to ‘tmp’ directory with a unique filename - ‘IMG-{uuid4}-{unix_timestamp}.jpg’
-   using OpenCV.
-7. Additional datapoints are added to the database including a unique ID, image name, row name, and uploader name.
-
-Standardized images are then pushed (uploaded) into `bucket_standardized` using Boto3.
-
-## 1.3 Image automatic pre-annotation
-
-Google Cloud Vision Optical Character Recognition (OCR) API is called to pre-annotate the pictures with boxes arount the
-text. Annotations from Google Vision are then converted by batch to a json file that can be imported
-in [VGG Image Annotator](https://www.robots.ox.ac.uk/~vgg/software/via/). The goal of this step is essentially to reduce
-and ease the manual labelling of the pictures that will be done in the next step.
-
-
-### 1.3.1 Example of results
-
-| ![via0](tools/via/doc/via0.png)   |      ![via](tools/via/doc/via.png)      |  ![via2](tools/via/doc/via2.png) |
-|----------|:-------------:|------:|
-|          |               |       |
-
-## 1.4 Manual labelling
-
-Json files are manually labelled using VGG Annotator (?) by team members. Annotated json files are uploaded into **AWS
-Bucket 3**.
-
-Download all image and json for a given annotator name.
-
-
-## 1.5 Data uploading
-
-Final database is exported as a .csv file.
-
-# Step 2: AI modelling (TBD)
-
-- Build AI model to detect and crop external region of interest before standardisation
-
-# Step 3: Web application deployment (TBD)
-
-:::info Please add details
-:::
-
-# Database structure
-
-:::info Please add details
-:::
-
-# Project cost estimation
-
-| Product | Description | Cost (USD/month) |
-| -------- | -------- | -------- |
-| AWS S3 Buckets    | Cloud storage | 1,38    |
-Amazon Simple Queue Service (SQS)    | web service for storing messages in transit between computers      | 0,01    | |
-Amazon Lambda Function    | serverless compute service that runs code in response to events       | 0,44    ||
-Amazon Elastic Compute Cloud (Amazon EC2)    | allows users to rent virtual computers to run their own computer applications      | 1,01    ||
-Rekognition    | API for text detection image processing      | 10,00   ||
-Cloudwatch    | monitoring and management service for AWS      | 2,58   ||
-DynamoDB   | NoSQL database service      | 0,04   ||
-TOTAL    | total cost for first month without free tier      | $15,46   |
-
-**Notes:**
-
-- With Free-tier, total costs should be below $10 for 10,000 images.
-- After labelling, the files will be moved to Glacier as a zip.
-
 # License
 
-:::info Do we need this section?
+:::info TBD
 :::
 
 # Team

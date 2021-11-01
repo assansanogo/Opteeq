@@ -9,6 +9,9 @@ Subpackages
 
    tools.aws
    tools.via
+   tools.image
+   tools.yolo
+   tools.cutie
 
 Module contents
 ---------------
