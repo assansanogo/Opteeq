@@ -189,9 +189,10 @@ def generate_cutie_jsons(via_file: str):
     box_dict = divide_boxes(via_file)
     images = list(set(box_dict['filename']))
     class_map = {1: 'PLACE', 2: 'TOTAL_TEXT', 3: 'TOTAL_AMOUNT', 4: 'DATE'}
-    field_init = [{'field_name': field, 'value_id':[], 'value_text':[], 'key_id': [], 'key_text' : []} \
-        for field in class_map.values()]
+
     for image in images:
+        field_init = [{'field_name': field, 'value_id':[], 'value_text':[], 'key_id': [], 'key_text' : []} \
+            for field in class_map.values()]
         result_dict = {'text_boxes' : [], 'fields' : field_init,'global_attributes' : {'file_id' : image}}
         indexes = [idx for (idx, name) in enumerate(box_dict['filename']) if name == image]
         cutie_idx = 0
@@ -212,12 +213,15 @@ def generate_cutie_jsons(via_file: str):
         
         with open(image.split('.')[0] + '.json', 'w') as outfile:
             json.dump(result_dict, outfile)
+        result_dict.clear()
 
 
-#via_file = 'tools/cutie/data/annotations/1629378439_2_csv.csv'
+via_file = 'tools/cutie/data/annotations/1629378395_1_csv.csv'
+generate_cutie_jsons(via_file)
+
+
 #box_dict = divide_boxes(via_file)
 #box_dict.keys()
-#generate_cutie_jsons(via_file)
 #check_box_dictionary('tools/yolo/data/f94dd838-259e-4ac6-811c-92c61b0d80c4.jpg', box_dict)
 #mygrid = generate_grids('tools/yolo/data',box_dict, 15, 30)
 #files = [file for file in os.listdir('tools/yolo/data') if file[-1] == 'g']
