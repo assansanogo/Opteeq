@@ -24,7 +24,7 @@ def clean_via_file(via_file: str) -> str:
             _ = cleanfile.writelines(lines[0].replace(',','|'))
             for line in lines[1:]:
                 curly_brackets = 0
-                for character in line[1:-2]:
+                for character in line:
                     if character == '{':
                         curly_brackets += 1
                         _ = cleanfile.write(character)
@@ -36,7 +36,7 @@ def clean_via_file(via_file: str) -> str:
                             _ = cleanfile.write(character.replace(',','|'))
                         else:
                             _ = cleanfile.write(character)
-                _ = cleanfile.write("\n")
+                #_ = cleanfile.write("\n")
     return out_file
 
 def get_image_names(clean_via_file: str) -> 'list[str]':
@@ -124,7 +124,7 @@ def convert_via_to_yolo(via_file: str, out_dir: str, blurring: bool = False, noi
             image_write(image_b, os.path.join(out_dir,image_b_name))
         if noise == True:
             image_array = image_read(os.path.join(out_dir,image))
-            noise_var = random.randint(1000,10000)
+            noise_var = random.randint(100,225)
             image_n = add_noise(image_array,noise_var)
             image_n_name = image[:-4] + '_n' + '.jpg'
             image_write(image_n, os.path.join(out_dir,image_n_name))
@@ -140,11 +140,17 @@ def convert_via_to_yolo(via_file: str, out_dir: str, blurring: bool = False, noi
             box_shape = eval(box.region_shape_attributes.strip('"').replace('""""','"'))
             box_attributes = eval(box.region_attributes.strip('"').replace('""""','"'))
             box_class = class_mapping[box_attributes['type']]
-            x = round((max(box_shape['all_points_x']) + min(box_shape['all_points_x'])) / (2 * width),6)
-            y = round((max(box_shape['all_points_y']) + min(box_shape['all_points_y'])) / (2 * height),6)
-            box_width = round((max(box_shape['all_points_x']) - min(box_shape['all_points_x'])) / (width),6)
-            box_height = round((max(box_shape['all_points_y']) - min(box_shape['all_points_y'])) / (height),6)
-            
+            box_type = box_shape['name']
+            if box_type == 'polygon':
+                x = round((max(box_shape['all_points_x']) + min(box_shape['all_points_x'])) / (2 * width),6)
+                y = round((max(box_shape['all_points_y']) + min(box_shape['all_points_y'])) / (2 * height),6)
+                box_width = round((max(box_shape['all_points_x']) - min(box_shape['all_points_x'])) / (width),6)
+                box_height = round((max(box_shape['all_points_y']) - min(box_shape['all_points_y'])) / (height),6)
+            elif box_type == 'rect':
+                box_width = round(box_shape['width'] / width,6)
+                box_height = round(box_shape['height'] / height,6)
+                x = round((box_shape['x'] / width) + (box_width / 2),6)
+                y = round((box_shape['y'] / height) + (box_height / 2),6)
             x, box_width = cut_overlength(x, box_width)
             y, box_height = cut_overlength(y, box_height)
             with open(txt_file, 'a') as txt:
@@ -184,5 +190,3 @@ def check_yolo_txt(image_path: str):
     cv2.imshow('Image',resized)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
-
-#check_yolo_txt('tools/yolo/data/eabef3a8-ad7e-4a4f-b035-a58f18d8393f.jpg')
