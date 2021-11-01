@@ -4,6 +4,7 @@ import cv2
 import numpy as np
 import pandas as pd
 import os
+import json
 
 def divide_boxes(via_file: str) -> dict:
     """Divides the boxes containing several words in the via annotations file given as parameter.
@@ -45,19 +46,20 @@ def divide_boxes(via_file: str) -> dict:
         box_width = x_max - x_min
         box_height = y_max - y_min
         char_counter = 0
-        for word_idx in range(total_words):
-            word_chars = len(text.split(' ')[word_idx])
-            x_min_word = x_min + ((word_idx + char_counter) * box_width / total_chars)
-            x_max_word = x_min + ((word_idx + char_counter + word_chars) * box_width / total_chars)
-            char_counter += word_chars
+        if total_chars != 0:
+            for word_idx in range(total_words):
+                word_chars = len(text.split(' ')[word_idx])
+                x_min_word = x_min + ((word_idx + char_counter) * box_width / total_chars)
+                x_max_word = x_min + ((word_idx + char_counter + word_chars) * box_width / total_chars)
+                char_counter += word_chars
 
-            final_dict['filename'].append(images_boxes.at[index,'filename'])
-            final_dict['class'].append(images_boxes.at[index,'class'])
-            final_dict['word'].append(text.split(' ')[word_idx])
-            final_dict['x'].append((x_min_word + x_max_word)/2)
-            final_dict['y'].append((y_min + y_max)/2)
-            final_dict['width'].append((x_max_word - x_min_word))
-            final_dict['height'].append(box_height)
+                final_dict['filename'].append(images_boxes.at[index,'filename'])
+                final_dict['class'].append(images_boxes.at[index,'class'])
+                final_dict['word'].append(text.split(' ')[word_idx])
+                final_dict['x'].append((x_min_word + x_max_word)/2)
+                final_dict['y'].append((y_min + y_max)/2)
+                final_dict['width'].append((x_max_word - x_min_word))
+                final_dict['height'].append(box_height)
 
     return(final_dict)
 
@@ -183,7 +185,39 @@ def visualize_grid(gridmap: dict, nb_cols: int, nb_lines : int, filename: str):
     cv2.waitKey()
     cv2.destroyAllWindows()
 
-#box_dict = divide_boxes('tools/cutie/1629378395_1_csv.csv')
+def generate_cutie_jsons(via_file: str):
+    box_dict = divide_boxes(via_file)
+    images = list(set(box_dict['filename']))
+    class_map = {1: 'PLACE', 2: 'TOTAL_TEXT', 3: 'TOTAL_AMOUNT', 4: 'DATE'}
+    field_init = [{'field_name': field, 'value_id':[], 'value_text':[], 'key_id': [], 'key_text' : []} \
+        for field in class_map.values()]
+    for image in images:
+        result_dict = {'text_boxes' : [], 'fields' : field_init,'global_attributes' : {'file_id' : image}}
+        indexes = [idx for (idx, name) in enumerate(box_dict['filename']) if name == image]
+        cutie_idx = 0
+        for idx in indexes:
+            cutie_idx += 1
+            cutie_xmin = box_dict['x'][idx] - (box_dict['width'][idx] / 2)
+            cutie_xmax = box_dict['x'][idx] + (box_dict['width'][idx] / 2)
+            cutie_ymin = box_dict['y'][idx] - (box_dict['height'][idx] / 2)
+            cutie_ymax = box_dict['y'][idx] + (box_dict['height'][idx] / 2)
+            cutie_word = box_dict['word'][idx]
+            cutie_class = box_dict['class'][idx]
+
+            text_box = {'id' : cutie_idx, 'bbox' : [cutie_xmin , cutie_ymin, cutie_xmax, cutie_ymax], 'text' : cutie_word }
+            result_dict['text_boxes'].append(text_box)
+            if cutie_class in class_map.keys():
+                result_dict['fields'][cutie_class - 1]['value_id'].append(cutie_idx)
+                result_dict['fields'][cutie_class - 1]['value_text'].append(cutie_word)
+        
+        with open(image.split('.')[0] + '.json', 'w') as outfile:
+            json.dump(result_dict, outfile)
+
+
+#via_file = 'tools/cutie/data/annotations/1629378439_2_csv.csv'
+#box_dict = divide_boxes(via_file)
+#box_dict.keys()
+#generate_cutie_jsons(via_file)
 #check_box_dictionary('tools/yolo/data/f94dd838-259e-4ac6-811c-92c61b0d80c4.jpg', box_dict)
 #mygrid = generate_grids('tools/yolo/data',box_dict, 15, 30)
 #files = [file for file in os.listdir('tools/yolo/data') if file[-1] == 'g']
