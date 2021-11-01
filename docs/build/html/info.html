@@ -89,7 +89,6 @@
             
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Description</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#aws-structure">AWS structure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#installation-configuration">Installation / Configuration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#get-the-project-from-the-repository">get the project from the repository:</a></li>
@@ -98,31 +97,46 @@
 <li class="toctree-l2"><a class="reference internal" href="#config-the-project">Config the project</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#usage">Usage</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#upload-image">Upload image</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#generate-json-for-via">Generate json for via</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#download-image-and-json">Download image and json</a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="#step-1-data-labelling-architecture">Step 1: Data labelling architecture</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#image-uploading">1.1 Image uploading</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#rename-images">1.1.1 Rename images</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#import-raw-images">1.1.2 Import raw images</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#aws-structure">AWS structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#image-uploading">1.1 Image uploading</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#image-standardization">1.2 Image standardization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#image-automatic-pre-annotation">1.3 Image automatic pre-annotation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#example-of-results">1.3.1 Example of results</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#manual-labelling">1.4 Manual labelling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#data-uploading">1.5 Data uploading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pipeline-cost-estimation">1.5 Pipeline cost estimation</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#step-2-ai-modelling-tbd">Step 2: AI modelling (TBD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#step-2-ai-modelling-tbd">Step 2: AI modelling (TBD)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#yolov4">2.1 Yolov4</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#data-preprocessing">2.1.1 Data preprocessing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#model-training">2.1.2 Model training</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installation">2.1.3 Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#install-nvidia-docker">2.1.3.1 install nvidia docker</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#build-the-docker-image">2.1.3.2 Build the docker image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#train-yolo">2.1.3.3 Train yolo</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#cutie">2.2 Cutie</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">2.2.1 Data preprocessing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2.1.2 Model training</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#models-benchmarking">2.3 Models Benchmarking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conclusion">2.4 Conclusion</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="#step-3-web-application-deployment-tbd">Step 3: Web application deployment (TBD)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#database-structure">Database structure</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#project-cost-estimation">Project cost estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#usage">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#upload-image">Upload image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generate-json-for-via">Generate json for via</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#download-image-and-json">Download image and json</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="#license">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#team">Team</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#sphinx-documentation">Sphinx Documentation</a></li>
@@ -196,24 +210,21 @@
             
   <div class="tex2jax_ignore mathjax_ignore section" id="description">
 <h1>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h1>
-<p>Opteeq is a library and web application that digitalises paper receipts. It automatically scans receipts using Google
-Vision, formats and labels them, then uses a text detection model (TBD) to store and extracts key information.</p>
-<p>Data is stored in Amazon Simple Storage Service (S3) cloud storage buckets, and key information is extracted and saved
-to a noSQL database using Amazon DynamoDB.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="aws-structure">
-<h1>AWS structure<a class="headerlink" href="#aws-structure" title="Permalink to this headline">¶</a></h1>
-<p><img alt="image" src="_images/aws_Diagram.png" /></p>
+<p>Opteeq is a student project. The Objective of the project is to build a python library and a web application allowing to
+extract key information from paper receipts: Place, Date and Total Amount of expense. The project consists of 3 steps:</p>
+<ol class="simple">
+<li><p>Data Labelling (finished)</p></li>
+<li><p>AI modelling (on going)</p></li>
+<li><p>Web application deployment (not started)</p></li>
+</ol>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="table-of-contents">
 <h1>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="#installation--configuration">Installation</a></p>
-<p><a class="reference external" href="#usage">Usage</a></p>
+<p><a class="reference external" href="#installation--configuration">Installation / Configuration</a></p>
 <p><a class="reference external" href="#step-1-data-labelling-architecture">Step 1: Data labelling architecture</a></p>
 <p><a class="reference external" href="#step-2-ai-modelling-tbd">Step 2: AI modelling (TBD)</a></p>
 <p><a class="reference external" href="#step-3-web-application-deployment-tbd">Step 3: Web application deployment (TBD)</a></p>
-<p><a class="reference external" href="#database-structure">Database structure</a></p>
-<p><a class="reference external" href="#project-cost-estimation">Project cost estimation</a></p>
+<p><a class="reference external" href="#usage">Usage</a></p>
 <p><a class="reference external" href="#license">License</a></p>
 <p><a class="reference external" href="#team">Team</a></p>
 </div>
@@ -251,70 +262,23 @@ to a noSQL database using Amazon DynamoDB.</p>
 <p>When you create the dynamoDB add a global secondary index on anotName and named annotator-index.</p>
 </div>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="usage">
-<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h1>
-<p>You can use all this script with the command behind or use the notebook pipeline if you prefer.</p>
-<p>All this script is in a package it is recommended to lunch them with <code class="docutils literal notranslate"><span class="pre">-m</span></code>. If you don’t use <code class="docutils literal notranslate"><span class="pre">-m</span></code> you can have import
-error or path error.</p>
-<div class="section" id="upload-image">
-<h2>Upload image<a class="headerlink" href="#upload-image" title="Permalink to this headline">¶</a></h2>
-<ol>
-<li><p>put the image in the image folder</p></li>
-<li><p>execute</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="sb">`</span>python3 -m pipeline_aws.rename_upload<span class="sb">`</span>
-</pre></div>
-</div>
-</li>
-</ol>
-</div>
-<div class="section" id="generate-json-for-via">
-<h2>Generate json for via<a class="headerlink" href="#generate-json-for-via" title="Permalink to this headline">¶</a></h2>
-<ol>
-<li><p>Start the Ec2 with this user data (compatible Debian and Ubuntu):</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
-sudo apt update
-sudo apt install python3-pip -y
-<span class="nb">cd</span> home/<span class="nv">$USER</span>
-git clone https://github.com/assansanogo/Opteeq.git
-<span class="nb">cd</span> Opteeq
-pip3 install -r requirements.txt
-</pre></div>
-</div>
-</li>
-<li><p>execute:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python3 -m pipeline_aws.ec2
-</pre></div>
-</div>
-</li>
-</ol>
-</div>
-<div class="section" id="download-image-and-json">
-<h2>Download image and json<a class="headerlink" href="#download-image-and-json" title="Permalink to this headline">¶</a></h2>
-<ol>
-<li><p>Execute:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python3 -m pipeline_aws.donwload
-</pre></div>
-</div>
-</li>
-<li><p>Go to <a class="reference external" href="https://www.robots.ox.ac.uk/~vgg/software/via/via.html">VGG Image Annotator 2</a>, <strong>open a VIA project</strong> and
-choose output.json. (If the image file can’t be found, download the HTML file and change the default path in the
-settings)</p></li>
-</ol>
-</div>
-</div>
 <div class="tex2jax_ignore mathjax_ignore section" id="step-1-data-labelling-architecture">
 <h1>Step 1: Data labelling architecture<a class="headerlink" href="#step-1-data-labelling-architecture" title="Permalink to this headline">¶</a></h1>
+<p>A database of ~1300 ticket pictures has been collected. In order to help with the tedious labelling work, a pipeline has
+been developped in AWS to pre-annotate the pictures.<br />
+Each receipt added to the database are standardized and scanned using AWS Rekognition for text recognition. The pipeline
+then reformats the annotations and computes json files containing batches of 20 images. These json files can be imported
+into VGG Image Anotator for the final manual part of the labelling.</p>
+<p>All the data is stored in Amazon Simple Storage Service (S3) cloud storage buckets, and key information is extracted and
+saved to a noSQL database using Amazon DynamoDB.</p>
+<div class="section" id="aws-structure">
+<h2>AWS structure<a class="headerlink" href="#aws-structure" title="Permalink to this headline">¶</a></h2>
+<p><img alt="image" src="_images/aws_Diagram.png" /></p>
+</div>
 <div class="section" id="image-uploading">
 <h2>1.1 Image uploading<a class="headerlink" href="#image-uploading" title="Permalink to this headline">¶</a></h2>
-<p>Python is used to rename and upload raw images (.jpeg, .png, .tiff) of receipts into an S3 bucket <code class="docutils literal notranslate"><span class="pre">bucket_raw</span></code></p>
-<div class="section" id="rename-images">
-<h3>1.1.1 Rename images<a class="headerlink" href="#rename-images" title="Permalink to this headline">¶</a></h3>
-<p>Rename all the files from a folder and upload it to <code class="docutils literal notranslate"><span class="pre">bucket_raw</span></code></p>
-</div>
-<div class="section" id="import-raw-images">
-<h3>1.1.2 Import raw images<a class="headerlink" href="#import-raw-images" title="Permalink to this headline">¶</a></h3>
-<p><strong>All images in folder image (or other defined image folder) are imported. Take note of the request ID number !</strong></p>
-</div>
+<p>Python script is used to rename and upload all raw images (.jpeg, .png, .tiff) of receipts into an S3
+bucket <code class="docutils literal notranslate"><span class="pre">bucket_raw</span></code> and rename them with the name of the uploader and an index.</p>
 </div>
 <div class="section" id="image-standardization">
 <h2>1.2 Image standardization<a class="headerlink" href="#image-standardization" title="Permalink to this headline">¶</a></h2>
@@ -332,14 +296,14 @@ resizing, text orientation detection and rotation.</p>
 distorting the image</p></li>
 <li><p>The processed image is written locally to ‘tmp’ directory with a unique filename - ‘IMG-{uuid4}-{unix_timestamp}.jpg’
 using OpenCV.</p></li>
-<li><p>Additional datapoints are added to the database including a unique ID, image name, row name, and uploader name.</p></li>
+<li><p>Additional datapoints are added to the database including a unique ID, image name, raw name, and uploader name.</p></li>
 </ol>
 <p>Standardized images are then pushed (uploaded) into <code class="docutils literal notranslate"><span class="pre">bucket_standardized</span></code> using Boto3.</p>
 </div>
 <div class="section" id="image-automatic-pre-annotation">
 <h2>1.3 Image automatic pre-annotation<a class="headerlink" href="#image-automatic-pre-annotation" title="Permalink to this headline">¶</a></h2>
-<p>Google Cloud Vision Optical Character Recognition (OCR) API is called to pre-annotate the pictures with boxes arount the
-text. Annotations from Google Vision are then converted by batch to a json file that can be imported
+<p>AWS Rekognition API is called to pre-annotate the pictures with boxes arount the text. Annotations from Rekognition are
+then converted by batch to a json file that can be imported
 in <a class="reference external" href="https://www.robots.ox.ac.uk/~vgg/software/via/">VGG Image Annotator</a>. The goal of this step is essentially to reduce
 and ease the manual labelling of the pictures that will be done in the next step.</p>
 <div class="section" id="example-of-results">
@@ -362,33 +326,13 @@ and ease the manual labelling of the pictures that will be done in the next step
 </div>
 <div class="section" id="manual-labelling">
 <h2>1.4 Manual labelling<a class="headerlink" href="#manual-labelling" title="Permalink to this headline">¶</a></h2>
-<p>Json files are manually labelled using VGG Annotator (?) by team members. Annotated json files are uploaded into <strong>AWS
-Bucket 3</strong>.</p>
-<p>Download all image and json for a given annotator name.</p>
+<p>Json files are imported in VGG Image Annotator. The only remaining part is to assign the Date, Place and Total Amount
+classes to the relevant boxes. This is perfomed manually by team members. Final annotations are exported as csv files
+and uploaded into <strong>AWS Bucket 3</strong>. A Lambda function runs on an S3 trigger based on a put event to update the database
+for all the pictures found in the annotation file.</p>
 </div>
-<div class="section" id="data-uploading">
-<h2>1.5 Data uploading<a class="headerlink" href="#data-uploading" title="Permalink to this headline">¶</a></h2>
-<p>Final database is exported as a .csv file.</p>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="step-2-ai-modelling-tbd">
-<h1>Step 2: AI modelling (TBD)<a class="headerlink" href="#step-2-ai-modelling-tbd" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><p>Build AI model to detect and crop external region of interest before standardisation</p></li>
-</ul>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="step-3-web-application-deployment-tbd">
-<h1>Step 3: Web application deployment (TBD)<a class="headerlink" href="#step-3-web-application-deployment-tbd" title="Permalink to this headline">¶</a></h1>
-<p>:::info Please add details
-:::</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="database-structure">
-<h1>Database structure<a class="headerlink" href="#database-structure" title="Permalink to this headline">¶</a></h1>
-<p>:::info Please add details
-:::</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="project-cost-estimation">
-<h1>Project cost estimation<a class="headerlink" href="#project-cost-estimation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="pipeline-cost-estimation">
+<h2>1.5 Pipeline cost estimation<a class="headerlink" href="#pipeline-cost-estimation" title="Permalink to this headline">¶</a></h2>
 <table class="colwidths-auto docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Product</p></th>
@@ -437,9 +381,132 @@ Bucket 3</strong>.</p>
 <li><p>After labelling, the files will be moved to Glacier as a zip.</p></li>
 </ul>
 </div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="step-2-ai-modelling-tbd">
+<h1>Step 2: AI modelling (TBD)<a class="headerlink" href="#step-2-ai-modelling-tbd" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="yolov4">
+<h2>2.1 Yolov4<a class="headerlink" href="#yolov4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="data-preprocessing">
+<h3>2.1.1 Data preprocessing<a class="headerlink" href="#data-preprocessing" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="model-training">
+<h3>2.1.2 Model training<a class="headerlink" href="#model-training" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="installation">
+<h3>2.1.3 Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="install-nvidia-docker">
+<h4>2.1.3.1 install nvidia docker<a class="headerlink" href="#install-nvidia-docker" title="Permalink to this headline">¶</a></h4>
+<ol class="simple">
+<li><p>Install <a class="reference external" href="https://docs.docker.com/engine/install/">docker</a> and <a class="reference external" href="https://docs.docker.com/compose/install/">docker compose</a></p></li>
+<li><p>Install nvidia driver (use your package manager and distribution
+documentation (<a class="reference external" href="https://wiki.debian.org/fr/NvidiaGraphicsDrivers">debian</a>
+, <a class="reference external" href="https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html">other</a>…))</p></li>
+<li><p>Install <a class="reference external" href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#install-guide">nvidia docker</a>**</p></li>
+</ol>
+<p>** Nvidia docker is only available on: Amazon Linux, Open Suse, Debian, Centos, RHEL and Ubuntu.</p>
+<p>For debian/ubuntu distribution you can directly run:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sh yolo/install_dependencies.sh
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="build-the-docker-image">
+<h3>2.1.3.2 Build the docker image<a class="headerlink" href="#build-the-docker-image" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker-compose build
+</pre></div>
+</div>
+</div>
+<div class="section" id="train-yolo">
+<h3>2.1.3.3 Train yolo<a class="headerlink" href="#train-yolo" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Start the container</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker-compose up
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Put all the configuration file, image and lebel in data folder.</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sh train.sh
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="cutie">
+<h2>2.2 Cutie<a class="headerlink" href="#cutie" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>2.2.1 Data preprocessing<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id2">
+<h3>2.1.2 Model training<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="models-benchmarking">
+<h2>2.3 Models Benchmarking<a class="headerlink" href="#models-benchmarking" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="conclusion">
+<h2>2.4 Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="step-3-web-application-deployment-tbd">
+<h1>Step 3: Web application deployment (TBD)<a class="headerlink" href="#step-3-web-application-deployment-tbd" title="Permalink to this headline">¶</a></h1>
+<p>:::info Please add details
+:::</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h1>
+<p>You can use all this script with the command behind or use the notebook pipeline if you prefer.</p>
+<p>All this script is in a package it is recommended to lunch them with <code class="docutils literal notranslate"><span class="pre">-m</span></code>. If you don’t use <code class="docutils literal notranslate"><span class="pre">-m</span></code> you can have import
+error or path error.</p>
+<div class="section" id="upload-image">
+<h2>Upload image<a class="headerlink" href="#upload-image" title="Permalink to this headline">¶</a></h2>
+<ol>
+<li><p>put the image in the image folder</p></li>
+<li><p>execute</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="sb">`</span>python3 -m pipeline_aws.rename_upload<span class="sb">`</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="generate-json-for-via">
+<h2>Generate json for via<a class="headerlink" href="#generate-json-for-via" title="Permalink to this headline">¶</a></h2>
+<ol>
+<li><p>Start the Ec2 with this user data (compatible Debian and Ubuntu):</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+sudo apt update
+sudo apt install python3-pip -y
+<span class="nb">cd</span> home/<span class="nv">$USER</span>
+git clone https://github.com/assansanogo/Opteeq.git
+<span class="nb">cd</span> Opteeq
+pip3 install -r requirements.txt
+</pre></div>
+</div>
+</li>
+<li><p>execute:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python3 -m pipeline_aws.ec2
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="download-image-and-json">
+<h2>Download image and json<a class="headerlink" href="#download-image-and-json" title="Permalink to this headline">¶</a></h2>
+<ol>
+<li><p>Execute:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python -m pipeline_aws.download
+</pre></div>
+</div>
+</li>
+<li><p>Go to <a class="reference external" href="https://www.robots.ox.ac.uk/~vgg/software/via/via.html">VGG Image Annotator 2</a>, <strong>open a VIA project</strong> and
+choose output.json. (If the image file can’t be found, download the HTML file and change the default path in the
+settings)</p></li>
+</ol>
+</div>
+</div>
 <div class="tex2jax_ignore mathjax_ignore section" id="license">
 <h1>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h1>
-<p>:::info Do we need this section?
+<p>:::info TBD
 :::</p>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="team">

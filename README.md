@@ -1,7 +1,7 @@
 # Description
 
-Opteeq is a student project. The Objective of the project is to build a python library and a web application allowing to extract key information from paper receipts : Place, Date and Total Amount of expense.
-The project consists of 3 steps :
+Opteeq is a student project. The Objective of the project is to build a python library and a web application allowing to
+extract key information from paper receipts: Place, Date and Total Amount of expense. The project consists of 3 steps:
 
 1. Data Labelling (finished)
 2. AI modelling (on going)
@@ -58,15 +58,16 @@ If the part that you will use doesn't need one of these parameters you can ignor
 
 When you create the dynamoDB add a global secondary index on anotName and named annotator-index.
 
-
 # Step 1: Data labelling architecture
 
-A database of ~1300 ticket pictures has been collected.
-In order to help with the tedious labelling work, a pipeline has been developped in AWS to pre-annotate the pictures.   
-Each receipt added to the database are standardized and scanned using AWS Rekognition for text recognition. The pipeline then reformats the annotations and computes json files containing batches of 20 images. These json files can be imported into VGG Image Anotator for the final manual part of the labelling. 
+A database of ~1300 ticket pictures has been collected. In order to help with the tedious labelling work, a pipeline has
+been developped in AWS to pre-annotate the pictures.   
+Each receipt added to the database are standardized and scanned using AWS Rekognition for text recognition. The pipeline
+then reformats the annotations and computes json files containing batches of 20 images. These json files can be imported
+into VGG Image Anotator for the final manual part of the labelling.
 
-All the data is stored in Amazon Simple Storage Service (S3) cloud storage buckets, and key information is extracted and saved
-to a noSQL database using Amazon DynamoDB.
+All the data is stored in Amazon Simple Storage Service (S3) cloud storage buckets, and key information is extracted and
+saved to a noSQL database using Amazon DynamoDB.
 
 ## AWS structure
 
@@ -74,8 +75,8 @@ to a noSQL database using Amazon DynamoDB.
 
 ## 1.1 Image uploading
 
-Python script is used to rename and upload all raw images (.jpeg, .png, .tiff) of receipts into an S3 bucket `bucket_raw` and rename them with the name
-of the uploader and an index.
+Python script is used to rename and upload all raw images (.jpeg, .png, .tiff) of receipts into an S3
+bucket `bucket_raw` and rename them with the name of the uploader and an index.
 
 ## 1.2 Image standardization
 
@@ -100,11 +101,10 @@ Standardized images are then pushed (uploaded) into `bucket_standardized` using 
 
 ## 1.3 Image automatic pre-annotation
 
-AWS Rekognition API is called to pre-annotate the pictures with boxes arount the
-text. Annotations from Rekognition are then converted by batch to a json file that can be imported
+AWS Rekognition API is called to pre-annotate the pictures with boxes arount the text. Annotations from Rekognition are
+then converted by batch to a json file that can be imported
 in [VGG Image Annotator](https://www.robots.ox.ac.uk/~vgg/software/via/). The goal of this step is essentially to reduce
 and ease the manual labelling of the pictures that will be done in the next step.
-
 
 ### 1.3.1 Example of results
 
@@ -114,10 +114,10 @@ and ease the manual labelling of the pictures that will be done in the next step
 
 ## 1.4 Manual labelling
 
-Json files are imported in VGG Image Annotator. The only remaining part is to assign the Date, Place and Total Amount classes to the relevant boxes. This is perfomed manually by team members.
-Final annotations are exported as csv files and uploaded into **AWS
-Bucket 3**.
-A Lambda function runs on an S3 trigger based on a put event to update the database for all the pictures found in the annotation file.
+Json files are imported in VGG Image Annotator. The only remaining part is to assign the Date, Place and Total Amount
+classes to the relevant boxes. This is perfomed manually by team members. Final annotations are exported as csv files
+and uploaded into **AWS Bucket 3**. A Lambda function runs on an S3 trigger based on a put event to update the database
+for all the pictures found in the annotation file.
 
 ## 1.5 Pipeline cost estimation
 
@@ -137,7 +137,6 @@ TOTAL    | total cost for first month without free tier      | $15,46   |
 - With Free-tier, total costs should be below $10 for 10,000 images.
 - After labelling, the files will be moved to Glacier as a zip.
 
-
 # Step 2: AI modelling (TBD)
 
 ## 2.1 Yolov4
@@ -145,6 +144,46 @@ TOTAL    | total cost for first month without free tier      | $15,46   |
 ### 2.1.1 Data preprocessing
 
 ### 2.1.2 Model training
+
+### 2.1.3 Installation
+
+#### 2.1.3.1 install nvidia docker
+
+1. Install [docker](https://docs.docker.com/engine/install/)
+   and [docker compose](https://docs.docker.com/compose/install/)
+2. Install nvidia driver (use your package manager and distribution
+   documentation ([debian](https://wiki.debian.org/fr/NvidiaGraphicsDrivers)
+   , [other](https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html)...))
+3. Install
+   [nvidia docker](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#install-guide)**
+
+** Nvidia docker is only available on: Amazon Linux, Open Suse, Debian, Centos, RHEL and Ubuntu.
+
+For debian/ubuntu distribution you can directly run:
+
+```shell
+sh yolo/install_dependencies.sh
+```
+
+### 2.1.3.2 Build the docker image
+
+```shell
+docker-compose build
+```
+
+### 2.1.3.3 Train yolo
+
+1. Start the container
+
+```shell
+docker-compose up
+```
+
+2. Put all the configuration file, image and lebel in data folder.
+
+```shell
+sh train.sh
+```
 
 ## 2.2 Cutie
 
@@ -160,7 +199,6 @@ TOTAL    | total cost for first month without free tier      | $15,46   |
 
 :::info Please add details
 :::
-
 
 # Usage
 
@@ -207,7 +245,6 @@ error or path error.
 2. Go to [VGG Image Annotator 2](https://www.robots.ox.ac.uk/~vgg/software/via/via.html), **open a VIA project** and
    choose output.json. (If the image file can't be found, download the HTML file and change the default path in the
    settings)
-
 
 # License
 
