@@ -37,14 +37,25 @@ def divide_boxes(via_file: str) -> dict:
     for index, text in images_boxes['text'].iteritems():
         total_words = len(text.split(' '))
         total_chars = len(text.replace(' ',''))
-        all_points_x = eval(images_boxes.at[index,'box_shape'])['all_points_x']
-        all_points_y = eval(images_boxes.at[index,'box_shape'])['all_points_y']
-        x_min = min(all_points_x)
-        x_max = max(all_points_x)
-        y_min = min(all_points_y)
-        y_max = max(all_points_y)
-        box_width = x_max - x_min
-        box_height = y_max - y_min
+        box_type = eval(images_boxes.at[index,'box_shape'])['name']
+        if box_type == 'polygon':
+            all_points_x = eval(images_boxes.at[index,'box_shape'])['all_points_x']
+            all_points_y = eval(images_boxes.at[index,'box_shape'])['all_points_y']
+            x_min = min(all_points_x)
+            x_max = max(all_points_x)
+            y_min = min(all_points_y)
+            y_max = max(all_points_y)
+            box_width = x_max - x_min
+            box_height = y_max - y_min
+        if box_type == 'rect':
+            box_width = eval(images_boxes.at[index,'box_shape'])['width']
+            box_height = eval(images_boxes.at[index,'box_shape'])['height']
+            x_min = eval(images_boxes.at[index,'box_shape'])['x'] - (box_width / 2)
+            x_max = x_min + box_width
+            y_min = eval(images_boxes.at[index,'box_shape'])['y'] - (box_height / 2)
+            y_max = y_min + box_height
+        
+        
         char_counter = 0
         if total_chars != 0:
             for word_idx in range(total_words):
@@ -186,6 +197,13 @@ def visualize_grid(gridmap: dict, nb_cols: int, nb_lines : int, filename: str):
     cv2.destroyAllWindows()
 
 def generate_cutie_jsons(via_file: str):
+    """Generate the json files of the images contained in an annotation file,
+    in the needed format for cutie training.
+    
+    :param via_file: path to the via csv file
+    :type via_file: str
+
+    """
     box_dict = divide_boxes(via_file)
     images = list(set(box_dict['filename']))
     class_map = {1: 'PLACE', 2: 'TOTAL_TEXT', 3: 'TOTAL_AMOUNT', 4: 'DATE'}
@@ -215,10 +233,27 @@ def generate_cutie_jsons(via_file: str):
             json.dump(result_dict, outfile)
         result_dict.clear()
 
+def generate_1_vocab(json_file: str):
+    vocab = []
+    with open(json_file) as file:
+        data = json.load(file)
+    for box in data['text_boxes']:
+        vocab.append(box['text'])
+    return set(vocab)
 
-via_file = 'tools/cutie/data/annotations/1629378395_1_csv.csv'
-generate_cutie_jsons(via_file)
+def generate_vocab(folder: str):
+    files = [file for file in os.listdir(folder) if file.endswith('.json')]
+    vocab = []
+    for file in files:
+        current_vocab = list(generate_1_vocab(os.path.join(folder,file)))
+        vocab.extend(current_vocab)
+    return set(vocab)
 
+
+#via_file = 'tools/cutie/data/annotations/1629378395_1_csv.csv'
+#generate_cutie_jsons(via_file)
+
+#voc = generate_vocab('tools\cutie\data\cutie_files')
 
 #box_dict = divide_boxes(via_file)
 #box_dict.keys()
