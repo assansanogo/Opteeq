@@ -1,19 +1,21 @@
 # Description
 
-Opteeq is a student project. The Objective of the project is to build a python library and a web application allowing to
-extract key information from paper receipts: Place, Date and Total Amount of expense. The project consists of 3 steps:
+Opteeq is a student project that uses computer vision and AI modeling for receipt digitalisation. 
 
-1. Data Labelling (finished)
-2. AI modelling (on going)
-3. Web application deployment (not started)
+**Objective**: To build a receipt digitalization app using computer vision and AI modelling to extract key information (Place, Date and Total amount of expense) from paper receipts. 
+
+**Methodology**
+1. Data preparation with AWS pipeline (finished)
+2. AI modelling with YOLOv4 and CUTIE (ongoing)
+3. Web application interface deployment (not started)
 
 # Table of Contents
 
 [Installation / Configuration](#installation--configuration)
 
-[Step 1: Data labelling architecture](#step-1-data-labelling-architecture)
+[Step 1: Data preparation with AWS pipeline](#step-1-data-labelling-architecture)
 
-[Step 2: AI modelling (TBD)](#step-2-ai-modelling-tbd)
+[Step 2: AI modelling with YOLOv4 and CUTIE](#step-2-ai-modelling-tbd)
 
 [Step 3: Web application deployment (TBD)](#step-3-web-application-deployment-tbd)
 
@@ -58,12 +60,12 @@ If the part that you will use doesn't need one of these parameters you can ignor
 
 When you create the dynamoDB add a global secondary index on anotName and named annotator-index.
 
-# Step 1: Data labelling architecture
+# Step 1: Data preparation with AWS pipeline
 
 A database of ~1300 ticket pictures has been collected. In order to help with the tedious labelling work, a pipeline has
 been developped in AWS to pre-annotate the pictures.   
-Each receipt added to the database are standardized and scanned using AWS Rekognition for text recognition. The pipeline
-then reformats the annotations and computes json files containing batches of 20 images. These json files can be imported
+Each receipt added to the database is standardized and scanned using AWS Rekognition for text recognition. The pipeline
+then reformats the annotations and computes JSON files containing batches of 20 images. These JSON files can be imported
 into VGG Image Anotator for the final manual part of the labelling.
 
 All the data is stored in Amazon Simple Storage Service (S3) cloud storage buckets, and key information is extracted and
@@ -101,7 +103,7 @@ Standardized images are then pushed (uploaded) into `bucket_standardized` using 
 
 ## 1.3 Image automatic pre-annotation
 
-AWS Rekognition API is called to pre-annotate the pictures with boxes arount the text. Annotations from Rekognition are
+AWS Rekognition API is called to pre-annotate the pictures with boxes around the text. Annotations from Rekognition are
 then converted by batch to a json file that can be imported
 in [VGG Image Annotator](https://www.robots.ox.ac.uk/~vgg/software/via/). The goal of this step is essentially to reduce
 and ease the manual labelling of the pictures that will be done in the next step.
@@ -114,7 +116,7 @@ and ease the manual labelling of the pictures that will be done in the next step
 
 ## 1.4 Manual labelling
 
-Json files are imported in VGG Image Annotator. The only remaining part is to assign the Date, Place and Total Amount
+JSON files are imported in VGG Image Annotator. The only remaining part is to assign the Date, Place and Total Amount
 classes to the relevant boxes. This is perfomed manually by team members. Final annotations are exported as csv files
 and uploaded into **AWS Bucket 3**. A Lambda function runs on an S3 trigger based on a put event to update the database
 for all the pictures found in the annotation file.
@@ -137,9 +139,9 @@ TOTAL    | total cost for first month without free tier      | $15,46   |
 - With Free-tier, total costs should be below $10 for 10,000 images.
 - After labelling, the files will be moved to Glacier as a zip.
 
-# Step 2: AI modelling (TBD)
+# Step 2: AI modelling with YOLOv4 and CUTIE
 
-## 2.1 Yolov4
+## 2.1 YOLOv4
 
 ### 2.1.1 Data preprocessing
 
@@ -147,7 +149,7 @@ TOTAL    | total cost for first month without free tier      | $15,46   |
 
 ### 2.1.3 Installation
 
-#### 2.1.3.1 install nvidia docker
+#### 2.1.3.1 Install Nvidia docker
 
 1. Install [docker](https://docs.docker.com/engine/install/)
    and [docker compose](https://docs.docker.com/compose/install/)
@@ -171,7 +173,7 @@ sh yolo/install_dependencies.sh
 docker-compose build
 ```
 
-### 2.1.3.3 Train yolo
+### 2.1.3.3 Train YOLOv4
 
 1. Start the container
 
@@ -179,13 +181,13 @@ docker-compose build
 docker-compose up
 ```
 
-2. Put all the configuration file, image and lebel in data folder.
+2. Put all the configuration files, images and labels in the data folder.
 
 ```shell
 sh train.sh
 ```
 
-## 2.2 Cutie
+## 2.2 CUTIE
 
 ### 2.2.1 Data preprocessing
 
@@ -215,7 +217,7 @@ error or path error.
    `python3 -m pipeline_aws.rename_upload`
    ```
 
-## Generate json for via
+## Generate JSON for via
 
 1. Start the Ec2 with this user data (compatible Debian and Ubuntu):
 
@@ -234,7 +236,7 @@ error or path error.
    python3 -m pipeline_aws.ec2
    ```
 
-## Download image and json
+## Download image and JSON
 
 1. Execute:
 
