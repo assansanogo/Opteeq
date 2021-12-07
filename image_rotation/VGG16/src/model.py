@@ -1,13 +1,13 @@
 import os
+
 from keras import layers
-from keras.layers import Conv2D, MaxPooling2D, Dropout, Flatten, Dense, Activation, GlobalMaxPooling2D
-from keras import applications
 from keras.applications.vgg16 import VGG16
-from keras.models import Model
 from keras.callbacks import EarlyStopping, ModelCheckpoint, TensorBoard
+from keras.layers import Dropout, Dense, GlobalMaxPooling2D
+from keras.models import Model
+
 
 def build_model_vgg16(image_size, input_shape, epochs, log_dir, model_path):
-
     model_name = "VGG16"
 
     pre_trained_model = VGG16(input_shape=input_shape, include_top=False, weights="imagenet")

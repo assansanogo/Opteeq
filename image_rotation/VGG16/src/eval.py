@@ -2,15 +2,11 @@ import os
 import time
 from math import ceil
 
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-
-import matplotlib.pyplot as plt
 import seaborn as sns
-
 from tensorflow.keras.preprocessing import load_img
-from sklearn.metrics import confusion_matrix
-from sklearn.preprocessing import LabelBinarizer
 
 from tools import build_directory
 

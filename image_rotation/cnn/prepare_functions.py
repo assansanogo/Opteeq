@@ -1,11 +1,13 @@
-from tools.image.imageTools import resize_and_pad, rotate_image, image_read, add_blurring, add_noise
-import random
-import cv2
 import os
+import random
+
+import cv2
+
+from tools.image.imageTools import resize_and_pad, rotate_image, image_read, add_blurring, add_noise
 
 
 def prepare_1_image(file: str, resolution: int, filename: str, out_folder: str):
-    """Resizes an image, add padds to get a square image, rotates it 3 times, and adds blurring and 
+    """Resizes an image, add padds to get a square image, rotates it 3 times, and adds blurring and
     noise to get 12 images that can be used to train a model.
 
     :param file: path to the original image
@@ -22,9 +24,9 @@ def prepare_1_image(file: str, resolution: int, filename: str, out_folder: str):
     box_width = 3
     box_height = 3
     noise_vars = [random.randint(9,100) for i in range(4)]
-    
+
     resized_img = resize_and_pad(img, desired_size=resolution)
-    
+
     for index, angle in enumerate(['000', '090', '180', '270']):
         if index != 0:
             resized_img = rotate_image(resized_img)
@@ -101,8 +103,7 @@ def prepare_testing_images(resolution: int, in_folder: str, out_folder: str) -> 
     return (file_counter, not_worked)
 
 
-
-in_folder_parameter = 'C:/Users/johan/OneDrive - Data ScienceTech Institute/Data Science/Python/Projects/Assan-opteeq/val_raw' 
+in_folder_parameter = 'C:/Users/johan/OneDrive - Data ScienceTech Institute/Data Science/Python/Projects/Assan-opteeq/val_raw'
 out_folder_parameter = 'C:/Users/johan/OneDrive - Data ScienceTech Institute/Data Science/Python/Projects/Assan-opteeq/val'
 resolution = 224
 file_counter, not_worked = prepare_training_images(resolution, in_folder_parameter,out_folder_parameter)
@@ -113,8 +114,7 @@ if not_worked != []:
     print('The following files could not be processed :')
     print(str(not_worked))
 
-
-in_folder_parameter = 'C:/Users/johan/OneDrive - Data ScienceTech Institute/Data Science/Python/Projects/Assan-opteeq/test_raw' 
+in_folder_parameter = 'C:/Users/johan/OneDrive - Data ScienceTech Institute/Data Science/Python/Projects/Assan-opteeq/test_raw'
 out_folder_parameter = 'C:/Users/johan/OneDrive - Data ScienceTech Institute/Data Science/Python/Projects/Assan-opteeq/test'
 resolution = 224
 file_counter, not_worked = prepare_testing_images(resolution, in_folder_parameter,out_folder_parameter)

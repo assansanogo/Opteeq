@@ -1,7 +1,9 @@
 import os
-import pandas as pd
 import zipfile
+
+import pandas as pd
 from keras.preprocessing.image import ImageDataGenerator
+
 
 def read_data(in_dir, data_aug=False):
     categories = []

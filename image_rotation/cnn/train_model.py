@@ -1,13 +1,13 @@
 # Imports
+import os
+import random
+
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from tensorflow import keras 
 from keras.preprocessing.image import ImageDataGenerator, load_img
-from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, confusion_matrix
-import matplotlib.pyplot as plt
-import random
-import os
+from sklearn.model_selection import train_test_split
 
 if __name__ == '__main__':
     # Constants
@@ -16,7 +16,7 @@ if __name__ == '__main__':
     IMAGE_HEIGHT = 180
     IMAGE_SIZE = (IMAGE_WIDTH, IMAGE_HEIGHT)
     IMAGE_CHANNELS = 3
-    IMAGE_FOLDER = os.path.join('Image_rotation_cnn','Data')
+    IMAGE_FOLDER = os.path.join('image_rotation/cnn', 'Data')
 
     #Datasets Preparation
     filenames = os.listdir(IMAGE_FOLDER)
@@ -72,7 +72,7 @@ if __name__ == '__main__':
 
     # Model initialization
     from keras.models import Sequential
-    from keras.layers import Conv2D, MaxPooling2D, Dropout, Flatten, Dense, Activation, BatchNormalization
+    from keras.layers import Conv2D, MaxPooling2D, Dropout, Flatten, Dense, BatchNormalization
     from keras.callbacks import EarlyStopping, ReduceLROnPlateau
 
     model = Sequential()
@@ -96,7 +96,7 @@ if __name__ == '__main__':
     model.add(Dense(512, activation='relu'))
     model.add(BatchNormalization())
     model.add(Dropout(0.5))
-    model.add(Dense(4, activation='softmax')) # 2 because we have 4 classes
+    model.add(Dense(4, activation='softmax'))  # 2 because we have 4 classes
 
     model.compile(loss='categorical_crossentropy', optimizer='rmsprop', metrics=['accuracy'])
 
@@ -104,20 +104,18 @@ if __name__ == '__main__':
 
     earlystop = EarlyStopping(patience=10)
 
-    learning_rate_reduction = ReduceLROnPlateau(monitor='val_acc', 
-                                                patience=2, 
-                                                verbose=1, 
-                                                factor=0.5, 
+    learning_rate_reduction = ReduceLROnPlateau(monitor='val_acc',
+                                                patience=2,
+                                                verbose=1,
+                                                factor=0.5,
                                                 min_lr=0.00001)
 
     callbacks = [earlystop, learning_rate_reduction]
 
-
-
     # Training Generator
     train_datagen = ImageDataGenerator(
         rotation_range=10,
-        rescale=1./255,
+        rescale=1. / 255,
         shear_range=0.1,
         zoom_range=0.2,
         horizontal_flip=False,
@@ -127,8 +125,8 @@ if __name__ == '__main__':
     )
 
     train_generator = train_datagen.flow_from_dataframe(
-        train_df, 
-        IMAGE_FOLDER, 
+        train_df,
+        IMAGE_FOLDER,
         x_col='filename',
         y_col='category',
         target_size=IMAGE_SIZE,
@@ -139,8 +137,8 @@ if __name__ == '__main__':
     # Testing Generator
     test_datagen = ImageDataGenerator(rescale=1./255)
     test_generator = test_datagen.flow_from_dataframe(
-        test_df, 
-        IMAGE_FOLDER, 
+        test_df,
+        IMAGE_FOLDER,
         x_col='filename',
         y_col='category',
         target_size=IMAGE_SIZE,
@@ -151,8 +149,8 @@ if __name__ == '__main__':
     # Validating Generator
     validate_datagen = ImageDataGenerator(rescale=1./255)
     validate_generator = validate_datagen.flow_from_dataframe(
-        validate_df, 
-        IMAGE_FOLDER, 
+        validate_df,
+        IMAGE_FOLDER,
         x_col='filename',
         y_col='category',
         target_size=IMAGE_SIZE,
@@ -163,8 +161,8 @@ if __name__ == '__main__':
     # See how the generator works
     example_df = train_df.sample(n=1).reset_index(drop=True)
     example_generator = train_datagen.flow_from_dataframe(
-        example_df, 
-        IMAGE_FOLDER, 
+        example_df,
+        IMAGE_FOLDER,
         x_col='filename',
         y_col='category',
         target_size=IMAGE_SIZE,
@@ -184,11 +182,11 @@ if __name__ == '__main__':
     # Fit model
     epochs=3 if FAST_RUN else 50
     history = model.fit_generator(
-        train_generator, 
+        train_generator,
         epochs=epochs,
         validation_data=test_generator,
-        validation_steps=total_test//batch_size,
-        steps_per_epoch=total_train//batch_size,
+        validation_steps=total_test // batch_size,
+        steps_per_epoch=total_train // batch_size,
         callbacks=callbacks
     )
 
@@ -216,8 +214,8 @@ if __name__ == '__main__':
     nb_samples = validate_X.shape[0]
     val_gen = ImageDataGenerator(rescale=1./255)
     val_generator = val_gen.flow_from_dataframe(
-        validate_X, 
-        IMAGE_FOLDER, 
+        validate_X,
+        IMAGE_FOLDER,
         x_col='filename',
         y_col=None,
         class_mode=None,

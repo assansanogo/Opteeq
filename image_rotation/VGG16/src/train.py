@@ -1,8 +1,9 @@
 import tensorflow as tf
-from tools import create_project_structure
+
 from dataset import build_dataset
-from model import build_model_vgg16
 from eval import model_eval
+from model import build_model_vgg16
+from tools import create_project_structure
 
 dataset_name = "Dataset_v1"
 model_name = "VGG16"

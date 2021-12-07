@@ -1,12 +1,13 @@
 # Imports
-from keras.preprocessing import image
 import numpy as np
+from keras.preprocessing import image
+
 
 def predict_orientation(model: object, image_path: str, threshold: float) -> int:
     """Predicts and returns the orientation of a ticket image.
     Predicts 0 (good orientation) by default except if the model detects another orientation with
     a probability superior to the threshold given as parameter.
-    
+
     :param model: Keras model to be used for the prediction
     :type model: Keras model instance
     :param image_path: path to the image
@@ -22,7 +23,7 @@ def predict_orientation(model: object, image_path: str, threshold: float) -> int
     # Remember that the model was trained on inputs
     # that were preprocessed in the following way:
     img_tensor /= 255.
-    
+
     label_map = {0: 0, 1: 180, 2: 270, 3: 90}
     prediction_poba = model.predict(img_tensor)
     if prediction_poba.max() > threshold:
