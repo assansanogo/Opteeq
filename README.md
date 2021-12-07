@@ -142,14 +142,14 @@ TOTAL    | total cost for first month without free tier      | $15,46   |
 # Step 2: AI modelling with YOLOv4 and CUTIE
 
 ## 2.1 YOLOv4
+- Pamela add details on what is yolo
 
 ### 2.1.1 Data preprocessing
+- Johann add detials
+- 
+### 2.1.2 Installation
 
-### 2.1.2 Model training
-
-### 2.1.3 Installation
-
-#### 2.1.3.1 Install Nvidia docker
+#### 2.1.2.1 Install Nvidia docker
 
 1. Install [docker](https://docs.docker.com/engine/install/)
    and [docker compose](https://docs.docker.com/compose/install/)
@@ -167,13 +167,14 @@ For debian/ubuntu distribution you can directly run:
 sh yolo/install_dependencies.sh
 ```
 
-### 2.1.3.2 Build the docker image
+#### 2.1.2.2 Build the docker image
 
 ```shell
 docker-compose build
 ```
+### 2.1.3 Model training
 
-### 2.1.3.3 Train YOLOv4
+#### 2.1.3.3 Train YOLOv4
 
 1. Start the container
 
@@ -186,6 +187,7 @@ docker-compose up
 ```shell
 sh train.sh
 ```
+
 
 ## 2.2 CUTIE
 
