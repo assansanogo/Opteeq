@@ -1,0 +1,5 @@
+classes = 4
+train = recipe/train.txt
+valid = recipe/test.txt
+names = recipe/obj.names
+backup = training

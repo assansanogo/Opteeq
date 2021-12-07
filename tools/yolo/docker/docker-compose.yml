@@ -1,9 +1,0 @@
-services:
-  darknet:
-    build: .
-    image: yolo-darknet
-    tty: true
-    volumes:
-      - type: bind
-        source: ./data/
-        target: /home/data
