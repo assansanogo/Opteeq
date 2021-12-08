@@ -2,7 +2,7 @@
 
 Opteeq is a student project that uses computer vision and AI modeling for receipt digitalisation.
 
-**Objective**: To build a receipt digitalization app using computer vision and AI modelling to extract key information (
+**Objective**: To build a receipt digitalization app that extracts key information (
 Place, Date and Total amount of expense) from paper receipts.
 
 **Methodology**
@@ -189,23 +189,25 @@ error or path error.
 
 ## 2.1 YOLOv4
 
-- Pamela add details on what is yolo
+YOLOv4 (You Only Look Once version 4) is a one-stage object detection model that improves on YOLOv3 with several bags of tricks and modules introduced in the literature.
+
+The original YOLO is a clever Convolution Neural Network (CNN) for doing object detection in real-time. Its algorithm applies a single neural network to the full image,  divides the image into regions and predicts bounding boxes and probabilities for each region.
 
 ### 2.1.1 Data preprocessing
 
-- Johann add detials
+- Johann add details
 -
 
 ### 2.1.2 Installation
 
-If you don't want to use docker you can pass this steps and compile directly darknet (more
+If you don't want to use docker you can pass this steps and compile Darket directly (more
 information [here](https://github.com/AlexeyAB/darknet))
 
 #### 2.1.2.1 Install Nvidia docker
 
 1. Install [docker](https://docs.docker.com/engine/install/)
    and [docker compose](https://docs.docker.com/compose/install/)
-2. Install nvidia driver (use your package manager and distribution
+2. Install Nvidia driver (use your package manager and distribution
    documentation ([debian](https://wiki.debian.org/fr/NvidiaGraphicsDrivers)
    , [other](https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html)...))
 3. Install
@@ -256,7 +258,7 @@ darknet detector train /home/data/obj.data /home/data/yolov4-custom.cfg /home/da
 
 ### 2.1.4 Model evaluation
 
-1. put the testing set path in the obj.data for valid and run
+1. Put the testing set path in the obj.data for valid and run
 
 ```shell
 darknet detector map /home/data/obj.data /home/data/yolov4-custom.cfg /home/data/trainning/yolov4-custom_best.weights
@@ -269,29 +271,13 @@ darknet detector map /home/data/obj.data /home/data/yolov4-custom.cfg /home/data
 If you want to use detection without docker replace libdarknet.so (in the yolo file of the repository opteeq) by your
 libdarknet.so obtained after compilation. (you can't use the libdarknet.so of the repository)
 
-To get the image with bounding boxe and the text extract
+To get the image with a bounding box and the text extract
 
 ```shell
 python3 predict.py
 ```
 
 ![via0](yolo/result/1f81d0fd-129c-45aa-a2e9-9c52684f8571.jpg)
-
-### 2.1.4 Detection without darknet framework
-
-Deploy this model in web application is complicated because it depends on darknet framework. In order to have an
-serverless architecture it is better to avoid the dependencies to darknet.
-
-In this part I use only OpenCv to make the prediction (more information to use darknet directly with
-opencv [here](https://opencv-tutorial.readthedocs.io/en/latest/yolo/yolo.html)).
-
-1. get the weights after training
-2. edit path in `predict_opencv.py` for yolo config file
-3.
-
-```shell
-python3 predict_opencv.py
-```
 
 ## 2.2 CUTIE
 
