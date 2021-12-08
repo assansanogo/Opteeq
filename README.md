@@ -1,10 +1,12 @@
 # Description
 
-Opteeq is a student project that uses computer vision and AI modeling for receipt digitalisation. 
+Opteeq is a student project that uses computer vision and AI modeling for receipt digitalisation.
 
-**Objective**: To build a receipt digitalization app using computer vision and AI modelling to extract key information (Place, Date and Total amount of expense) from paper receipts. 
+**Objective**: To build a receipt digitalization app using computer vision and AI modelling to extract key information (
+Place, Date and Total amount of expense) from paper receipts.
 
 **Methodology**
+
 1. Data preparation with AWS pipeline (finished)
 2. AI modelling with YOLOv4 and CUTIE (ongoing)
 3. Web application interface deployment (not started)
@@ -33,15 +35,15 @@ Opteeq is a student project that uses computer vision and AI modeling for receip
 git clone https://github.com/assansanogo/Opteeq.git
 ```
 
-## Config the aws cli:
-
-To add another profile `aws configure --profile profilName` to list available profiles `aws configure list-profiles`.
-
 ## Install library requirements
 
 ```shell
 pip3 install -r requirements.txt
 ```
+
+## Config the aws cli:
+
+To add another profile `aws configure --profile profilName` to list available profiles `aws configure list-profiles`.
 
 ## Config the project
 
@@ -123,95 +125,30 @@ for all the pictures found in the annotation file.
 
 ## 1.5 Pipeline cost estimation
 
-| Product | Description | Cost (USD/month) |
-| -------- | -------- | -------- |
-| AWS S3 Buckets    | Cloud storage | 1,38    |
-Amazon Simple Queue Service (SQS)    | web service for storing messages in transit between computers      | 0,01    | |
-Amazon Lambda Function    | serverless compute service that runs code in response to events       | 0,44    ||
-Amazon Elastic Compute Cloud (Amazon EC2)    | allows users to rent virtual computers to run their own computer applications      | 1,01    ||
-Rekognition    | API for text detection image processing      | 10,00   ||
-Cloudwatch    | monitoring and management service for AWS      | 2,58   ||
-DynamoDB   | NoSQL database service      | 0,04   ||
-TOTAL    | total cost for first month without free tier      | $15,46   |
+| Product                                   | Description                                                                   | Cost (USD/month) |
+|-------------------------------------------|-------------------------------------------------------------------------------|------------------|
+| AWS S3 Buckets                            | Cloud storage                                                                 | 1,38             |
+| Amazon Simple Queue Service (SQS)         | web service for storing messages in transit between computers                 | 0,01             | |
+| Amazon Lambda Function                    | serverless compute service that runs code in response to events               | 0,44             ||
+| Amazon Elastic Compute Cloud (Amazon EC2) | allows users to rent virtual computers to run their own computer applications | 1,01             ||
+| Rekognition                               | API for text detection image processing                                       | 10,00            ||
+| Cloudwatch                                | monitoring and management service for AWS                                     | 2,58             ||
+| DynamoDB                                  | NoSQL database service                                                        | 0,04             ||
+| TOTAL                                     | total cost for first month without free tier                                  | $15,46           |
 
 **Notes:**
 
 - With Free-tier, total costs should be below $10 for 10,000 images.
 - After labelling, the files will be moved to Glacier as a zip.
 
-# Step 2: AI modelling with YOLOv4 and CUTIE
-
-## 2.1 YOLOv4
-- Pamela add details on what is yolo
-
-### 2.1.1 Data preprocessing
-- Johann add detials
-- 
-### 2.1.2 Installation
-
-#### 2.1.2.1 Install Nvidia docker
-
-1. Install [docker](https://docs.docker.com/engine/install/)
-   and [docker compose](https://docs.docker.com/compose/install/)
-2. Install nvidia driver (use your package manager and distribution
-   documentation ([debian](https://wiki.debian.org/fr/NvidiaGraphicsDrivers)
-   , [other](https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html)...))
-3. Install
-   [nvidia docker](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#install-guide)**
-
-** Nvidia docker is only available on: Amazon Linux, Open Suse, Debian, Centos, RHEL and Ubuntu.
-
-For debian/ubuntu distribution you can directly run:
-
-```shell
-sh yolo/install_dependencies.sh
-```
-
-#### 2.1.2.2 Build the docker image
-
-```shell
-docker-compose build
-```
-### 2.1.3 Model training
-
-#### 2.1.3.3 Train YOLOv4
-
-1. Start the container
-
-```shell
-docker-compose up
-```
-
-2. Put all the configuration files, images and labels in the data folder.
-
-```shell
-sh train.sh
-```
-
-
-## 2.2 CUTIE
-
-### 2.2.1 Data preprocessing
-
-### 2.1.2 Model training
-
-## 2.3 Models Benchmarking
-
-## 2.4 Conclusion
-
-# Step 3: Web application deployment (TBD)
-
-:::info Please add details
-:::
-
-# Usage
+## Usage
 
 You can use all this script with the command behind or use the notebook pipeline if you prefer.
 
 All this script is in a package it is recommended to lunch them with `-m`. If you don't use `-m` you can have import
 error or path error.
 
-## Upload image
+### Upload image
 
 1. put the image in the image folder
 2. execute
@@ -219,7 +156,7 @@ error or path error.
    `python3 -m pipeline_aws.rename_upload`
    ```
 
-## Generate JSON for via
+### Generate JSON for via
 
 1. Start the Ec2 with this user data (compatible Debian and Ubuntu):
 
@@ -238,7 +175,7 @@ error or path error.
    python3 -m pipeline_aws.ec2
    ```
 
-## Download image and JSON
+### Download image and JSON
 
 1. Execute:
 
@@ -249,6 +186,102 @@ error or path error.
 2. Go to [VGG Image Annotator 2](https://www.robots.ox.ac.uk/~vgg/software/via/via.html), **open a VIA project** and
    choose output.json. (If the image file can't be found, download the HTML file and change the default path in the
    settings)
+
+# Step 2: AI modelling with YOLOv4 and CUTIE
+
+## 2.1 YOLOv4
+
+- Pamela add details on what is yolo
+
+### 2.1.1 Data preprocessing
+
+- Johann add detials
+-
+
+### 2.1.2 Installation
+
+If you don't want to use docker you can pass this steps and compile directly darknet (more
+information [here](https://github.com/AlexeyAB/darknet))
+
+#### 2.1.2.1 Install Nvidia docker
+
+1. Install [docker](https://docs.docker.com/engine/install/)
+   and [docker compose](https://docs.docker.com/compose/install/)
+2. Install nvidia driver (use your package manager and distribution
+   documentation ([debian](https://wiki.debian.org/fr/NvidiaGraphicsDrivers)
+   , [other](https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html)...))
+3. Install
+   [nvidia docker](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#install-guide)**
+
+** Nvidia docker is only available on: Amazon Linux, Open Suse, Debian, Centos, RHEL and Ubuntu.
+
+#### 2.1.2.2 Build the docker image
+
+```shell
+docker-compose build
+```
+
+### 2.1.3 Model training
+
+1. put the image with annotation file in data/obj folder
+2. create train, validation and testing set
+
+```shell
+python3 process.py
+```
+
+3. Start the container
+
+```shell
+docker-compose up -d
+```
+
+3. Enter in bash (replace container_name by the name of the container)
+
+```shell
+docker exec -it container_name bash
+```
+
+4. launch training
+
+```shell
+cd /home/data
+darknet detector train /home/data/obj.data /home/data/yolov4-custom.cfg /home/data/yolov4.conv.137 -dont_show -map
+```
+
+### 2.1.4 Model evaluation
+
+1. put the testing set path in the obj.data for valid and run
+
+```shell
+darknet detector map /home/data/obj.data /home/data/yolov4-custom.cfg /home/data/trainning/yolov4-custom_best.weights
+```
+
+### 2.1.4 Detection
+
+If you want to use detection without docker replace libdarknet.so (in the yolo file of the repository opteeq) by your
+libdarknet.so obtained after compilation. (you can't use the libdarknet.so of the repository)
+
+To get the image with bounding boxe and the text extract
+
+```shell
+python3 predict.py
+```
+
+## 2.2 CUTIE
+
+### 2.2.1 Data preprocessing
+
+### 2.1.2 Model training
+
+## 2.3 Models Benchmarking
+
+## 2.4 Conclusion
+
+# Step 3: Web application deployment (TBD)
+
+:::info Please add details
+:::
 
 # License
 
