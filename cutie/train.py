@@ -22,8 +22,8 @@ parser.add_argument('--n_class', type=int, default=5)
 parser.add_argument('--embedding', type=str, default='distilbert') # 'distilbert' or 'w2vec'
 parser.add_argument('--train_path', type=str, default='cutie/data/train') 
 parser.add_argument('--val_path', type=str, default='cutie/data/val') 
-parser.add_argument('--metrics_path', type=str, default='cutie/outputs/metrics')
-parser.add_argument('--save_path', type=str, default='cutie/outputs/models')  
+parser.add_argument('--metrics_path', type=str, default='cutie/outputs')
+parser.add_argument('--save_path', type=str, default='cutie/outputs')  
 parser.add_argument('--model_save', type=int, default=0) # Number of epochs between model saving,\
                                                             # in addition to the best model
 parser.add_argument('--epochs', type=int, default=10) # Number of epochs

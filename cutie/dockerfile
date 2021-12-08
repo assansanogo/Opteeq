@@ -1,0 +1,15 @@
+# syntax=docker/dockerfile:1
+
+FROM pytorch/pytorch:latest
+
+WORKDIR /opteeq
+
+COPY cutie cutie
+COPY tools tools
+
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update \
+  && apt-get install --no-install-recommends --no-install-suggests -y build-essential libopencv-dev
+
+RUN pip3 install --upgrade pip
+RUN pip3 install -r cutie/cutie-requirements.txt

@@ -1,0 +1,18 @@
+services:
+  cutie:
+    build:
+      context: ../
+      dockerfile: ./cutie/dockerfile
+    image: cutie-docker
+    deploy:
+      resources:
+        reservations:
+           devices:
+            - driver: nvidia 
+              capabilities: [gpu]
+    ipc: host
+    tty: true
+    volumes:
+      - type: bind
+        source: ./outputs/
+        target: /opteeq/cutie/outputs
