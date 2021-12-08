@@ -279,6 +279,22 @@ python3 predict.py
 
 ![via0](yolo/result/1f81d0fd-129c-45aa-a2e9-9c52684f8571.jpg)
 
+### 2.1.4 Detection without darknet framework
+
+Deploy this model in web application is complicated because it depends on darknet framework. In order to have an
+serverless architecture it is better to avoid the dependencies to darknet.
+
+In this part I use only OpenCv to make the prediction (more information to use darknet directly with
+opencv [here](https://opencv-tutorial.readthedocs.io/en/latest/yolo/yolo.html)).
+
+1. get the weights after training
+2. edit path in `predict_opencv.py` for yolo config file
+3.
+
+```shell
+python3 predict_opencv.py
+```
+
 ## 2.2 CUTIE
 
 ### 2.2.1 Data preprocessing
