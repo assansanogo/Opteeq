@@ -1,5 +1,5 @@
 classes = 4
-train = recipe/train.txt
-valid = recipe/test.txt
-names = recipe/obj.names
+train = train.txt
+valid = test.txt
+names = obj.names
 backup = training

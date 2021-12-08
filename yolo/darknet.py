@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 """
+wrapper from AlexeyAB darknet repo https://github.com/AlexeyAB/darknet
+
 Python 3 wrapper for identifying objects in images
 Running the script requires opencv-python to be installed (`pip install opencv-python`)
 Directly viewing or returning bounding-boxed images requires scikit-image to be installed (`pip install scikit-image`)
