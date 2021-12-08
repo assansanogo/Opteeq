@@ -315,8 +315,13 @@ The advantage of this model, compared to YOLO, is that it uses the semantic info
 
 ### 2.2.1 Data preprocessing
 
-The annotation files from step 1 have been pre-processed to obtain grid of words with their associated classes and then to embed the words into pytorch tensors.
+The annotation files from step 1 are first pre-processed to obtain a grid of words with their associated classes. The resulting grid of each picture is stored in a JSON files. 
+![image](tools/cutie/grid.png)
 
+The json files are then used as inputs for a pytorch dataset module. This module takes care of :
+- The word embedding, using a DistilBERT pretrained embedding
+- The formatting of the data into an input and a target tensor
+![image](tools/cutie/pre-processing.png)
 
 ### 2.1.2 Model training
 
