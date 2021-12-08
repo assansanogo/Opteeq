@@ -308,7 +308,15 @@ python3 predict_opencv.py
 
 ## 2.2 CUTIE
 
+CUTIE stands for Convolutional Universal Text Information Extractor. It is a model proposed by Xiaohui Zhao, Endi Niu, Zhuo Wu, and Xiaoguang Wang which specific purpose is to extract information from text documents like receipts.
+The academic paper (https://arxiv.org/pdf/1903.12363.pdf) has been implemented in Tensorflow by the authors.
+We propose here a pytorch implementation of CUTIE.
+The advantage of this model, compared to YOLO, is that it uses the semantic information of the receipts on top of the spatial positionning of the words.
+
 ### 2.2.1 Data preprocessing
+
+The annotation files from step 1 have been pre-processed to obtain grid of words with their associated classes and then to embed the words into pytorch tensors.
+
 
 ### 2.1.2 Model training
 
