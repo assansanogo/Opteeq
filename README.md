@@ -62,7 +62,7 @@ When you create the dynamoDB add a global secondary index on anotName and named 
 
 # Step 1: Data preparation with AWS pipeline
 
-A database of ~1300 ticket pictures has been collected. In order to help with the tedious labelling work, a pipeline has
+A database of ~1,300 receipt pictures has been collected. In order to help with the tedious labelling work, a pipeline has
 been developped in AWS to pre-annotate the pictures.   
 Each receipt added to the database is standardized and scanned using AWS Rekognition for text recognition. The pipeline
 then reformats the annotations and computes JSON files containing batches of 20 images. These JSON files can be imported
