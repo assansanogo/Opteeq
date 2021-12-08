@@ -277,6 +277,12 @@ darknet detector map /home/data/obj.data /home/data/yolov4-custom.cfg /home/data
 
 ![via0](yolo/experiments/test.png)
 
+Mean average precision (mAP) measures average precision for recall value across all classes; mAP calculated at a default IoU of 0.5 = 67.82% 
+
+F1 score measures balance between precision and recall; F1 score = 0.84
+
+NOTE: The Opteeq dataset of approximately 1,300 data points may be too small to provide enough data for the model
+
 ### 2.1.4 Detection
 
 If you want to use detection without docker replace libdarknet.so (in the yolo file of the repository opteeq) by your
@@ -290,7 +296,7 @@ python3 predict.py
 
 ![via0](yolo/result/1f81d0fd-129c-45aa-a2e9-9c52684f8571.jpg)
 
-### 2.1.4 Detection without darknet framework
+### 2.1.4 Detection without Darknet framework
 
 Deploy this model in web application is complicated because it depends on darknet framework. In order to have an
 serverless architecture it is better to avoid the dependencies to darknet.
