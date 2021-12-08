@@ -7,6 +7,7 @@ python-dateutil~=2.8.1
 Pillow~=8.3.1
 
 opencv-python
+pytesseract
 
 # Doc Sphynx
 myst-parser==0.15.1

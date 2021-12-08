@@ -1,0 +1,18 @@
+services:
+  darknet:
+    build: .
+    ports:
+      - "8090:8090"
+    image: yolo-darknet
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [ gpu ]
+    tty: true
+    volumes:
+      - type: bind
+        source: ./data/
+        target: /home/data
+
