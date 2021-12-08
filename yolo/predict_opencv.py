@@ -8,9 +8,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # this import is pure python code this function don't depend on libdarknet.so
-from darknet import draw_boxes, class_colors
-from predict import merge_bbox, extract_text
-from predict import point2bbox
+from yolo.darknet import draw_boxes, class_colors
+from yolo.predict import merge_bbox, extract_text, point2bbox
 
 
 def get_network(cfg_path: str, weights_path: str) -> tuple[cv2.dnn_Net, list]:

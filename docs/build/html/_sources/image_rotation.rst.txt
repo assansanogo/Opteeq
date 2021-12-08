@@ -1,5 +1,5 @@
-tools package
-=============
+image\_rotation package
+=======================
 
 Subpackages
 -----------
@@ -7,17 +7,12 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
-   tools.aws
-   tools.cutie
-   tools.image
-   tools.json_lib
-   tools.via
-   tools.yolo
+   image_rotation.cnn
 
 Module contents
 ---------------
 
-.. automodule:: tools
+.. automodule:: image_rotation
    :members:
    :undoc-members:
    :show-inheritance:

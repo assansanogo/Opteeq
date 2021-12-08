@@ -89,14 +89,11 @@ def class_colors(names):
 def load_network(config_file, data_file, weights, batch_size=1):
     """
     load model description and weights from config files
-    args:
-        config_file (str): path to .cfg model file
-        data_file (str): path to .data model file
-        weights (str): path to weights
-    returns:
-        network: trained model
-        class_names
-        class_colors
+
+    :param config_file: path to .cfg model file
+    :param data_file: path to .data model file
+    :param weights: path to weights
+    :return: network: trained model, class_names and class_colors
     """
     network = load_net_custom(
         config_file.encode("ascii"),

@@ -12,6 +12,14 @@ Subpackages
 Submodules
 ----------
 
+tools.via.check module
+----------------------
+
+.. automodule:: tools.via.check
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 tools.via.storage module
 ------------------------
 

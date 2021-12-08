@@ -9,9 +9,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 from pytesseract import pytesseract
 
-from darknet import load_network, bbox2points, network_width, network_height, make_image, \
+from yolo.darknet import load_network, bbox2points, network_width, network_height, make_image, \
     copy_image_from_bytes, detect_image, free_image, draw_boxes
-from darknet_images import image_detection
+from yolo.darknet_images import image_detection
 
 
 def detection(weights: str, input_image: str, datafile: str, cfg: str) -> tuple[

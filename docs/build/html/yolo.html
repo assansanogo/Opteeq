@@ -1,0 +1,792 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>yolo package &mdash; Opteeq 1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="cutie package" href="cutie.html" />
+    <link rel="prev" title="tools.yolo package" href="tools.yolo.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Opteeq
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="info.html">Description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#table-of-contents">Table of Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#installation-configuration">Installation / Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#step-1-data-preparation-with-aws-pipeline">Step 1: Data preparation with AWS pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#step-2-ai-modelling-with-yolov4-and-cutie">Step 2: AI modelling with YOLOv4 and CUTIE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#step-3-web-application-deployment-tbd">Step 3: Web application deployment (TBD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#license">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#team">Team</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#sphinx-documentation">Sphinx Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">opteeq_repo</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="image_rotation.html">image_rotation package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pipeline_aws.html">pipeline_aws package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">tools package</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">yolo package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-yolo.darknet">yolo.darknet module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-yolo.darknet_images">yolo.darknet_images module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-yolo.predict">yolo.predict module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-yolo.predict_opencv">yolo.predict_opencv module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-yolo">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cutie.html">cutie package</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Opteeq</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">opteeq_repo</a> &raquo;</li>
+        
+      <li>yolo package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/yolo.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="yolo-package">
+<h1>yolo package<a class="headerlink" href="#yolo-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-yolo.darknet">
+<span id="yolo-darknet-module"></span><h2>yolo.darknet module<a class="headerlink" href="#module-yolo.darknet" title="Permalink to this headline">¶</a></h2>
+<p>wrapper from AlexeyAB darknet repo <a class="reference external" href="https://github.com/AlexeyAB/darknet">https://github.com/AlexeyAB/darknet</a></p>
+<p>Python 3 wrapper for identifying objects in images
+Running the script requires opencv-python to be installed (<cite>pip install opencv-python</cite>)
+Directly viewing or returning bounding-boxed images requires scikit-image to be installed (<cite>pip install scikit-image</cite>)
+Use pip3 instead of pip on some systems to be sure to install modules for python3</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="yolo.darknet.BOX">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">yolo.darknet.</span></span><span class="sig-name descname"><span class="pre">BOX</span></span><a class="headerlink" href="#yolo.darknet.BOX" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">_ctypes.Structure</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="yolo.darknet.BOX.h">
+<span class="sig-name descname"><span class="pre">h</span></span><a class="headerlink" href="#yolo.darknet.BOX.h" title="Permalink to this definition">¶</a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="yolo.darknet.BOX.w">
+<span class="sig-name descname"><span class="pre">w</span></span><a class="headerlink" href="#yolo.darknet.BOX.w" title="Permalink to this definition">¶</a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="yolo.darknet.BOX.x">
+<span class="sig-name descname"><span class="pre">x</span></span><a class="headerlink" href="#yolo.darknet.BOX.x" title="Permalink to this definition">¶</a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="yolo.darknet.BOX.y">
+<span class="sig-name descname"><span class="pre">y</span></span><a class="headerlink" href="#yolo.darknet.BOX.y" title="Permalink to this definition">¶</a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="yolo.darknet.DETECTION">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">yolo.darknet.</span></span><span class="sig-name descname"><span class="pre">DETECTION</span></span><a class="headerlink" href="#yolo.darknet.DETECTION" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">_ctypes.Structure</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="yolo.darknet.DETECTION.bbox">
+<span class="sig-name descname"><span class="pre">bbox</span></span><a class="headerlink" href="#yolo.darknet.DETECTION.bbox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="yolo.darknet.DETECTION.best_class_idx">
+<span class="sig-name descname"><span class="pre">best_class_idx</span></span><a class="headerlink" href="#yolo.darknet.DETECTION.best_class_idx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="yolo.darknet.DETECTION.classes">
+<span class="sig-name descname"><span class="pre">classes</span></span><a class="headerlink" href="#yolo.darknet.DETECTION.classes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="yolo.darknet.DETECTION.embedding_size">
+<span class="sig-name descname"><span class="pre">embedding_size</span></span><a class="headerlink" href="#yolo.darknet.DETECTION.embedding_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="yolo.darknet.DETECTION.embeddings">
+<span class="sig-name descname"><span class="pre">embeddings</span></span><a class="headerlink" href="#yolo.darknet.DETECTION.embeddings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="yolo.darknet.DETECTION.mask">
+<span class="sig-name descname"><span class="pre">mask</span></span><a class="headerlink" href="#yolo.darknet.DETECTION.mask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="yolo.darknet.DETECTION.objectness">
+<span class="sig-name descname"><span class="pre">objectness</span></span><a class="headerlink" href="#yolo.darknet.DETECTION.objectness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="yolo.darknet.DETECTION.points">
+<span class="sig-name descname"><span class="pre">points</span></span><a class="headerlink" href="#yolo.darknet.DETECTION.points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="yolo.darknet.DETECTION.prob">
+<span class="sig-name descname"><span class="pre">prob</span></span><a class="headerlink" href="#yolo.darknet.DETECTION.prob" title="Permalink to this definition">¶</a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="yolo.darknet.DETECTION.sim">
+<span class="sig-name descname"><span class="pre">sim</span></span><a class="headerlink" href="#yolo.darknet.DETECTION.sim" title="Permalink to this definition">¶</a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="yolo.darknet.DETECTION.sort_class">
+<span class="sig-name descname"><span class="pre">sort_class</span></span><a class="headerlink" href="#yolo.darknet.DETECTION.sort_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="yolo.darknet.DETECTION.track_id">
+<span class="sig-name descname"><span class="pre">track_id</span></span><a class="headerlink" href="#yolo.darknet.DETECTION.track_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="yolo.darknet.DETECTION.uc">
+<span class="sig-name descname"><span class="pre">uc</span></span><a class="headerlink" href="#yolo.darknet.DETECTION.uc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="yolo.darknet.DETNUMPAIR">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">yolo.darknet.</span></span><span class="sig-name descname"><span class="pre">DETNUMPAIR</span></span><a class="headerlink" href="#yolo.darknet.DETNUMPAIR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">_ctypes.Structure</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="yolo.darknet.DETNUMPAIR.dets">
+<span class="sig-name descname"><span class="pre">dets</span></span><a class="headerlink" href="#yolo.darknet.DETNUMPAIR.dets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="yolo.darknet.DETNUMPAIR.num">
+<span class="sig-name descname"><span class="pre">num</span></span><a class="headerlink" href="#yolo.darknet.DETNUMPAIR.num" title="Permalink to this definition">¶</a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="yolo.darknet.IMAGE">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">yolo.darknet.</span></span><span class="sig-name descname"><span class="pre">IMAGE</span></span><a class="headerlink" href="#yolo.darknet.IMAGE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">_ctypes.Structure</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="yolo.darknet.IMAGE.c">
+<span class="sig-name descname"><span class="pre">c</span></span><a class="headerlink" href="#yolo.darknet.IMAGE.c" title="Permalink to this definition">¶</a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="yolo.darknet.IMAGE.data">
+<span class="sig-name descname"><span class="pre">data</span></span><a class="headerlink" href="#yolo.darknet.IMAGE.data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="yolo.darknet.IMAGE.h">
+<span class="sig-name descname"><span class="pre">h</span></span><a class="headerlink" href="#yolo.darknet.IMAGE.h" title="Permalink to this definition">¶</a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="yolo.darknet.IMAGE.w">
+<span class="sig-name descname"><span class="pre">w</span></span><a class="headerlink" href="#yolo.darknet.IMAGE.w" title="Permalink to this definition">¶</a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="yolo.darknet.METADATA">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">yolo.darknet.</span></span><span class="sig-name descname"><span class="pre">METADATA</span></span><a class="headerlink" href="#yolo.darknet.METADATA" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">_ctypes.Structure</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="yolo.darknet.METADATA.classes">
+<span class="sig-name descname"><span class="pre">classes</span></span><a class="headerlink" href="#yolo.darknet.METADATA.classes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="yolo.darknet.METADATA.names">
+<span class="sig-name descname"><span class="pre">names</span></span><a class="headerlink" href="#yolo.darknet.METADATA.names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="yolo.darknet.bbox2points">
+<span class="sig-prename descclassname"><span class="pre">yolo.darknet.</span></span><span class="sig-name descname"><span class="pre">bbox2points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bbox</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#yolo.darknet.bbox2points" title="Permalink to this definition">¶</a></dt>
+<dd><p>From bounding box yolo format
+to corner points cv2 rectangle</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="yolo.darknet.class_colors">
+<span class="sig-prename descclassname"><span class="pre">yolo.darknet.</span></span><span class="sig-name descname"><span class="pre">class_colors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#yolo.darknet.class_colors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a dict with one random BGR color for each
+class name</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="yolo.darknet.decode_detection">
+<span class="sig-prename descclassname"><span class="pre">yolo.darknet.</span></span><span class="sig-name descname"><span class="pre">decode_detection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">detections</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#yolo.darknet.decode_detection" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="yolo.darknet.detect_image">
+<span class="sig-prename descclassname"><span class="pre">yolo.darknet.</span></span><span class="sig-name descname"><span class="pre">detect_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">network</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thresh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hier_thresh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.45</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#yolo.darknet.detect_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list with highest confidence class and their bbox</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="yolo.darknet.draw_boxes">
+<span class="sig-prename descclassname"><span class="pre">yolo.darknet.</span></span><span class="sig-name descname"><span class="pre">draw_boxes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">detections</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#yolo.darknet.draw_boxes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="yolo.darknet.load_network">
+<span class="sig-prename descclassname"><span class="pre">yolo.darknet.</span></span><span class="sig-name descname"><span class="pre">load_network</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#yolo.darknet.load_network" title="Permalink to this definition">¶</a></dt>
+<dd><p>load model description and weights from config files</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config_file</strong> – path to .cfg model file</p></li>
+<li><p><strong>data_file</strong> – path to .data model file</p></li>
+<li><p><strong>weights</strong> – path to weights</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>network: trained model, class_names and class_colors</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="yolo.darknet.network_height">
+<span class="sig-prename descclassname"><span class="pre">yolo.darknet.</span></span><span class="sig-name descname"><span class="pre">network_height</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#yolo.darknet.network_height" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="yolo.darknet.network_width">
+<span class="sig-prename descclassname"><span class="pre">yolo.darknet.</span></span><span class="sig-name descname"><span class="pre">network_width</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#yolo.darknet.network_width" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="yolo.darknet.non_max_suppression_fast">
+<span class="sig-prename descclassname"><span class="pre">yolo.darknet.</span></span><span class="sig-name descname"><span class="pre">non_max_suppression_fast</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">detections</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overlap_thresh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#yolo.darknet.non_max_suppression_fast" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="yolo.darknet.print_detections">
+<span class="sig-prename descclassname"><span class="pre">yolo.darknet.</span></span><span class="sig-name descname"><span class="pre">print_detections</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">detections</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coordinates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#yolo.darknet.print_detections" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="yolo.darknet.remove_negatives">
+<span class="sig-prename descclassname"><span class="pre">yolo.darknet.</span></span><span class="sig-name descname"><span class="pre">remove_negatives</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">detections</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#yolo.darknet.remove_negatives" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove all classes with 0% confidence within the detection</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="yolo.darknet.remove_negatives_faster">
+<span class="sig-prename descclassname"><span class="pre">yolo.darknet.</span></span><span class="sig-name descname"><span class="pre">remove_negatives_faster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">detections</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#yolo.darknet.remove_negatives_faster" title="Permalink to this definition">¶</a></dt>
+<dd><p>Faster version of remove_negatives (very useful when using yolo9000)</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-yolo.darknet_images">
+<span id="yolo-darknet-images-module"></span><h2>yolo.darknet_images module<a class="headerlink" href="#module-yolo.darknet_images" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="yolo.darknet_images.batch_detection">
+<span class="sig-prename descclassname"><span class="pre">yolo.darknet_images.</span></span><span class="sig-name descname"><span class="pre">batch_detection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">network</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">images</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_colors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thresh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hier_thresh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.45</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#yolo.darknet_images.batch_detection" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="yolo.darknet_images.batch_detection_example">
+<span class="sig-prename descclassname"><span class="pre">yolo.darknet_images.</span></span><span class="sig-name descname"><span class="pre">batch_detection_example</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#yolo.darknet_images.batch_detection_example" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="yolo.darknet_images.check_arguments_errors">
+<span class="sig-prename descclassname"><span class="pre">yolo.darknet_images.</span></span><span class="sig-name descname"><span class="pre">check_arguments_errors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#yolo.darknet_images.check_arguments_errors" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="yolo.darknet_images.check_batch_shape">
+<span class="sig-prename descclassname"><span class="pre">yolo.darknet_images.</span></span><span class="sig-name descname"><span class="pre">check_batch_shape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">images</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#yolo.darknet_images.check_batch_shape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Image sizes should be the same width and height</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="yolo.darknet_images.convert2relative">
+<span class="sig-prename descclassname"><span class="pre">yolo.darknet_images.</span></span><span class="sig-name descname"><span class="pre">convert2relative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bbox</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#yolo.darknet_images.convert2relative" title="Permalink to this definition">¶</a></dt>
+<dd><p>YOLO format use relative coordinates for annotation</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="yolo.darknet_images.image_classification">
+<span class="sig-prename descclassname"><span class="pre">yolo.darknet_images.</span></span><span class="sig-name descname"><span class="pre">image_classification</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">network</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_names</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#yolo.darknet_images.image_classification" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="yolo.darknet_images.image_detection">
+<span class="sig-prename descclassname"><span class="pre">yolo.darknet_images.</span></span><span class="sig-name descname"><span class="pre">image_detection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">network</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_colors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thresh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#yolo.darknet_images.image_detection" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="yolo.darknet_images.load_images">
+<span class="sig-prename descclassname"><span class="pre">yolo.darknet_images.</span></span><span class="sig-name descname"><span class="pre">load_images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">images_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#yolo.darknet_images.load_images" title="Permalink to this definition">¶</a></dt>
+<dd><p>If image path is given, return it directly
+For txt file, read it and return each line as image path
+In other case, it’s a folder, return a list with names of each
+jpg, jpeg and png file</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="yolo.darknet_images.main">
+<span class="sig-prename descclassname"><span class="pre">yolo.darknet_images.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#yolo.darknet_images.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="yolo.darknet_images.parser">
+<span class="sig-prename descclassname"><span class="pre">yolo.darknet_images.</span></span><span class="sig-name descname"><span class="pre">parser</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#yolo.darknet_images.parser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="yolo.darknet_images.prepare_batch">
+<span class="sig-prename descclassname"><span class="pre">yolo.darknet_images.</span></span><span class="sig-name descname"><span class="pre">prepare_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">images</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">network</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#yolo.darknet_images.prepare_batch" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="yolo.darknet_images.save_annotations">
+<span class="sig-prename descclassname"><span class="pre">yolo.darknet_images.</span></span><span class="sig-name descname"><span class="pre">save_annotations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detections</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_names</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#yolo.darknet_images.save_annotations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Files saved with image_name.txt and relative coordinates</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-yolo.predict">
+<span id="yolo-predict-module"></span><h2>yolo.predict module<a class="headerlink" href="#module-yolo.predict" title="Permalink to this headline">¶</a></h2>
+<p>Use yolo python wrapper to make prediction</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="yolo.predict.detection">
+<span class="sig-prename descclassname"><span class="pre">yolo.predict.</span></span><span class="sig-name descname"><span class="pre">detection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_image</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datafile</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#yolo.predict.detection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use yolo to detect classes in the image.
+Work only on 1 image with its path.
+Important you need to have created libdarknet.so at the compilation.
+return the detection with bounding boxes, the image (with boxes on it) and class color.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>weights</strong> – path of the best weights file (after training)</p></li>
+<li><p><strong>input_image</strong> – path of an image</p></li>
+<li><p><strong>datafile</strong> – path of yolo datafile (example obj.data) use for the training</p></li>
+<li><p><strong>cfg</strong> – path of yolo config file (example yolov4-custom.cfg) use for training</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="yolo.predict.detection_several_image">
+<span class="sig-prename descclassname"><span class="pre">yolo.predict.</span></span><span class="sig-name descname"><span class="pre">detection_several_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_file</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datafile</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#yolo.predict.detection_several_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use yolo to detect classes in the image.
+Work on a set of image with a txt file which contains all the path of images.
+Important you need to have created libdarknet.so at the compilation.
+return a dict with the detection for each image and save the image with bounding boxes in data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>weights</strong> – path of the best weights file (after training)</p></li>
+<li><p><strong>input_file</strong> – path of a txt file with several image path</p></li>
+<li><p><strong>datafile</strong> – path of yolo datafile (example obj.data) use for the training</p></li>
+<li><p><strong>cfg</strong> – path of yolo config file (example yolov4-custom.cfg) use for training</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="yolo.predict.extract_text">
+<span class="sig-prename descclassname"><span class="pre">yolo.predict.</span></span><span class="sig-name descname"><span class="pre">extract_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">detection</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#yolo.predict.extract_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract text from an image for a given bounding box of yolo
+return string of the text</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>detection</strong> – yolo detection</p></li>
+<li><p><strong>image</strong> – image</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="yolo.predict.image_detection_dont_show">
+<span class="sig-prename descclassname"><span class="pre">yolo.predict.</span></span><span class="sig-name descname"><span class="pre">image_detection_dont_show</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">network</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_names</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thresh</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#yolo.predict.image_detection_dont_show" title="Permalink to this definition">¶</a></dt>
+<dd><p>image detection from darknet wrapper, with support of dont_show in classe name like in bash yolo
+(dont_show classe are ignored).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image_path</strong> – path of the image</p></li>
+<li><p><strong>network</strong> – model trained</p></li>
+<li><p><strong>class_names</strong> – name of the different classe</p></li>
+<li><p><strong>thresh</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="yolo.predict.merge_bbox">
+<span class="sig-prename descclassname"><span class="pre">yolo.predict.</span></span><span class="sig-name descname"><span class="pre">merge_bbox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">detections</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classe</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#yolo.predict.merge_bbox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Merge boxe with the same classe label
+return yolo list detection</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>detections</strong> – yolo detection list</p></li>
+<li><p><strong>classe</strong> – name of the classe to merge</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="yolo.predict.point2bbox">
+<span class="sig-prename descclassname"><span class="pre">yolo.predict.</span></span><span class="sig-name descname"><span class="pre">point2bbox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xmin</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ymin</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmax</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ymax</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#yolo.predict.point2bbox" title="Permalink to this definition">¶</a></dt>
+<dd><p>convert an opencv point to bounding boxe of yolo
+return bounding box of yolo</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>xmin</strong> – x of the top right corner point</p></li>
+<li><p><strong>ymin</strong> – y of the top right corner point</p></li>
+<li><p><strong>xmax</strong> – x of the bottom left corner point</p></li>
+<li><p><strong>ymax</strong> – y of the bottom left corner point</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="yolo.predict.recipe_process">
+<span class="sig-prename descclassname"><span class="pre">yolo.predict.</span></span><span class="sig-name descname"><span class="pre">recipe_process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datafile</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#yolo.predict.recipe_process" title="Permalink to this definition">¶</a></dt>
+<dd><p>process a ticket with yolo
+return image with boxes merged and the text of each classes in dict</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>weights</strong> – path of the best weights file (after training)</p></li>
+<li><p><strong>input</strong> – path of an image</p></li>
+<li><p><strong>datafile</strong> – path of yolo datafile (example obj.data) use for the training</p></li>
+<li><p><strong>cfg</strong> – path of yolo config file (example yolov4-custom.cfg) use for training</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-yolo.predict_opencv">
+<span id="yolo-predict-opencv-module"></span><h2>yolo.predict_opencv module<a class="headerlink" href="#module-yolo.predict_opencv" title="Permalink to this headline">¶</a></h2>
+<p>prediction without darknet with only opencv
+more information: <a class="reference external" href="https://opencv-tutorial.readthedocs.io/en/latest/yolo/yolo.html">https://opencv-tutorial.readthedocs.io/en/latest/yolo/yolo.html</a></p>
+<dl class="py function">
+<dt class="sig sig-object py" id="yolo.predict_opencv.detection_darknet_format">
+<span class="sig-prename descclassname"><span class="pre">yolo.predict_opencv.</span></span><span class="sig-name descname"><span class="pre">detection_darknet_format</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outputs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conf</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classes</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#yolo.predict_opencv.detection_darknet_format" title="Permalink to this definition">¶</a></dt>
+<dd><p>convert opencv detection in yolo darknet detection format</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img</strong> – image</p></li>
+<li><p><strong>outputs</strong> – outputs of opencv nn</p></li>
+<li><p><strong>conf</strong> – threshold</p></li>
+<li><p><strong>classes</strong> – list of all classes</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list with yolo detection format ( tupple (classe, probability, bbox))</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="yolo.predict_opencv.get_classes">
+<span class="sig-prename descclassname"><span class="pre">yolo.predict_opencv.</span></span><span class="sig-name descname"><span class="pre">get_classes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">classes_name_path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#yolo.predict_opencv.get_classes" title="Permalink to this definition">¶</a></dt>
+<dd><p>get classes from darknet classe name file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>classes_name_path</strong> – path of the classe name file</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list with classe name and colors code</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="yolo.predict_opencv.get_network">
+<span class="sig-prename descclassname"><span class="pre">yolo.predict_opencv.</span></span><span class="sig-name descname"><span class="pre">get_network</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cfg_path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights_path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#yolo.predict_opencv.get_network" title="Permalink to this definition">¶</a></dt>
+<dd><p>build darknet network with darknet config file and weights</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cfg_path</strong> – path of the config darknet file</p></li>
+<li><p><strong>weights_path</strong> – path of the weights</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>net and output layer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="yolo.predict_opencv.load_image">
+<span class="sig-prename descclassname"><span class="pre">yolo.predict_opencv.</span></span><span class="sig-name descname"><span class="pre">load_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#yolo.predict_opencv.load_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>load image and process it to be used in open cv network</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> – path of the image</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>img and blob for opencv</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="yolo.predict_opencv.process_image">
+<span class="sig-prename descclassname"><span class="pre">yolo.predict_opencv.</span></span><span class="sig-name descname"><span class="pre">process_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cfg_path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights_path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classes_name_path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#yolo.predict_opencv.process_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>process a ticket with yolo using open cv (no darknet)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image_path</strong> – path of the image</p></li>
+<li><p><strong>cfg_path</strong> – path of the config darknet file</p></li>
+<li><p><strong>weights_path</strong> – weights_path: path of the weights</p></li>
+<li><p><strong>classes_name_path</strong> – path of the classe name file</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>image with boxes and the text of each classes in dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-yolo">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-yolo" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="cutie.html" class="btn btn-neutral float-right" title="cutie package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="tools.yolo.html" class="btn btn-neutral float-left" title="tools.yolo package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Léo.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -7,7 +7,7 @@ import time
 import cv2
 import numpy as np
 
-import darknet
+import yolo.darknet as darknet
 
 
 def parser():

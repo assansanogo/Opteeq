@@ -89,10 +89,9 @@
 <li class="toctree-l1"><a class="reference internal" href="info.html">Description</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#table-of-contents">Table of Contents</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#installation-configuration">Installation / Configuration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="info.html#step-1-data-labelling-architecture">Step 1: Data labelling architecture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="info.html#step-2-ai-modelling-tbd">Step 2: AI modelling (TBD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#step-1-data-preparation-with-aws-pipeline">Step 1: Data preparation with AWS pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#step-2-ai-modelling-with-yolov4-and-cutie">Step 2: AI modelling with YOLOv4 and CUTIE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#step-3-web-application-deployment-tbd">Step 3: Web application deployment (TBD)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="info.html#usage">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#license">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#team">Team</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#sphinx-documentation">Sphinx Documentation</a></li>
@@ -170,10 +169,16 @@
  | <a href="#B"><strong>B</strong></a>
  | <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
+ | <a href="#E"><strong>E</strong></a>
+ | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
  | <a href="#I"><strong>I</strong></a>
+ | <a href="#J"><strong>J</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#O"><strong>O</strong></a>
  | <a href="#P"><strong>P</strong></a>
  | <a href="#Q"><strong>Q</strong></a>
  | <a href="#R"><strong>R</strong></a>
@@ -181,6 +186,9 @@
  | <a href="#T"><strong>T</strong></a>
  | <a href="#U"><strong>U</strong></a>
  | <a href="#V"><strong>V</strong></a>
+ | <a href="#W"><strong>W</strong></a>
+ | <a href="#X"><strong>X</strong></a>
+ | <a href="#Y"><strong>Y</strong></a>
  
 </div>
 <h2 id="A">A</h2>
@@ -202,10 +210,22 @@
 <h2 id="B">B</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="tools.aws.html#tools.aws.awsTools.Bucket">Bucket (class in tools.aws.awsTools)</a>
+      <li><a href="yolo.html#yolo.darknet_images.batch_detection">batch_detection() (in module yolo.darknet_images)</a>
+</li>
+      <li><a href="yolo.html#yolo.darknet_images.batch_detection_example">batch_detection_example() (in module yolo.darknet_images)</a>
+</li>
+      <li><a href="yolo.html#yolo.darknet.DETECTION.bbox">bbox (yolo.darknet.DETECTION attribute)</a>
+</li>
+      <li><a href="yolo.html#yolo.darknet.bbox2points">bbox2points() (in module yolo.darknet)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="yolo.html#yolo.darknet.DETECTION.best_class_idx">best_class_idx (yolo.darknet.DETECTION attribute)</a>
+</li>
+      <li><a href="yolo.html#yolo.darknet.BOX">BOX (class in yolo.darknet)</a>
+</li>
+      <li><a href="tools.aws.html#tools.aws.awsTools.Bucket">Bucket (class in tools.aws.awsTools)</a>
+</li>
       <li><a href="tools.aws.html#tools.aws.awsTools.BucketCounter">BucketCounter (class in tools.aws.awsTools)</a>
 </li>
   </ul></td>
@@ -214,17 +234,64 @@
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="yolo.html#yolo.darknet.IMAGE.c">c (yolo.darknet.IMAGE attribute)</a>
+</li>
+      <li><a href="yolo.html#yolo.darknet_images.check_arguments_errors">check_arguments_errors() (in module yolo.darknet_images)</a>
+</li>
+      <li><a href="yolo.html#yolo.darknet_images.check_batch_shape">check_batch_shape() (in module yolo.darknet_images)</a>
+</li>
       <li><a href="tools.cutie.html#tools.cutie.preprocessing.check_box_dictionary">check_box_dictionary() (in module tools.cutie.preprocessing)</a>
+</li>
+      <li><a href="tools.via.html#tools.via.check.check_json">check_json() (in module tools.via.check)</a>
 </li>
       <li><a href="tools.yolo.html#tools.yolo.preprocessing.check_yolo_txt">check_yolo_txt() (in module tools.yolo.preprocessing)</a>
 </li>
+      <li><a href="yolo.html#yolo.darknet.class_colors">class_colors() (in module yolo.darknet)</a>
+</li>
+      <li><a href="yolo.html#yolo.darknet.DETECTION.classes">classes (yolo.darknet.DETECTION attribute)</a>
+
+      <ul>
+        <li><a href="yolo.html#yolo.darknet.METADATA.classes">(yolo.darknet.METADATA attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="tools.yolo.html#tools.yolo.preprocessing.clean_via_file">clean_via_file() (in module tools.yolo.preprocessing)</a>
+</li>
+      <li><a href="yolo.html#yolo.darknet_images.convert2relative">convert2relative() (in module yolo.darknet_images)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="tools.yolo.html#tools.yolo.preprocessing.clean_via_file">clean_via_file() (in module tools.yolo.preprocessing)</a>
+      <li><a href="tools.cutie.html#tools.cutie.preprocessing.convert_json_to_tensors">convert_json_to_tensors() (in module tools.cutie.preprocessing)</a>
 </li>
       <li><a href="tools.yolo.html#tools.yolo.preprocessing.convert_via_to_yolo">convert_via_to_yolo() (in module tools.yolo.preprocessing)</a>
 </li>
+      <li><a href="cutie.html#cutie.model.Cutie.count_parameters">count_parameters() (cutie.model.Cutie method)</a>
+</li>
       <li><a href="tools.yolo.html#tools.yolo.preprocessing.cut_overlength">cut_overlength() (in module tools.yolo.preprocessing)</a>
+</li>
+      <li>
+    cutie
+
+      <ul>
+        <li><a href="cutie.html#module-cutie">module</a>
+</li>
+      </ul></li>
+      <li><a href="cutie.html#cutie.model.Cutie">Cutie (class in cutie.model)</a>
+</li>
+      <li>
+    cutie.model
+
+      <ul>
+        <li><a href="cutie.html#module-cutie.model">module</a>
+</li>
+      </ul></li>
+      <li>
+    cutie.utils
+
+      <ul>
+        <li><a href="cutie.html#module-cutie.utils">module</a>
+</li>
+      </ul></li>
+      <li><a href="cutie.html#cutie.utils.CutieDataset">CutieDataset (class in cutie.utils)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -232,6 +299,28 @@
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="yolo.html#yolo.darknet.IMAGE.data">data (yolo.darknet.IMAGE attribute)</a>
+</li>
+      <li><a href="yolo.html#yolo.darknet.decode_detection">decode_detection() (in module yolo.darknet)</a>
+</li>
+      <li><a href="yolo.html#yolo.darknet.detect_image">detect_image() (in module yolo.darknet)</a>
+</li>
+      <li><a href="yolo.html#yolo.darknet.DETECTION">DETECTION (class in yolo.darknet)</a>
+</li>
+      <li><a href="yolo.html#yolo.predict.detection">detection() (in module yolo.predict)</a>
+</li>
+      <li><a href="yolo.html#yolo.predict_opencv.detection_darknet_format">detection_darknet_format() (in module yolo.predict_opencv)</a>
+</li>
+      <li><a href="yolo.html#yolo.predict.detection_several_image">detection_several_image() (in module yolo.predict)</a>
+</li>
+      <li><a href="yolo.html#yolo.darknet.DETNUMPAIR">DETNUMPAIR (class in yolo.darknet)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="yolo.html#yolo.darknet.DETNUMPAIR.dets">dets (yolo.darknet.DETNUMPAIR attribute)</a>
+</li>
+      <li><a href="tools.cutie.html#tools.cutie.preprocessing.distilbert_embedding">distilbert_embedding() (in module tools.cutie.preprocessing)</a>
+</li>
       <li><a href="tools.cutie.html#tools.cutie.preprocessing.divide_boxes">divide_boxes() (in module tools.cutie.preprocessing)</a>
 </li>
       <li><a href="pipeline_aws.html#pipeline_aws.download.download">download() (in module pipeline_aws.download)</a>
@@ -240,12 +329,50 @@
         <li><a href="tools.aws.html#tools.aws.awsTools.Bucket.download">(tools.aws.awsTools.Bucket method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pipeline_aws.html#pipeline_aws.download.download_via_json">download_via_json() (in module pipeline_aws.download)</a>
+</li>
+      <li><a href="yolo.html#yolo.darknet.draw_boxes">draw_boxes() (in module yolo.darknet)</a>
+</li>
+      <li><a href="tools.cutie.html#tools.cutie.preprocessing.dress_text">dress_text() (in module tools.cutie.preprocessing)</a>
 </li>
       <li><a href="tools.aws.html#tools.aws.awsTools.DynamoDB">DynamoDB (class in tools.aws.awsTools)</a>
 </li>
+  </ul></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cutie.html#cutie.utils.word2vec_embedding.embed">embed() (cutie.utils.word2vec_embedding method)</a>
+</li>
+      <li><a href="yolo.html#yolo.darknet.DETECTION.embedding_size">embedding_size (yolo.darknet.DETECTION attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="yolo.html#yolo.darknet.DETECTION.embeddings">embeddings (yolo.darknet.DETECTION attribute)</a>
+</li>
+      <li><a href="yolo.html#yolo.predict.extract_text">extract_text() (in module yolo.predict)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cutie.html#cutie.utils.FocalLoss">FocalLoss (class in cutie.utils)</a>
+</li>
+      <li><a href="cutie.html#cutie.utils.FocalTverskyLoss">FocalTverskyLoss (class in cutie.utils)</a>
+</li>
+      <li><a href="cutie.html#cutie.model.Cutie.forward">forward() (cutie.model.Cutie method)</a>
+
+      <ul>
+        <li><a href="cutie.html#cutie.utils.FocalLoss.forward">(cutie.utils.FocalLoss method)</a>
+</li>
+        <li><a href="cutie.html#cutie.utils.FocalTverskyLoss.forward">(cutie.utils.FocalTverskyLoss method)</a>
+</li>
+        <li><a href="cutie.html#cutie.utils.TverskyLoss.forward">(cutie.utils.TverskyLoss method)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -254,19 +381,29 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="tools.via.html#tools.via.text_box.GcloudVision">GcloudVision (class in tools.via.text_box)</a>
 </li>
+      <li><a href="tools.cutie.html#tools.cutie.preprocessing.generate_1_vocab">generate_1_vocab() (in module tools.cutie.preprocessing)</a>
+</li>
+      <li><a href="tools.cutie.html#tools.cutie.preprocessing.generate_cutie_jsons">generate_cutie_jsons() (in module tools.cutie.preprocessing)</a>
+</li>
       <li><a href="tools.cutie.html#tools.cutie.preprocessing.generate_grids">generate_grids() (in module tools.cutie.preprocessing)</a>
+</li>
+      <li><a href="tools.cutie.html#tools.cutie.preprocessing.generate_vocab">generate_vocab() (in module tools.cutie.preprocessing)</a>
+</li>
+      <li><a href="yolo.html#yolo.predict_opencv.get_classes">get_classes() (in module yolo.predict_opencv)</a>
 </li>
       <li><a href="tools.yolo.html#tools.yolo.preprocessing.get_image_names">get_image_names() (in module tools.yolo.preprocessing)</a>
 </li>
-      <li><a href="tools.image.html#tools.image.imageTools.get_img_shape">get_img_shape() (in module tools.image.imageTools)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="tools.image.html#tools.image.imageTools.get_img_shape">get_img_shape() (in module tools.image.imageTools)</a>
+</li>
       <li><a href="tools.aws.html#tools.aws.awsTools.DynamoDB.get_keys_annotator">get_keys_annotator() (tools.aws.awsTools.DynamoDB method)</a>
 </li>
       <li><a href="tools.aws.html#tools.aws.awsTools.Bucket.get_last_put">get_last_put (tools.aws.awsTools.Bucket property)</a>
 </li>
       <li><a href="tools.aws.html#tools.aws.awsTools.BucketCounter.get_last_uploader_index">get_last_uploader_index() (tools.aws.awsTools.BucketCounter method)</a>
+</li>
+      <li><a href="yolo.html#yolo.predict_opencv.get_network">get_network() (in module yolo.predict_opencv)</a>
 </li>
       <li><a href="tools.aws.html#tools.aws.awsTools.Rekognition.get_text">get_text() (tools.aws.awsTools.Rekognition method)</a>
 </li>
@@ -275,28 +412,92 @@
   </ul></td>
 </tr></table>
 
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="yolo.html#yolo.darknet.BOX.h">h (yolo.darknet.BOX attribute)</a>
+
+      <ul>
+        <li><a href="yolo.html#yolo.darknet.IMAGE.h">(yolo.darknet.IMAGE attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="yolo.html#yolo.darknet.IMAGE">IMAGE (class in yolo.darknet)</a>
+</li>
+      <li><a href="yolo.html#yolo.darknet_images.image_classification">image_classification() (in module yolo.darknet_images)</a>
+</li>
+      <li><a href="yolo.html#yolo.darknet_images.image_detection">image_detection() (in module yolo.darknet_images)</a>
+</li>
+      <li><a href="yolo.html#yolo.predict.image_detection_dont_show">image_detection_dont_show() (in module yolo.predict)</a>
+</li>
       <li><a href="tools.image.html#tools.image.imageTools.image_read">image_read() (in module tools.image.imageTools)</a>
 </li>
       <li>
-    Image_rotation_cnn
+    image_rotation
 
       <ul>
-        <li><a href="Image_rotation_cnn.html#module-Image_rotation_cnn">module</a>
+        <li><a href="image_rotation.html#module-image_rotation">module</a>
+</li>
+      </ul></li>
+      <li>
+    image_rotation.cnn
+
+      <ul>
+        <li><a href="image_rotation.cnn.html#module-image_rotation.cnn">module</a>
+</li>
+      </ul></li>
+      <li>
+    image_rotation.cnn.predict
+
+      <ul>
+        <li><a href="image_rotation.cnn.html#module-image_rotation.cnn.predict">module</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
-    Image_rotation_cnn.predict
+    image_rotation.cnn.prepare_database
 
       <ul>
-        <li><a href="Image_rotation_cnn.html#module-Image_rotation_cnn.predict">module</a>
+        <li><a href="image_rotation.cnn.html#module-image_rotation.cnn.prepare_database">module</a>
+</li>
+      </ul></li>
+      <li>
+    image_rotation.cnn.prepare_functions
+
+      <ul>
+        <li><a href="image_rotation.cnn.html#module-image_rotation.cnn.prepare_functions">module</a>
+</li>
+      </ul></li>
+      <li>
+    image_rotation.cnn.train_model
+
+      <ul>
+        <li><a href="image_rotation.cnn.html#module-image_rotation.cnn.train_model">module</a>
 </li>
       </ul></li>
       <li><a href="tools.image.html#tools.image.imageTools.image_write">image_write() (in module tools.image.imageTools)</a>
+</li>
+      <li><a href="cutie.html#cutie.utils.init_scores">init_scores() (in module cutie.utils)</a>
+</li>
+      <li><a href="cutie.html#cutie.utils.init_stats">init_stats() (in module cutie.utils)</a>
+</li>
+      <li><a href="cutie.html#cutie.model.Cutie.initialize_weights">initialize_weights() (cutie.model.Cutie method)</a>
+</li>
+      <li><a href="tools.cutie.html#tools.cutie.preprocessing.is_number">is_number() (in module tools.cutie.preprocessing)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="J">J</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="tools.json_lib.html#tools.json_lib.main.json_force_dump">json_force_dump() (in module tools.json_lib.main)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -304,6 +505,8 @@
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cutie.html#cutie.model.Cutie.learn">learn() (cutie.model.Cutie method)</a>
+</li>
       <li><a href="tools.aws.html#tools.aws.awsTools.Bucket.list_files">list_files() (tools.aws.awsTools.Bucket method)</a>
 
       <ul>
@@ -312,9 +515,17 @@
         <li><a href="tools.via.html#tools.via.storage.Storage.list_files">(tools.via.storage.Storage method)</a>
 </li>
       </ul></li>
+      <li><a href="tools.aws.html#tools.aws.awsTools.Bucket.list_object_search_key">list_object_search_key() (tools.aws.awsTools.Bucket method)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="tools.aws.html#tools.aws.awsTools.Bucket.list_object_search_key">list_object_search_key() (tools.aws.awsTools.Bucket method)</a>
+      <li><a href="yolo.html#yolo.predict_opencv.load_image">load_image() (in module yolo.predict_opencv)</a>
+</li>
+      <li><a href="yolo.html#yolo.darknet_images.load_images">load_images() (in module yolo.darknet_images)</a>
+</li>
+      <li><a href="tools.json_lib.html#tools.json_lib.main.load_json_path">load_json_path() (in module tools.json_lib.main)</a>
+</li>
+      <li><a href="yolo.html#yolo.darknet.load_network">load_network() (in module yolo.darknet)</a>
 </li>
       <li><a href="tools.via.html#tools.via.storage.Local">Local (class in tools.via.storage)</a>
 </li>
@@ -324,13 +535,35 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="yolo.html#yolo.darknet_images.main">main() (in module yolo.darknet_images)</a>
+</li>
+      <li><a href="yolo.html#yolo.darknet.DETECTION.mask">mask (yolo.darknet.DETECTION attribute)</a>
+</li>
+      <li><a href="yolo.html#yolo.predict.merge_bbox">merge_bbox() (in module yolo.predict)</a>
+</li>
+      <li><a href="yolo.html#yolo.darknet.METADATA">METADATA (class in yolo.darknet)</a>
+</li>
       <li>
     module
 
       <ul>
-        <li><a href="Image_rotation_cnn.html#module-Image_rotation_cnn">Image_rotation_cnn</a>
+        <li><a href="cutie.html#module-cutie">cutie</a>
 </li>
-        <li><a href="Image_rotation_cnn.html#module-Image_rotation_cnn.predict">Image_rotation_cnn.predict</a>
+        <li><a href="cutie.html#module-cutie.model">cutie.model</a>
+</li>
+        <li><a href="cutie.html#module-cutie.utils">cutie.utils</a>
+</li>
+        <li><a href="image_rotation.html#module-image_rotation">image_rotation</a>
+</li>
+        <li><a href="image_rotation.cnn.html#module-image_rotation.cnn">image_rotation.cnn</a>
+</li>
+        <li><a href="image_rotation.cnn.html#module-image_rotation.cnn.predict">image_rotation.cnn.predict</a>
+</li>
+        <li><a href="image_rotation.cnn.html#module-image_rotation.cnn.prepare_database">image_rotation.cnn.prepare_database</a>
+</li>
+        <li><a href="image_rotation.cnn.html#module-image_rotation.cnn.prepare_functions">image_rotation.cnn.prepare_functions</a>
+</li>
+        <li><a href="image_rotation.cnn.html#module-image_rotation.cnn.train_model">image_rotation.cnn.train_model</a>
 </li>
         <li><a href="pipeline_aws.html#module-pipeline_aws">pipeline_aws</a>
 </li>
@@ -354,7 +587,13 @@
 </li>
         <li><a href="tools.image.html#module-tools.image.imageTools">tools.image.imageTools</a>
 </li>
+        <li><a href="tools.json_lib.html#module-tools.json_lib">tools.json_lib</a>
+</li>
+        <li><a href="tools.json_lib.html#module-tools.json_lib.main">tools.json_lib.main</a>
+</li>
         <li><a href="tools.via.html#module-tools.via">tools.via</a>
+</li>
+        <li><a href="tools.via.html#module-tools.via.check">tools.via.check</a>
 </li>
         <li><a href="tools.via.html#module-tools.via.storage">tools.via.storage</a>
 </li>
@@ -370,13 +609,51 @@
 </li>
         <li><a href="tools.yolo.html#module-tools.yolo.preprocessing">tools.yolo.preprocessing</a>
 </li>
+        <li><a href="yolo.html#module-yolo">yolo</a>
+</li>
+        <li><a href="yolo.html#module-yolo.darknet">yolo.darknet</a>
+</li>
+        <li><a href="yolo.html#module-yolo.darknet_images">yolo.darknet_images</a>
+</li>
+        <li><a href="yolo.html#module-yolo.predict">yolo.predict</a>
+</li>
+        <li><a href="yolo.html#module-yolo.predict_opencv">yolo.predict_opencv</a>
+</li>
       </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="yolo.html#yolo.darknet.METADATA.names">names (yolo.darknet.METADATA attribute)</a>
+</li>
+      <li><a href="yolo.html#yolo.darknet.network_height">network_height() (in module yolo.darknet)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="yolo.html#yolo.darknet.network_width">network_width() (in module yolo.darknet)</a>
+</li>
+      <li><a href="yolo.html#yolo.darknet.non_max_suppression_fast">non_max_suppression_fast() (in module yolo.darknet)</a>
+</li>
+      <li><a href="yolo.html#yolo.darknet.DETNUMPAIR.num">num (yolo.darknet.DETNUMPAIR attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="O">O</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="yolo.html#yolo.darknet.DETECTION.objectness">objectness (yolo.darknet.DETECTION attribute)</a>
+</li>
   </ul></td>
 </tr></table>
 
 <h2 id="P">P</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="yolo.html#yolo.darknet_images.parser">parser() (in module yolo.darknet_images)</a>
+</li>
       <li>
     pipeline_aws
 
@@ -405,9 +682,29 @@
         <li><a href="pipeline_aws.html#module-pipeline_aws.rename_upload">module</a>
 </li>
       </ul></li>
+      <li><a href="yolo.html#yolo.predict.point2bbox">point2bbox() (in module yolo.predict)</a>
+</li>
+      <li><a href="yolo.html#yolo.darknet.DETECTION.points">points (yolo.darknet.DETECTION attribute)</a>
+</li>
+      <li><a href="cutie.html#cutie.model.Cutie.predict">predict() (cutie.model.Cutie method)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="Image_rotation_cnn.html#Image_rotation_cnn.predict.predict_orientation">predict_orientation() (in module Image_rotation_cnn.predict)</a>
+      <li><a href="image_rotation.cnn.html#image_rotation.cnn.predict.predict_orientation">predict_orientation() (in module image_rotation.cnn.predict)</a>
+</li>
+      <li><a href="image_rotation.cnn.html#image_rotation.cnn.prepare_functions.prepare_1_image">prepare_1_image() (in module image_rotation.cnn.prepare_functions)</a>
+</li>
+      <li><a href="yolo.html#yolo.darknet_images.prepare_batch">prepare_batch() (in module yolo.darknet_images)</a>
+</li>
+      <li><a href="image_rotation.cnn.html#image_rotation.cnn.prepare_functions.prepare_testing_images">prepare_testing_images() (in module image_rotation.cnn.prepare_functions)</a>
+</li>
+      <li><a href="image_rotation.cnn.html#image_rotation.cnn.prepare_functions.prepare_training_images">prepare_training_images() (in module image_rotation.cnn.prepare_functions)</a>
+</li>
+      <li><a href="yolo.html#yolo.darknet.print_detections">print_detections() (in module yolo.darknet)</a>
+</li>
+      <li><a href="yolo.html#yolo.darknet.DETECTION.prob">prob (yolo.darknet.DETECTION attribute)</a>
+</li>
+      <li><a href="yolo.html#yolo.predict_opencv.process_image">process_image() (in module yolo.predict_opencv)</a>
 </li>
       <li><a href="tools.via.html#tools.via.text_box.AwsRekognition.process_region">process_region() (tools.via.text_box.AwsRekognition method)</a>
 
@@ -447,8 +744,16 @@
         <li><a href="tools.via.html#tools.via.storage.Storage.read">(tools.via.storage.Storage method)</a>
 </li>
       </ul></li>
+      <li><a href="yolo.html#yolo.predict.recipe_process">recipe_process() (in module yolo.predict)</a>
+</li>
       <li><a href="tools.aws.html#tools.aws.awsTools.Rekognition">Rekognition (class in tools.aws.awsTools)</a>
 </li>
+      <li><a href="yolo.html#yolo.darknet.remove_negatives">remove_negatives() (in module yolo.darknet)</a>
+</li>
+      <li><a href="yolo.html#yolo.darknet.remove_negatives_faster">remove_negatives_faster() (in module yolo.darknet)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="tools.via.html#tools.via.text_box.AwsRekognition.request">request() (tools.via.text_box.AwsRekognition method)</a>
 
       <ul>
@@ -457,8 +762,6 @@
         <li><a href="tools.via.html#tools.via.text_box.TextBox.request">(tools.via.text_box.TextBox method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="tools.via.html#tools.via.via_converter.ViaConverter.request_generator">request_generator() (tools.via.via_converter.ViaConverter method)</a>
 </li>
       <li><a href="tools.image.html#tools.image.imageTools.resize_and_pad">resize_and_pad() (in module tools.image.imageTools)</a>
@@ -473,10 +776,20 @@
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="tools.via.html#tools.via.storage.Storage">Storage (class in tools.via.storage)</a>
+      <li><a href="yolo.html#yolo.darknet_images.save_annotations">save_annotations() (in module yolo.darknet_images)</a>
+</li>
+      <li><a href="cutie.html#cutie.utils.save_scores">save_scores() (in module cutie.utils)</a>
+</li>
+      <li><a href="cutie.html#cutie.utils.save_stats">save_stats() (in module cutie.utils)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="yolo.html#yolo.darknet.DETECTION.sim">sim (yolo.darknet.DETECTION attribute)</a>
+</li>
+      <li><a href="yolo.html#yolo.darknet.DETECTION.sort_class">sort_class (yolo.darknet.DETECTION attribute)</a>
+</li>
+      <li><a href="tools.via.html#tools.via.storage.Storage">Storage (class in tools.via.storage)</a>
+</li>
       <li><a href="tools.via.html#tools.via.storage.storage_factory">storage_factory() (in module tools.via.storage)</a>
 </li>
   </ul></td>
@@ -538,13 +851,34 @@
         <li><a href="tools.image.html#module-tools.image.imageTools">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    tools.json_lib
+
+      <ul>
+        <li><a href="tools.json_lib.html#module-tools.json_lib">module</a>
+</li>
+      </ul></li>
+      <li>
+    tools.json_lib.main
+
+      <ul>
+        <li><a href="tools.json_lib.html#module-tools.json_lib.main">module</a>
+</li>
+      </ul></li>
       <li>
     tools.via
 
       <ul>
         <li><a href="tools.via.html#module-tools.via">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    tools.via.check
+
+      <ul>
+        <li><a href="tools.via.html#module-tools.via.check">module</a>
 </li>
       </ul></li>
       <li>
@@ -596,18 +930,34 @@
         <li><a href="tools.yolo.html#module-tools.yolo.preprocessing">module</a>
 </li>
       </ul></li>
+      <li><a href="yolo.html#yolo.darknet.DETECTION.track_id">track_id (yolo.darknet.DETECTION attribute)</a>
+</li>
+      <li><a href="cutie.html#cutie.model.Cutie.training">training (cutie.model.Cutie attribute)</a>
+
+      <ul>
+        <li><a href="cutie.html#cutie.utils.FocalLoss.training">(cutie.utils.FocalLoss attribute)</a>
+</li>
+        <li><a href="cutie.html#cutie.utils.FocalTverskyLoss.training">(cutie.utils.FocalTverskyLoss attribute)</a>
+</li>
+        <li><a href="cutie.html#cutie.utils.TverskyLoss.training">(cutie.utils.TverskyLoss attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="cutie.html#cutie.utils.TverskyLoss">TverskyLoss (class in cutie.utils)</a>
+</li>
   </ul></td>
 </tr></table>
 
 <h2 id="U">U</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="tools.aws.html#tools.aws.awsTools.DynamoDB.update">update() (tools.aws.awsTools.DynamoDB method)</a>
+      <li><a href="yolo.html#yolo.darknet.DETECTION.uc">uc (yolo.darknet.DETECTION attribute)</a>
 </li>
-      <li><a href="tools.aws.html#tools.aws.awsTools.DynamoDB.update_annotator">update_annotator() (tools.aws.awsTools.DynamoDB method)</a>
+      <li><a href="tools.aws.html#tools.aws.awsTools.DynamoDB.update">update() (tools.aws.awsTools.DynamoDB method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="tools.aws.html#tools.aws.awsTools.DynamoDB.update_annotator">update_annotator() (tools.aws.awsTools.DynamoDB method)</a>
+</li>
       <li><a href="pipeline_aws.html#pipeline_aws.rename_upload.upload">upload() (in module pipeline_aws.rename_upload)</a>
 
       <ul>
@@ -620,16 +970,89 @@
 <h2 id="V">V</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="tools.via.html#tools.via.via_converter.ViaConverter.via_json">via_json() (tools.via.via_converter.ViaConverter method)</a>
+      <li><a href="cutie.html#cutie.model.Cutie.validate">validate() (cutie.model.Cutie method)</a>
 </li>
-      <li><a href="tools.via.html#tools.via.via_converter.ViaConverter.via_json_save_locally">via_json_save_locally() (tools.via.via_converter.ViaConverter method)</a>
+      <li><a href="tools.via.html#tools.via.via_converter.ViaConverter.via_json">via_json() (tools.via.via_converter.ViaConverter method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="tools.via.html#tools.via.via_converter.ViaConverter.via_json_save_locally">via_json_save_locally() (tools.via.via_converter.ViaConverter method)</a>
+</li>
       <li><a href="tools.via.html#tools.via.via_converter.ViaConverter">ViaConverter (class in tools.via.via_converter)</a>
 </li>
       <li><a href="tools.cutie.html#tools.cutie.preprocessing.visualize_grid">visualize_grid() (in module tools.cutie.preprocessing)</a>
 </li>
+  </ul></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="yolo.html#yolo.darknet.BOX.w">w (yolo.darknet.BOX attribute)</a>
+
+      <ul>
+        <li><a href="yolo.html#yolo.darknet.IMAGE.w">(yolo.darknet.IMAGE attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cutie.html#cutie.utils.word2vec_embedding">word2vec_embedding (class in cutie.utils)</a>
+</li>
+      <li><a href="cutie.html#cutie.utils.write_scores">write_scores() (in module cutie.utils)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="X">X</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="yolo.html#yolo.darknet.BOX.x">x (yolo.darknet.BOX attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Y">Y</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="yolo.html#yolo.darknet.BOX.y">y (yolo.darknet.BOX attribute)</a>
+</li>
+      <li>
+    yolo
+
+      <ul>
+        <li><a href="yolo.html#module-yolo">module</a>
+</li>
+      </ul></li>
+      <li>
+    yolo.darknet
+
+      <ul>
+        <li><a href="yolo.html#module-yolo.darknet">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    yolo.darknet_images
+
+      <ul>
+        <li><a href="yolo.html#module-yolo.darknet_images">module</a>
+</li>
+      </ul></li>
+      <li>
+    yolo.predict
+
+      <ul>
+        <li><a href="yolo.html#module-yolo.predict">module</a>
+</li>
+      </ul></li>
+      <li>
+    yolo.predict_opencv
+
+      <ul>
+        <li><a href="yolo.html#module-yolo.predict_opencv">module</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 

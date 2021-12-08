@@ -1,10 +1,11 @@
 opteeq
-=======
+===========
 
 .. toctree::
    :maxdepth: 4
 
+   image_rotation
    pipeline_aws
-   Image_rotation_cnn
    tools
-   index_code
+   yolo
+   cutie

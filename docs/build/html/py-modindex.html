@@ -92,10 +92,9 @@
 <li class="toctree-l1"><a class="reference internal" href="info.html">Description</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#table-of-contents">Table of Contents</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#installation-configuration">Installation / Configuration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="info.html#step-1-data-labelling-architecture">Step 1: Data labelling architecture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="info.html#step-2-ai-modelling-tbd">Step 2: AI modelling (TBD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#step-1-data-preparation-with-aws-pipeline">Step 1: Data preparation with AWS pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#step-2-ai-modelling-with-yolov4-and-cutie">Step 2: AI modelling with YOLOv4 and CUTIE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#step-3-web-application-deployment-tbd">Step 3: Web application deployment (TBD)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="info.html#usage">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#license">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#team">Team</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#sphinx-documentation">Sphinx Documentation</a></li>
@@ -167,46 +166,87 @@
    <h1>Python Module Index</h1>
 
    <div class="modindex-jumpbox">
+   <a href="#cap-c"><strong>c</strong></a> | 
    <a href="#cap-i"><strong>i</strong></a> | 
    <a href="#cap-p"><strong>p</strong></a> | 
-   <a href="#cap-t"><strong>t</strong></a>
+   <a href="#cap-t"><strong>t</strong></a> | 
+   <a href="#cap-y"><strong>y</strong></a>
    </div>
 
    <table class="indextable modindextable">
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-c"><td></td><td>
+       <strong>c</strong></td><td></td></tr>
+     <tr>
+       <td><img src="_static/minus.png" class="toggler"
+              id="toggle-1" style="display: none" alt="-" /></td>
+       <td>
+       <a href="cutie.html#module-cutie"><code class="xref">cutie</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="cutie.html#module-cutie.model"><code class="xref">cutie.model</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="cutie.html#module-cutie.utils"><code class="xref">cutie.utils</code></a></td><td>
+       <em></em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-i"><td></td><td>
        <strong>i</strong></td><td></td></tr>
      <tr>
        <td><img src="_static/minus.png" class="toggler"
-              id="toggle-1" style="display: none" alt="-" /></td>
+              id="toggle-2" style="display: none" alt="-" /></td>
        <td>
-       <a href="Image_rotation_cnn.html#module-Image_rotation_cnn"><code class="xref">Image_rotation_cnn</code></a></td><td>
+       <a href="image_rotation.html#module-image_rotation"><code class="xref">image_rotation</code></a></td><td>
        <em></em></td></tr>
-     <tr class="cg-1">
+     <tr class="cg-2">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="Image_rotation_cnn.html#module-Image_rotation_cnn.predict"><code class="xref">Image_rotation_cnn.predict</code></a></td><td>
+       <a href="image_rotation.cnn.html#module-image_rotation.cnn"><code class="xref">image_rotation.cnn</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-2">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="image_rotation.cnn.html#module-image_rotation.cnn.predict"><code class="xref">image_rotation.cnn.predict</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-2">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="image_rotation.cnn.html#module-image_rotation.cnn.prepare_database"><code class="xref">image_rotation.cnn.prepare_database</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-2">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="image_rotation.cnn.html#module-image_rotation.cnn.prepare_functions"><code class="xref">image_rotation.cnn.prepare_functions</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-2">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="image_rotation.cnn.html#module-image_rotation.cnn.train_model"><code class="xref">image_rotation.cnn.train_model</code></a></td><td>
        <em></em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-p"><td></td><td>
        <strong>p</strong></td><td></td></tr>
      <tr>
        <td><img src="_static/minus.png" class="toggler"
-              id="toggle-2" style="display: none" alt="-" /></td>
+              id="toggle-3" style="display: none" alt="-" /></td>
        <td>
        <a href="pipeline_aws.html#module-pipeline_aws"><code class="xref">pipeline_aws</code></a></td><td>
        <em></em></td></tr>
-     <tr class="cg-2">
+     <tr class="cg-3">
        <td></td>
        <td>&#160;&#160;&#160;
        <a href="pipeline_aws.html#module-pipeline_aws.download"><code class="xref">pipeline_aws.download</code></a></td><td>
        <em></em></td></tr>
-     <tr class="cg-2">
+     <tr class="cg-3">
        <td></td>
        <td>&#160;&#160;&#160;
        <a href="pipeline_aws.html#module-pipeline_aws.ec2"><code class="xref">pipeline_aws.ec2</code></a></td><td>
        <em></em></td></tr>
-     <tr class="cg-2">
+     <tr class="cg-3">
        <td></td>
        <td>&#160;&#160;&#160;
        <a href="pipeline_aws.html#module-pipeline_aws.rename_upload"><code class="xref">pipeline_aws.rename_upload</code></a></td><td>
@@ -216,79 +256,123 @@
        <strong>t</strong></td><td></td></tr>
      <tr>
        <td><img src="_static/minus.png" class="toggler"
-              id="toggle-3" style="display: none" alt="-" /></td>
+              id="toggle-4" style="display: none" alt="-" /></td>
        <td>
        <a href="tools.html#module-tools"><code class="xref">tools</code></a></td><td>
        <em></em></td></tr>
-     <tr class="cg-3">
+     <tr class="cg-4">
        <td></td>
        <td>&#160;&#160;&#160;
        <a href="tools.aws.html#module-tools.aws"><code class="xref">tools.aws</code></a></td><td>
        <em></em></td></tr>
-     <tr class="cg-3">
+     <tr class="cg-4">
        <td></td>
        <td>&#160;&#160;&#160;
        <a href="tools.aws.html#module-tools.aws.awsTools"><code class="xref">tools.aws.awsTools</code></a></td><td>
        <em></em></td></tr>
-     <tr class="cg-3">
+     <tr class="cg-4">
        <td></td>
        <td>&#160;&#160;&#160;
        <a href="tools.cutie.html#module-tools.cutie"><code class="xref">tools.cutie</code></a></td><td>
        <em></em></td></tr>
-     <tr class="cg-3">
+     <tr class="cg-4">
        <td></td>
        <td>&#160;&#160;&#160;
        <a href="tools.cutie.html#module-tools.cutie.preprocessing"><code class="xref">tools.cutie.preprocessing</code></a></td><td>
        <em></em></td></tr>
-     <tr class="cg-3">
+     <tr class="cg-4">
        <td></td>
        <td>&#160;&#160;&#160;
        <a href="tools.image.html#module-tools.image"><code class="xref">tools.image</code></a></td><td>
        <em></em></td></tr>
-     <tr class="cg-3">
+     <tr class="cg-4">
        <td></td>
        <td>&#160;&#160;&#160;
        <a href="tools.image.html#module-tools.image.imageTools"><code class="xref">tools.image.imageTools</code></a></td><td>
        <em></em></td></tr>
-     <tr class="cg-3">
+     <tr class="cg-4">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="tools.json_lib.html#module-tools.json_lib"><code class="xref">tools.json_lib</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-4">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="tools.json_lib.html#module-tools.json_lib.main"><code class="xref">tools.json_lib.main</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-4">
        <td></td>
        <td>&#160;&#160;&#160;
        <a href="tools.via.html#module-tools.via"><code class="xref">tools.via</code></a></td><td>
        <em></em></td></tr>
-     <tr class="cg-3">
+     <tr class="cg-4">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="tools.via.html#module-tools.via.check"><code class="xref">tools.via.check</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-4">
        <td></td>
        <td>&#160;&#160;&#160;
        <a href="tools.via.html#module-tools.via.storage"><code class="xref">tools.via.storage</code></a></td><td>
        <em></em></td></tr>
-     <tr class="cg-3">
+     <tr class="cg-4">
        <td></td>
        <td>&#160;&#160;&#160;
        <a href="tools.via.structure.html#module-tools.via.structure"><code class="xref">tools.via.structure</code></a></td><td>
        <em></em></td></tr>
-     <tr class="cg-3">
+     <tr class="cg-4">
        <td></td>
        <td>&#160;&#160;&#160;
        <a href="tools.via.structure.html#module-tools.via.structure.default"><code class="xref">tools.via.structure.default</code></a></td><td>
        <em></em></td></tr>
-     <tr class="cg-3">
+     <tr class="cg-4">
        <td></td>
        <td>&#160;&#160;&#160;
        <a href="tools.via.html#module-tools.via.text_box"><code class="xref">tools.via.text_box</code></a></td><td>
        <em></em></td></tr>
-     <tr class="cg-3">
+     <tr class="cg-4">
        <td></td>
        <td>&#160;&#160;&#160;
        <a href="tools.via.html#module-tools.via.via_converter"><code class="xref">tools.via.via_converter</code></a></td><td>
        <em></em></td></tr>
-     <tr class="cg-3">
+     <tr class="cg-4">
        <td></td>
        <td>&#160;&#160;&#160;
        <a href="tools.yolo.html#module-tools.yolo"><code class="xref">tools.yolo</code></a></td><td>
        <em></em></td></tr>
-     <tr class="cg-3">
+     <tr class="cg-4">
        <td></td>
        <td>&#160;&#160;&#160;
        <a href="tools.yolo.html#module-tools.yolo.preprocessing"><code class="xref">tools.yolo.preprocessing</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-y"><td></td><td>
+       <strong>y</strong></td><td></td></tr>
+     <tr>
+       <td><img src="_static/minus.png" class="toggler"
+              id="toggle-5" style="display: none" alt="-" /></td>
+       <td>
+       <a href="yolo.html#module-yolo"><code class="xref">yolo</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-5">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="yolo.html#module-yolo.darknet"><code class="xref">yolo.darknet</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-5">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="yolo.html#module-yolo.darknet_images"><code class="xref">yolo.darknet_images</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-5">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="yolo.html#module-yolo.predict"><code class="xref">yolo.predict</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-5">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="yolo.html#module-yolo.predict_opencv"><code class="xref">yolo.predict_opencv</code></a></td><td>
        <em></em></td></tr>
    </table>
 

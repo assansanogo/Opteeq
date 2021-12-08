@@ -90,10 +90,9 @@
 <li class="toctree-l1"><a class="reference internal" href="info.html">Description</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#table-of-contents">Table of Contents</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#installation-configuration">Installation / Configuration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="info.html#step-1-data-labelling-architecture">Step 1: Data labelling architecture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="info.html#step-2-ai-modelling-tbd">Step 2: AI modelling (TBD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#step-1-data-preparation-with-aws-pipeline">Step 1: Data preparation with AWS pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#step-2-ai-modelling-with-yolov4-and-cutie">Step 2: AI modelling with YOLOv4 and CUTIE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#step-3-web-application-deployment-tbd">Step 3: Web application deployment (TBD)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="info.html#usage">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#license">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#team">Team</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#sphinx-documentation">Sphinx Documentation</a></li>
@@ -171,12 +170,12 @@
 <li class="toctree-l1"><a class="reference internal" href="info.html#table-of-contents">Table of Contents</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#installation-configuration">Installation / Configuration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="info.html#get-the-project-from-the-repository">get the project from the repository:</a></li>
-<li class="toctree-l2"><a class="reference internal" href="info.html#config-the-aws-cli">Config the aws cli:</a></li>
 <li class="toctree-l2"><a class="reference internal" href="info.html#install-library-requirements">Install library requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="info.html#config-the-aws-cli">Config the aws cli:</a></li>
 <li class="toctree-l2"><a class="reference internal" href="info.html#config-the-project">Config the project</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="info.html#step-1-data-labelling-architecture">Step 1: Data labelling architecture</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="info.html#step-1-data-preparation-with-aws-pipeline">Step 1: Data preparation with AWS pipeline</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="info.html#aws-structure">AWS structure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="info.html#image-uploading">1.1 Image uploading</a></li>
 <li class="toctree-l2"><a class="reference internal" href="info.html#image-standardization">1.2 Image standardization</a></li>
@@ -186,21 +185,29 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="info.html#manual-labelling">1.4 Manual labelling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="info.html#pipeline-cost-estimation">1.5 Pipeline cost estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="info.html#usage">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="info.html#upload-image">Upload image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="info.html#generate-json-for-via">Generate JSON for via</a></li>
+<li class="toctree-l3"><a class="reference internal" href="info.html#download-image-and-json">Download image and JSON</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="info.html#step-2-ai-modelling-tbd">Step 2: AI modelling (TBD)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="info.html#yolov4">2.1 Yolov4</a><ul>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#step-2-ai-modelling-with-yolov4-and-cutie">Step 2: AI modelling with YOLOv4 and CUTIE</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="info.html#yolov4">2.1 YOLOv4</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="info.html#data-preprocessing">2.1.1 Data preprocessing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="info.html#model-training">2.1.2 Model training</a></li>
-<li class="toctree-l3"><a class="reference internal" href="info.html#installation">2.1.3 Installation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="info.html#install-nvidia-docker">2.1.3.1 install nvidia docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="info.html#installation">2.1.2 Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="info.html#install-nvidia-docker">2.1.2.1 Install Nvidia docker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="info.html#build-the-docker-image">2.1.2.2 Build the docker image</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="info.html#build-the-docker-image">2.1.3.2 Build the docker image</a></li>
-<li class="toctree-l3"><a class="reference internal" href="info.html#train-yolo">2.1.3.3 Train yolo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="info.html#model-training">2.1.3 Model training</a></li>
+<li class="toctree-l3"><a class="reference internal" href="info.html#model-evaluation">2.1.4 Model evaluation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="info.html#detection">2.1.4 Detection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="info.html#detection-without-darknet-framework">2.1.4 Detection without darknet framework</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="info.html#cutie">2.2 Cutie</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="info.html#cutie">2.2 CUTIE</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="info.html#id1">2.2.1 Data preprocessing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="info.html#id2">2.1.2 Model training</a></li>
 </ul>
@@ -210,16 +217,26 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#step-3-web-application-deployment-tbd">Step 3: Web application deployment (TBD)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="info.html#usage">Usage</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="info.html#upload-image">Upload image</a></li>
-<li class="toctree-l2"><a class="reference internal" href="info.html#generate-json-for-via">Generate json for via</a></li>
-<li class="toctree-l2"><a class="reference internal" href="info.html#download-image-and-json">Download image and json</a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#license">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#team">Team</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#sphinx-documentation">Sphinx Documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">opteeq</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="image_rotation.html">image_rotation package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="image_rotation.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="image_rotation.cnn.html">image_rotation.cnn package</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="image_rotation.cnn.html#submodules">Submodules</a></li>
+<li class="toctree-l5"><a class="reference internal" href="image_rotation.cnn.html#module-image_rotation.cnn.predict">image_rotation.cnn.predict module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="image_rotation.cnn.html#module-image_rotation.cnn.prepare_database">image_rotation.cnn.prepare_database module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="image_rotation.cnn.html#module-image_rotation.cnn.prepare_functions">image_rotation.cnn.prepare_functions module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="image_rotation.cnn.html#module-image_rotation.cnn.train_model">image_rotation.cnn.train_model module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="image_rotation.cnn.html#module-image_rotation.cnn">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="image_rotation.html#module-image_rotation">Module contents</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="pipeline_aws.html">pipeline_aws package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="pipeline_aws.html#submodules">Submodules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pipeline_aws.html#module-pipeline_aws.download">pipeline_aws.download module</a></li>
@@ -228,20 +245,30 @@
 <li class="toctree-l3"><a class="reference internal" href="pipeline_aws.html#module-pipeline_aws">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="Image_rotation_cnn.html">Image_rotation_cnn package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="Image_rotation_cnn.html#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Image_rotation_cnn.html#module-Image_rotation_cnn.predict">Image_rotation_cnn.predict module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Image_rotation_cnn.html#image-rotation-cnn-prepare-database-module">Image_rotation_cnn.prepare_database module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Image_rotation_cnn.html#image-rotation-cnn-prepare-functions-module">Image_rotation_cnn.prepare_functions module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Image_rotation_cnn.html#module-Image_rotation_cnn">Module contents</a></li>
-</ul>
-</li>
 <li class="toctree-l2"><a class="reference internal" href="tools.html">tools package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="tools.html#subpackages">Subpackages</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="tools.aws.html">tools.aws package</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="tools.aws.html#submodules">Submodules</a></li>
 <li class="toctree-l5"><a class="reference internal" href="tools.aws.html#module-tools.aws.awsTools">tools.aws.awsTools module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="tools.aws.html#module-tools.aws">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="tools.cutie.html">tools.cutie package</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="tools.cutie.html#submodules">Submodules</a></li>
+<li class="toctree-l5"><a class="reference internal" href="tools.cutie.html#module-tools.cutie.preprocessing">tools.cutie.preprocessing module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="tools.cutie.html#module-tools.cutie">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="tools.image.html">tools.image package</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="tools.image.html#submodules">Submodules</a></li>
+<li class="toctree-l5"><a class="reference internal" href="tools.image.html#module-tools.image.imageTools">tools.image.imageTools module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="tools.image.html#module-tools.image">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="tools.json_lib.html">tools.json_lib package</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="tools.json_lib.html#submodules">Submodules</a></li>
+<li class="toctree-l5"><a class="reference internal" href="tools.json_lib.html#module-tools.json_lib.main">tools.json_lib.main module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="tools.json_lib.html#module-tools.json_lib">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="tools.via.html">tools.via package</a><ul>
@@ -255,16 +282,11 @@
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="tools.via.html#submodules">Submodules</a></li>
+<li class="toctree-l5"><a class="reference internal" href="tools.via.html#module-tools.via.check">tools.via.check module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="tools.via.html#module-tools.via.storage">tools.via.storage module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="tools.via.html#module-tools.via.text_box">tools.via.text_box module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="tools.via.html#module-tools.via.via_converter">tools.via.via_converter module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="tools.via.html#module-tools.via">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="tools.image.html">tools.image package</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="tools.image.html#submodules">Submodules</a></li>
-<li class="toctree-l5"><a class="reference internal" href="tools.image.html#module-tools.image.imageTools">tools.image.imageTools module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="tools.image.html#module-tools.image">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="tools.yolo.html">tools.yolo package</a><ul>
@@ -273,18 +295,27 @@
 <li class="toctree-l5"><a class="reference internal" href="tools.yolo.html#module-tools.yolo">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="tools.cutie.html">tools.cutie package</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="tools.cutie.html#submodules">Submodules</a></li>
-<li class="toctree-l5"><a class="reference internal" href="tools.cutie.html#module-tools.cutie.preprocessing">tools.cutie.preprocessing module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="tools.cutie.html#module-tools.cutie">Module contents</a></li>
-</ul>
-</li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="tools.html#module-tools">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="index_code.html">Index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="yolo.html">yolo package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="yolo.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yolo.html#module-yolo.darknet">yolo.darknet module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yolo.html#module-yolo.darknet_images">yolo.darknet_images module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yolo.html#module-yolo.predict">yolo.predict module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yolo.html#module-yolo.predict_opencv">yolo.predict_opencv module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yolo.html#module-yolo">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cutie.html">cutie package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cutie.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cutie.html#module-cutie.model">cutie.model module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cutie.html#module-cutie.utils">cutie.utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cutie.html#module-cutie">Module contents</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
