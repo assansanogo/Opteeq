@@ -2,7 +2,6 @@ from torch.optim.lr_scheduler import ReduceLROnPlateau
 from cutie.model import Cutie
 from cutie.utils import CutieDataset, write_scores
 from cutie.utils import FocalTverskyLoss, FocalLoss
-from cutie.utils import log_scores
 import re
 import os
 from datetime import datetime
@@ -52,9 +51,9 @@ if params.embedding == 'distilbert':
     from transformers import DistilBertTokenizer, DistilBertModel, logging
     logging.set_verbosity_error()
     tokenizer = DistilBertTokenizer.from_pretrained('distilbert-base-uncased')
-    model = DistilBertModel.from_pretrained('distilbert-base-uncased')
+    bertmodel = DistilBertModel.from_pretrained('distilbert-base-uncased')
     def EMBEDDING_FUN(text):
-        vec = distilbert_embedding(text, tokenizer, model)
+        vec = distilbert_embedding(text, tokenizer, bertmodel)
         return vec
     EMBEDDING_SIZE = 768
 
