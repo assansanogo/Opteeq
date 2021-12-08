@@ -15,13 +15,11 @@ Place, Date and Total amount of expense) from paper receipts.
 
 [Installation / Configuration](#installation--configuration)
 
-[Step 1: Data preparation with AWS pipeline](#step-1-data-labelling-architecture)
+[Step 1: Data preparation with AWS pipeline](#step-1-data-preparation-with-aws-pipeline)
 
-[Step 2: AI modelling with YOLOv4 and CUTIE](#step-2-ai-modelling-tbd)
+[Step 2: AI modelling with YOLOv4 and CUTIE](#step-2-ai-modelling-with-yolov4-and-cutie)
 
 [Step 3: Web application deployment (TBD)](#step-3-web-application-deployment-tbd)
-
-[Usage](#usage)
 
 [License](#license)
 
@@ -230,7 +228,14 @@ docker-compose build
 python3 process.py
 ```
 
-3. Start the container
+3. add pretrained weight in the data folder
+
+```shell
+cd yolo/docker/data/
+wget https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v3_optimal/yolov4.weights
+```
+
+4. Start the container
 
 ```shell
 docker-compose up -d
@@ -257,6 +262,8 @@ darknet detector train /home/data/obj.data /home/data/yolov4-custom.cfg /home/da
 darknet detector map /home/data/obj.data /home/data/yolov4-custom.cfg /home/data/trainning/yolov4-custom_best.weights
 ```
 
+![via0](yolo/experiments/test.png)
+
 ### 2.1.4 Detection
 
 If you want to use detection without docker replace libdarknet.so (in the yolo file of the repository opteeq) by your
@@ -267,6 +274,8 @@ To get the image with bounding boxe and the text extract
 ```shell
 python3 predict.py
 ```
+
+![via0](yolo/result/1f81d0fd-129c-45aa-a2e9-9c52684f8571.jpg)
 
 ## 2.2 CUTIE
 
