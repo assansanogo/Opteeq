@@ -195,8 +195,19 @@ The original YOLO is a clever Convolution Neural Network (CNN) for doing object 
 
 ### 2.1.1 Data preprocessing
 
-- Johann add details
--
+Annotation files obtained after step 1 need to be reformatted to the YOLO input format.
+| Annotation files format                      | YOLO input format                                                             |
+|----------------------------------------------|-------------------------------------------------------------------------------|
+| .csv files                                   | .txt files                                                                    |
+| Several images / file                        | 1 image / file                                                                |
+| Polygonal bounding boxes                     | Rectangle bounding boxes                                                      |
+| Absolute coordinates of bounding box corners | Relative coordinates of bounding boxes center, width and height               |
+| Boxes can be partially outside the picture   | Boxes must be completely inside the picture                                   |
+
+The final format is a .txt file containing one line by bounding box with the following format : 
+{box-class} {x} {y} {box-width} {box-height}
+Each picture with its associated .txt annotation file must have the same base name and be grouped in a unique folder.
+A helper function has been implemented to download the pictures and write the associated txt file for each annotation files from step 1 : tools.yolo.preprocessing.convert_via_to_yolo
 
 ### 2.1.2 Installation
 
