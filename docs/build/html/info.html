@@ -4,70 +4,70 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  
   <title>Description &mdash; Opteeq 1.0 documentation</title>
+  
 
-
-
+  
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
 
+  
+  
 
+  
+  
 
+  
 
-
-
-
-
-
-
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
-
-
+  
+    
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-
+    
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
-
+    
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="opteeq" href="modules.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="index.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
 
-
+   
   <div class="wy-grid-for-nav">
-
+    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
+          
 
-
-
+          
             <a href="index.html" class="icon icon-home"> Opteeq
+          
 
-
-
+          
           </a>
 
+          
+            
+            
+          
 
-
-
-
-
-
+          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -76,17 +76,17 @@
   </form>
 </div>
 
-
+          
         </div>
 
-
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-
-
-
-
-
-
+          
+            
+            
+              
+            
+            
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Description</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
@@ -126,7 +126,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#model-training">2.1.3 Model training</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#model-evaluation">2.1.4 Model evaluation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#detection">2.1.4 Detection</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#detection-without-darknet-framework">2.1.4 Detection without darknet framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#detection-without-darknet-framework">2.1.4 Detection without Darknet framework</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#cutie">2.2 CUTIE</a><ul>
@@ -145,29 +145,29 @@
 <li class="toctree-l1"><a class="reference internal" href="modules.html">opteeq</a></li>
 </ul>
 
-
-
+            
+          
         </div>
-
+        
       </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
-
+      
       <nav class="wy-nav-top" aria-label="top navigation">
-
+        
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Opteeq</a>
-
+        
       </nav>
 
 
       <div class="wy-nav-content">
-
+        
         <div class="rst-content">
-
-
+        
+          
 
 
 
@@ -188,28 +188,28 @@
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
-
+    
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-
+        
       <li>Description</li>
-
-
+    
+    
       <li class="wy-breadcrumbs-aside">
-
-
+        
+          
             <a href="_sources/info.md.txt" rel="nofollow"> View page source</a>
-
-
+          
+        
       </li>
-
+    
   </ul>
 
-
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-
+            
   <div class="tex2jax_ignore mathjax_ignore section" id="description">
 <h1>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h1>
 <p>Opteeq is a student project that uses computer vision and AI modeling for receipt digitalisation.</p>
@@ -543,6 +543,9 @@ darknet detector train /home/data/obj.data /home/data/yolov4-custom.cfg /home/da
 </pre></div>
 </div>
 <p><img alt="via0" src="_images/test.png" /></p>
+<p>Mean average precision (mAP) measures average precision for recall value across all classes; mAP calculated at a default IoU of 0.5 = 67.82%</p>
+<p>F1 score measures balance between precision and recall; F1 score = 0.84</p>
+<p>NOTE: The Opteeq dataset of approximately 1,300 data points may be too small to provide enough data for the model</p>
 </div>
 <div class="section" id="detection">
 <h3>2.1.4 Detection<a class="headerlink" href="#detection" title="Permalink to this headline">¶</a></h3>
@@ -552,10 +555,11 @@ libdarknet.so obtained after compilation. (you can’t use the libdarknet.so of 
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python3 predict.py
 </pre></div>
 </div>
-<p><img alt="via0" src="_images/1f81d0fd-129c-45aa-a2e9-9c52684f8571.jpg" /></p>
+<p><img alt="darknet" src="_images/darknet.png" />
+<img alt="text" src="_images/darknet_text.png" /></p>
 </div>
 <div class="section" id="detection-without-darknet-framework">
-<h3>2.1.4 Detection without darknet framework<a class="headerlink" href="#detection-without-darknet-framework" title="Permalink to this headline">¶</a></h3>
+<h3>2.1.4 Detection without Darknet framework<a class="headerlink" href="#detection-without-darknet-framework" title="Permalink to this headline">¶</a></h3>
 <p>Deploy this model in web application is complicated because it depends on darknet framework. In order to have an
 serverless architecture it is better to avoid the dependencies to darknet.</p>
 <p>In this part I use only OpenCv to make the prediction (more information to use darknet directly with
@@ -568,15 +572,56 @@ opencv <a class="reference external" href="https://opencv-tutorial.readthedocs.i
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python3 predict_opencv.py
 </pre></div>
 </div>
+<p><img alt="opencv" src="_images/opencv.png" />
+<img alt="text" src="_images/darknet_text.png" /></p>
 </div>
 </div>
 <div class="section" id="cutie">
 <h2>2.2 CUTIE<a class="headerlink" href="#cutie" title="Permalink to this headline">¶</a></h2>
+<p>CUTIE stands for Convolutional Universal Text Information Extractor. It is a model proposed by Xiaohui Zhao, Endi Niu, Zhuo Wu, and Xiaoguang Wang which specific purpose is to extract information from text documents like receipts.
+The academic paper (https://arxiv.org/pdf/1903.12363.pdf) has been implemented in Tensorflow by the authors.
+We propose here a pytorch implementation of CUTIE.
+The advantage of this model, compared to YOLO, is that it uses the semantic information of the receipts on top of the spatial positionning of the words.</p>
 <div class="section" id="id1">
 <h3>2.2.1 Data preprocessing<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>The annotation files from step 1 are first pre-processed to obtain a grid of words with their associated classes. The resulting grid of each picture is stored in a JSON files.
+<img alt="image" src="_images/grid.png" /></p>
+<p>The json files are then used as inputs for a pytorch dataset module. This module takes care of :</p>
+<ul class="simple">
+<li><p>The word embedding, using a DistilBERT pretrained embedding</p></li>
+<li><p>The formatting of the data into an input and a target tensor
+<img alt="image" src="_images/pre-processing.png" /></p></li>
+</ul>
 </div>
 <div class="section" id="id2">
 <h3>2.1.2 Model training<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>put the .JSON annotation files in cutie/data/train and cutie/data/val folders. Example files can be found in cutie/data/example.</p></li>
+<li><p>Build the docker image</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> cutie
+docker-compose build
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Start the container</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker-compose up -d
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Enter in bash (replace container_name by the name of the container)</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker <span class="nb">exec</span> -it container_name bash
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>launch training (replace N_epochs, B_size, G_size by the number of epochs, the batch size and the grid size wanted for the training)</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python -m cutie.train --epochs N_epochs --batch_size B_size --grid_size G_size
+</pre></div>
+</div>
+<p>After the training, the metrics file and the model checkpoints can be found in cutie/outputs</p>
 </div>
 </div>
 <div class="section" id="models-benchmarking">
@@ -616,7 +661,7 @@ myst_parser.</p></li>
 
 
            </div>
-
+           
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
@@ -632,14 +677,14 @@ myst_parser.</p></li>
 
     </p>
   </div>
-
-
-
+    
+    
+    
     Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-
+    
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
         </div>
@@ -648,7 +693,7 @@ myst_parser.</p></li>
     </section>
 
   </div>
-
+  
 
   <script type="text/javascript">
       jQuery(function () {
@@ -656,10 +701,10 @@ myst_parser.</p></li>
       });
   </script>
 
-
-
-
-
+  
+  
+    
+   
 
 </body>
 </html>

@@ -1,15 +1,19 @@
-from tools.yolo.preprocessing import clean_via_file
-from tools.image.imageTools import get_img_shape
+import json
+import os
+import typing
+
 import cv2
 import numpy as np
 import pandas as pd
 import torch
-import os
-import json
-import typing
+
+from tools.image.imageTools import get_img_shape
+from tools.yolo.preprocessing import clean_via_file
+
 
 def divide_boxes(via_file: str) -> dict:
-    """Divides the boxes containing several words in the via annotations file given as parameter.
+    """
+    Divides the boxes containing several words in the via annotations file given as parameter.
     Returns a dictionary with the information of each box : filename, class, word, x, y, width, height.
 
     :param via_file: path to the via csv file
@@ -17,16 +21,16 @@ def divide_boxes(via_file: str) -> dict:
     :return: dictionary with the boxes information
     :rtype: dict
     """
-    via_clean = clean_via_file(via_file) # clean the initial file to get the right separators
-    images_boxes = pd.read_csv(via_clean,sep='|',header=0)
-    images_boxes = images_boxes[['filename','region_shape_attributes','region_attributes']]
+    via_clean = clean_via_file(via_file)  # clean the initial file to get the right separators
+    images_boxes = pd.read_csv(via_clean, sep='|', header=0)
+    images_boxes = images_boxes[['filename', 'region_shape_attributes', 'region_attributes']]
     images_boxes['box_shape'] = images_boxes.region_shape_attributes.str.strip('"').str\
                                     .replace('""""','"')
     images_boxes['attributes'] =  images_boxes.region_attributes.str.strip('"').str\
                                     .replace('""""','"')
     images_boxes['text'] = ""
     images_boxes['class'] = ""
-    
+
     for index, attribute in images_boxes['attributes'].iteritems():
         images_boxes.at[index,'text'] = eval(attribute)['Text']
         images_boxes.at[index,'class'] = int(eval(attribute)['type'])
@@ -56,8 +60,7 @@ def divide_boxes(via_file: str) -> dict:
             x_max = x_min + box_width
             y_min = eval(images_boxes.at[index,'box_shape'])['y'] - (box_height / 2)
             y_max = y_min + box_height
-        
-        
+
         char_counter = 0
         if total_chars != 0:
             for word_idx in range(total_words):
@@ -76,9 +79,11 @@ def divide_boxes(via_file: str) -> dict:
 
     return(final_dict)
 
+
 def check_box_dictionary(image_path: str, box_dict: dict):
-    """Opens a new window showing the image and the boxes found in the dictionary given as parameter.
-    
+    """
+    Opens a new window showing the image and the boxes found in the dictionary given as parameter.
+
     :param image_path: path to the image
     :type image_path: str
     :param box_dict: dictionary prepared with divide_boxes function
@@ -86,7 +91,7 @@ def check_box_dictionary(image_path: str, box_dict: dict):
     """
     filename = os.path.basename(image_path)
     image = cv2.imread(image_path)
-    resized = cv2.resize(image, (500,500), interpolation = cv2.INTER_AREA)
+    resized = cv2.resize(image, (500, 500), interpolation=cv2.INTER_AREA)
     im_height, im_width, _ = get_img_shape(image_path)
     font = cv2.FONT_HERSHEY_COMPLEX_SMALL
     fontScale = 0.4
@@ -107,17 +112,18 @@ def check_box_dictionary(image_path: str, box_dict: dict):
             color = ((rect_class==1)*50 + (rect_class==2)*255, (rect_class==1)*150 + (rect_class==3)*255,(rect_class==1)*255 + (rect_class==4)*255)
             cv2.rectangle(resized, (x1, y1), (x2, y2), color, 1)
             cv2.putText(resized,box_dict['word'][index],(x1, y1),font,fontScale,color,thickness)
-    
+
     cv2.imshow('Image',resized)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
-def generate_grids(json_file: str, grid_size: int = 64, known_class: bool=True) -> dict:
-    """Generates a grid of words per image, based on the json file containing the annotations.
+
+def generate_grids(json_file: str, grid_size: int = 64, known_class: bool = True) -> dict:
+    """
+    Generates a grid of words per image, based on the json file containing the annotations.
     Returns the grid information in a dictionary with the format :
-    { 'image' : str,
-      'grid' : { (col,line) : [word, class, dressed_word] } }
-    
+    { 'image' : str, 'grid' : { (col,line) : [word, class, dressed_word] } }
+
     :param json_file: path to the json file containing the annotations
     :type json_file: str
     :param grid_size: number of rows/columns in the output grid, default 64
@@ -132,7 +138,7 @@ def generate_grids(json_file: str, grid_size: int = 64, known_class: bool=True) 
     final_dict = {}
     final_dict['image'] = image_file_name
     final_dict['grid'] = {}
-    
+
     with open(json_file) as file:
       data = json.load(file)
 
@@ -146,7 +152,7 @@ def generate_grids(json_file: str, grid_size: int = 64, known_class: bool=True) 
     ymax = max(ymax_values) + 1
     ticket_height = ymax - ymin
     ticket_width = xmax - xmin
-    
+
     for box in data['text_boxes']:
       x = (box['bbox'][0] + box['bbox'][2]) / 2
       y = (box['bbox'][1] + box['bbox'][3]) / 2
@@ -169,13 +175,15 @@ def generate_grids(json_file: str, grid_size: int = 64, known_class: bool=True) 
           check_existing_key = True
         else:
            word_col += 1
-          
+
     return final_dict
 
-def visualize_grid(gridmap: dict, nb_cols: int, nb_lines : int):
-    """Opens a new window showing the visual representation of the image given as parameter.
+
+def visualize_grid(gridmap: dict, nb_cols: int, nb_lines: int):
+    """
+    Opens a new window showing the visual representation of the image given as parameter.
     Image grid has to be prepared with the generate_grids function and given as parameter.
-    
+
     :param gridmap: dictionary prepared with generate_grids function
     :type gridmap: dict
     :param nb_cols: number of columns in the grids
@@ -208,10 +216,12 @@ def visualize_grid(gridmap: dict, nb_cols: int, nb_lines : int):
     cv2.waitKey()
     cv2.destroyAllWindows()
 
+
 def generate_cutie_jsons(via_file: str):
-    """Generate the json files of the images contained in an annotation file,
+    """
+    Generate the json files of the images contained in an annotation file,
     in the needed format for cutie training.
-    
+
     :param via_file: path to the via csv file
     :type via_file: str
 
@@ -240,14 +250,16 @@ def generate_cutie_jsons(via_file: str):
             if cutie_class in class_map.keys():
                 result_dict['fields'][cutie_class - 1]['value_id'].append(cutie_idx)
                 result_dict['fields'][cutie_class - 1]['value_text'].append(cutie_word)
-        
+
         with open(image.split('.')[0] + '.json', 'w') as outfile:
             json.dump(result_dict, outfile)
         result_dict.clear()
 
+
 def generate_1_vocab(json_file: str, grid_size: int):
-    """Generates the vocabulary of the words contained in a json annotation file.
-    
+    """
+    Generates the vocabulary of the words contained in a json annotation file.
+
     :param json_file: path to the json_file file
     :type json_file: str
     :param grid_size: grid size that will be used in Cutie
@@ -266,9 +278,11 @@ def generate_1_vocab(json_file: str, grid_size: int):
         vocab.append(sentence)
     return vocab
 
+
 def generate_vocab(folder: str, grid_size: int):
-    """Generates the vocabulary of the words contained in all the json annotation files from a folder.
-    
+    """
+    Generates the vocabulary of the words contained in all the json annotation files from a folder.
+
     :param folder: path to the folder
     :type folder: str
     :param grid_size: grid size that will be used in Cutie
@@ -283,9 +297,11 @@ def generate_vocab(folder: str, grid_size: int):
         vocab.extend(current_vocab)
     return vocab
 
+
 def is_number(s: str):
-    """Asserts if the string passed as parameter is a number
-    
+    """
+    Asserts if the string passed as parameter is a number
+
     :param s: string to be checked
     :type s: str
     """
@@ -296,24 +312,28 @@ def is_number(s: str):
         pass
     return False
 
+
 def dress_text(text: str):
-    """Dress a text, replacing numbers by '0'
-    
+    """
+    Dress a text, replacing numbers by '0'
+
     :param text: string to be dressed
     :type text: str
-    :return: dressed string 
+    :return: dressed string
     :rtype: str
     """
     string = text.lower()
     for idx, letter in enumerate(string):
         if is_number(letter):
-            string = string[:idx] + '0' + string[idx+1:]
+            string = string[:idx] + '0' + string[idx + 1:]
     return string
 
+
 def generate_cutie_jsons(via_file: str):
-    """Generate the json files of the images contained in an annotation file,
+    """
+    Generate the json files of the images contained in an annotation file,
     in the needed format for cutie training.
-    
+
     :param via_file: path to the via csv file
     :type via_file: str
     :param embedding_fun: word embedding function
@@ -344,7 +364,7 @@ def generate_cutie_jsons(via_file: str):
             if cutie_class in class_map.keys():
                 result_dict['fields'][cutie_class - 1]['value_id'].append(cutie_idx)
                 result_dict['fields'][cutie_class - 1]['value_text'].append(cutie_word)
-        
+
         with open(image.split('.')[0] + '.json', 'w') as outfile:
             json.dump(result_dict, outfile)
         result_dict.clear()
@@ -354,10 +374,13 @@ def distilbert_embedding(text, tokenizer, model):
     vec = model(**inputs).last_hidden_state[0,0]
     return vec
 
-def convert_json_to_tensors(json_file: str, embedding_fun: typing.Callable, grid_size: int = 64, embedding_size: int = 128, N_class: int = 5):
-    """Converts the annotations json file to two tensors : one for the grid with the word embeddings, one
+
+def convert_json_to_tensors(json_file: str, embedding_fun: typing.Callable, grid_size: int = 64,
+                            embedding_size: int = 128, N_class: int = 5):
+    """
+    Converts the annotations json file to two tensors : one for the grid with the word embeddings, one
     for the classes of the words.
-    
+
     :param json_file: dictionary prepared with generate_grids function
     :type json_file: dict
     :param embedding_fun: function converting a word to its embedding vector
@@ -370,7 +393,7 @@ def convert_json_to_tensors(json_file: str, embedding_fun: typing.Callable, grid
     :type N_class: int
     :return: The two tensors of the grid and the classes
     :rtype: tuple(torch.tensor torch.tensor)
-    
+
     """
     grid = generate_grids(json_file, grid_size)
     with torch.no_grad():
@@ -379,14 +402,14 @@ def convert_json_to_tensors(json_file: str, embedding_fun: typing.Callable, grid
 
         class_map = {'NOTHING' : 0, 'PLACE': 1, 'DATE': 2, 'TOTAL_TEXT': 3, 'TOTAL_AMOUNT': 4}
         for key in grid['grid'].keys():
-            x_idx = key[0] - 1 
-            y_idx = key[1] - 1 
+            x_idx = key[0] - 1
+            y_idx = key[1] - 1
             word_vector = embedding_fun(grid['grid'][key][0])
             word_class = class_map[grid['grid'][key][1]]
             grid_tensor[x_idx, y_idx] = word_vector
-            
+
             classes_tensor[word_class, y_idx * grid_size + x_idx] = 1
         grid_tensor = torch.permute(grid_tensor, (2, 0, 1))
-        
+
     return grid_tensor, classes_tensor
 

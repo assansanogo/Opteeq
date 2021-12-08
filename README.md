@@ -294,7 +294,8 @@ To get the image with a bounding box and the text extract
 python3 predict.py
 ```
 
-![via0](yolo/result/1f81d0fd-129c-45aa-a2e9-9c52684f8571.jpg)
+![darknet](yolo/result/darknet.png)
+![text](yolo/result/darknet_text.png)
 
 ### 2.1.4 Detection without Darknet framework
 
@@ -312,12 +313,16 @@ opencv [here](https://opencv-tutorial.readthedocs.io/en/latest/yolo/yolo.html)).
 python3 predict_opencv.py
 ```
 
+![opencv](yolo/result/opencv.png)
+![text](yolo/result/darknet_text.png)
+
 ## 2.2 CUTIE
 
-CUTIE stands for Convolutional Universal Text Information Extractor. It is a model proposed by Xiaohui Zhao, Endi Niu, Zhuo Wu, and Xiaoguang Wang which specific purpose is to extract information from text documents like receipts.
-The academic paper (https://arxiv.org/pdf/1903.12363.pdf) has been implemented in Tensorflow by the authors.
-We propose here a pytorch implementation of CUTIE.
-The advantage of this model, compared to YOLO, is that it uses the semantic information of the receipts on top of the spatial positionning of the words.
+CUTIE stands for Convolutional Universal Text Information Extractor. It is a model proposed by Xiaohui Zhao, Endi Niu,
+Zhuo Wu, and Xiaoguang Wang which specific purpose is to extract information from text documents like receipts. The
+academic paper (https://arxiv.org/pdf/1903.12363.pdf) has been implemented in Tensorflow by the authors. We propose here
+a pytorch implementation of CUTIE. The advantage of this model, compared to YOLO, is that it uses the semantic
+information of the receipts on top of the spatial positionning of the words.
 
 ### 2.2.1 Data preprocessing
 

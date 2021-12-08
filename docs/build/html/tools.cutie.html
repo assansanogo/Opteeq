@@ -97,7 +97,7 @@
 <li class="toctree-l1"><a class="reference internal" href="info.html#license">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#team">Team</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#sphinx-documentation">Sphinx Documentation</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">opteeq_repo</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">opteeq</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="image_rotation.html">image_rotation package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pipeline_aws.html">pipeline_aws package</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="tools.html">tools package</a><ul class="current">
@@ -165,7 +165,7 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-          <li><a href="modules.html">opteeq_repo</a> &raquo;</li>
+          <li><a href="modules.html">opteeq</a> &raquo;</li>
         
           <li><a href="tools.html">tools package</a> &raquo;</li>
         
@@ -313,10 +313,7 @@ in the needed format for cutie training.</p>
 <span class="sig-prename descclassname"><span class="pre">tools.cutie.preprocessing.</span></span><span class="sig-name descname"><span class="pre">generate_grids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json_file</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_size</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">known_class</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#tools.cutie.preprocessing.generate_grids" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generates a grid of words per image, based on the json file containing the annotations.
 Returns the grid information in a dictionary with the format :
-{ ‘image’ : str,</p>
-<blockquote>
-<div><p>‘grid’ : { (col,line) : [word, class, dressed_word] } }</p>
-</div></blockquote>
+{ ‘image’ : str, ‘grid’ : { (col,line) : [word, class, dressed_word] } }</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
