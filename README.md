@@ -325,6 +325,27 @@ The json files are then used as inputs for a pytorch dataset module. This module
 
 ### 2.1.2 Model training
 
+1. put the .JSON annotation files in cutie/data/train and cutie/data/val folders. Example files can be found in cutie/data/example.
+2. Build the docker image
+```shell
+cd cutie
+docker-compose build
+```
+3. Start the container
+```shell
+docker-compose up -d
+```
+4. Enter in bash (replace container_name by the name of the container)
+```shell
+docker exec -it container_name bash
+```
+5. launch training (replace N_epochs, B_size, G_size by the number of epochs, the batch size and the grid size wanted for the training)
+```shell
+python -m cutie.train --epochs N_epochs --batch_size B_size --grid_size G_size
+```
+
+After the training, the metrics file and the model checkpoints can be found in cutie/outputs
+
 ## 2.3 Models Benchmarking
 
 ## 2.4 Conclusion
