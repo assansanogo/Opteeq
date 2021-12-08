@@ -2,7 +2,7 @@
 
 Opteeq is a student project that uses computer vision and AI modeling for receipt digitalisation.
 
-**Objective**: To build a receipt digitalization app using computer vision and AI modelling to extract key information (
+**Objective**: To build a receipt digitalization app that extracts key information (
 Place, Date and Total amount of expense) from paper receipts.
 
 **Methodology**
@@ -62,7 +62,7 @@ When you create the dynamoDB add a global secondary index on anotName and named 
 
 # Step 1: Data preparation with AWS pipeline
 
-A database of ~1300 ticket pictures has been collected. In order to help with the tedious labelling work, a pipeline has
+A database of ~1,300 receipt pictures has been collected. In order to help with the tedious labelling work, a pipeline has
 been developped in AWS to pre-annotate the pictures.   
 Each receipt added to the database is standardized and scanned using AWS Rekognition for text recognition. The pipeline
 then reformats the annotations and computes JSON files containing batches of 20 images. These JSON files can be imported
@@ -189,23 +189,36 @@ error or path error.
 
 ## 2.1 YOLOv4
 
-- Pamela add details on what is yolo
+YOLOv4 (You Only Look Once version 4) is a one-stage object detection model that improves on YOLOv3 with several bags of tricks and modules introduced in the literature.
+
+The original YOLO is a clever Convolution Neural Network (CNN) for doing object detection in real-time. Its algorithm applies a single neural network to the full image,  divides the image into regions and predicts bounding boxes and probabilities for each region.
 
 ### 2.1.1 Data preprocessing
 
-- Johann add detials
--
+Annotation files obtained after step 1 need to be reformatted to the YOLO input format.
+| Annotation files format                      | YOLO input format                                                             |
+|----------------------------------------------|-------------------------------------------------------------------------------|
+| .csv files                                   | .txt files                                                                    |
+| Several images / file                        | 1 image / file                                                                |
+| Polygonal bounding boxes                     | Rectangle bounding boxes                                                      |
+| Absolute coordinates of bounding box corners | Relative coordinates of bounding boxes center, width and height               |
+| Boxes can be partially outside the picture   | Boxes must be completely inside the picture                                   |
+
+The final format is a .txt file containing one line by bounding box with the following format : 
+{box-class} {x} {y} {box-width} {box-height}
+Each picture with its associated .txt annotation file must have the same base name and be grouped in a unique folder.
+A helper function has been implemented to download the pictures and write the associated txt file for each annotation files from step 1 : tools.yolo.preprocessing.convert_via_to_yolo
 
 ### 2.1.2 Installation
 
-If you don't want to use docker you can pass this steps and compile directly darknet (more
+If you don't want to use docker you can pass this steps and compile Darket directly (more
 information [here](https://github.com/AlexeyAB/darknet))
 
 #### 2.1.2.1 Install Nvidia docker
 
 1. Install [docker](https://docs.docker.com/engine/install/)
    and [docker compose](https://docs.docker.com/compose/install/)
-2. Install nvidia driver (use your package manager and distribution
+2. Install Nvidia driver (use your package manager and distribution
    documentation ([debian](https://wiki.debian.org/fr/NvidiaGraphicsDrivers)
    , [other](https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html)...))
 3. Install
@@ -256,7 +269,7 @@ darknet detector train /home/data/obj.data /home/data/yolov4-custom.cfg /home/da
 
 ### 2.1.4 Model evaluation
 
-1. put the testing set path in the obj.data for valid and run
+1. Put the testing set path in the obj.data for valid and run
 
 ```shell
 darknet detector map /home/data/obj.data /home/data/yolov4-custom.cfg /home/data/trainning/yolov4-custom_best.weights
@@ -269,7 +282,7 @@ darknet detector map /home/data/obj.data /home/data/yolov4-custom.cfg /home/data
 If you want to use detection without docker replace libdarknet.so (in the yolo file of the repository opteeq) by your
 libdarknet.so obtained after compilation. (you can't use the libdarknet.so of the repository)
 
-To get the image with bounding boxe and the text extract
+To get the image with a bounding box and the text extract
 
 ```shell
 python3 predict.py
@@ -277,9 +290,33 @@ python3 predict.py
 
 ![via0](yolo/result/1f81d0fd-129c-45aa-a2e9-9c52684f8571.jpg)
 
+### 2.1.4 Detection without darknet framework
+
+Deploy this model in web application is complicated because it depends on darknet framework. In order to have an
+serverless architecture it is better to avoid the dependencies to darknet.
+
+In this part I use only OpenCv to make the prediction (more information to use darknet directly with
+opencv [here](https://opencv-tutorial.readthedocs.io/en/latest/yolo/yolo.html)).
+
+1. get the weights after training
+2. edit path in `predict_opencv.py` for yolo config file
+3.
+
+```shell
+python3 predict_opencv.py
+```
+
 ## 2.2 CUTIE
 
+CUTIE stands for Convolutional Universal Text Information Extractor. It is a model proposed by Xiaohui Zhao, Endi Niu, Zhuo Wu, and Xiaoguang Wang which specific purpose is to extract information from text documents like receipts.
+The academic paper (https://arxiv.org/pdf/1903.12363.pdf) has been implemented in Tensorflow by the authors.
+We propose here a pytorch implementation of CUTIE.
+The advantage of this model, compared to YOLO, is that it uses the semantic information of the receipts on top of the spatial positionning of the words.
+
 ### 2.2.1 Data preprocessing
+
+The annotation files from step 1 have been pre-processed to obtain grid of words with their associated classes and then to embed the words into pytorch tensors.
+
 
 ### 2.1.2 Model training
 
