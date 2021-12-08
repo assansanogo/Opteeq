@@ -373,12 +373,11 @@ After the training, the metrics file and the model checkpoints can be found in c
 
 # Team
 
-This project was developed for the DSTI S21 Python Labs class by XXX..
+This project was developed for the DSTI S21 Python Labs class by S. Adimabua Anonyai, P. Bayona, L. Bonnand Germain, J. Griffiths, W. Hu, S. Koffi Fanoukoe  & J. Yates, under the supervision of A. Sanogo.
 
 # Sphinx Documentation
 
-The documentation is in docs folder. It is also hosted [here](https://assansanogo.github.io/Opteeq/build/html/info.html)
-.
+The documentation is in docs folder. It is also hosted [here](https://assansanogo.github.io/Opteeq/build/html/info.html).
 
 To generate documentation:
 
