@@ -2,9 +2,9 @@
 prediction without darknet with only opencv
 more information: https://opencv-tutorial.readthedocs.io/en/latest/yolo/yolo.html
 """
+import argparse
 
 import cv2
-import matplotlib.pyplot as plt
 import numpy as np
 
 # this import is pure python code this function don't depend on libdarknet.so
@@ -23,7 +23,7 @@ def get_network(cfg_path: str, weights_path: str) -> tuple[cv2.dnn_Net, list]:
     net = cv2.dnn.readNetFromDarknet(cfg_path, weights_path)
     net.setPreferableBackend(cv2.dnn.DNN_BACKEND_OPENCV)
     ln = net.getLayerNames()
-    ln = [ln[i[0] - 1] for i in net.getUnconnectedOutLayers()]
+    ln = [ln[int(i) - 1] for i in net.getUnconnectedOutLayers()]
     return net, ln
 
 
@@ -128,13 +128,23 @@ def detection_darknet_format(img: np.ndarray, outputs: np.ndarray, conf: float,
 
 
 if __name__ == '__main__':
-    weights_path = 'docker/data/yolov4-custom_best.weights'
-    input_path = '/home/souff/darknet/obj/0a865cb9-0afc-4791-bec1-c88a2a07b3ee.jpg'
-    datafile_path = 'obj.data'
-    classes_name = 'docker/data/obj.names'
-    cfg_path = 'docker/data/yolov4-custom.cfg'
-    input_file_path = 'docker/data/validation.txt'
+    import matplotlib.pyplot as plt
+
+    weights_path = 'yolo/docker/data/yolov4-custom_best.weights'
+    datafile_path = 'yolo/docker/obj.data'
+    cfg_path = 'yolo/docker/data/yolov4-custom.cfg'
+    input_file_path = 'yolo/docker/data/validation.txt'
+    classes_name = 'yolo/docker/data/obj.names'
+
+    parser = argparse.ArgumentParser(description='yolo parameters')
+    parser.add_argument('--img', type=str,
+                        default='yolo/docker/data/0a865cb9-0afc-4791-bec1-c88a2a07b3ee.jpg')
+
+    params = parser.parse_args()
+
+    input_path = params.img
 
     img, result = process_image(input_path, cfg_path, weights_path, classes_name)
+    print(result)
     plt.imshow(img)
     plt.show()

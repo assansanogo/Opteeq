@@ -62,8 +62,8 @@ When you create the dynamoDB add a global secondary index on anotName and named 
 
 # Step 1: Data preparation with AWS pipeline
 
-A database of ~1,300 receipt pictures has been collected. In order to help with the tedious labelling work, a pipeline has
-been developped in AWS to pre-annotate the pictures.   
+A database of ~1,300 receipt pictures has been collected. In order to help with the tedious labelling work, a pipeline
+has been developped in AWS to pre-annotate the pictures.   
 Each receipt added to the database is standardized and scanned using AWS Rekognition for text recognition. The pipeline
 then reformats the annotations and computes JSON files containing batches of 20 images. These JSON files can be imported
 into VGG Image Anotator for the final manual part of the labelling.
@@ -189,25 +189,26 @@ error or path error.
 
 ## 2.1 YOLOv4
 
-YOLOv4 (You Only Look Once version 4) is a one-stage object detection model that improves on YOLOv3 with several bags of tricks and modules introduced in the literature.
+YOLOv4 (You Only Look Once version 4) is a one-stage object detection model that improves on YOLOv3 with several bags of
+tricks and modules introduced in the literature.
 
-The original YOLO is a clever Convolution Neural Network (CNN) for doing object detection in real-time. Its algorithm applies a single neural network to the full image,  divides the image into regions and predicts bounding boxes and probabilities for each region.
+The original YOLO is a clever Convolution Neural Network (CNN) for doing object detection in real-time. Its algorithm
+applies a single neural network to the full image, divides the image into regions and predicts bounding boxes and
+probabilities for each region.
 
 ### 2.1.1 Data preprocessing
 
-Annotation files obtained after step 1 need to be reformatted to the YOLO input format.
-| Annotation files format                      | YOLO input format                                                             |
+Annotation files obtained after step 1 need to be reformatted to the YOLO input format. | Annotation files format | YOLO
+input format |
 |----------------------------------------------|-------------------------------------------------------------------------------|
-| .csv files                                   | .txt files                                                                    |
-| Several images / file                        | 1 image / file                                                                |
-| Polygonal bounding boxes                     | Rectangle bounding boxes                                                      |
-| Absolute coordinates of bounding box corners | Relative coordinates of bounding boxes center, width and height               |
-| Boxes can be partially outside the picture   | Boxes must be completely inside the picture                                   |
+| .csv files | .txt files | | Several images / file | 1 image / file | | Polygonal bounding boxes | Rectangle bounding
+boxes | | Absolute coordinates of bounding box corners | Relative coordinates of bounding boxes center, width and height
+| | Boxes can be partially outside the picture | Boxes must be completely inside the picture |
 
-The final format is a .txt file containing one line by bounding box with the following format : 
-{box-class} {x} {y} {box-width} {box-height}
-Each picture with its associated .txt annotation file must have the same base name and be grouped in a unique folder.
-A helper function has been implemented to download the pictures and write the associated txt file for each annotation files from step 1 : tools.yolo.preprocessing.convert_via_to_yolo
+The final format is a .txt file containing one line by bounding box with the following format :
+{box-class} {x} {y} {box-width} {box-height} Each picture with its associated .txt annotation file must have the same
+base name and be grouped in a unique folder. A helper function has been implemented to download the pictures and write
+the associated txt file for each annotation files from step 1 : tools.yolo.preprocessing.convert_via_to_yolo
 
 ### 2.1.2 Installation
 
@@ -277,7 +278,8 @@ darknet detector map /home/data/obj.data /home/data/yolov4-custom.cfg /home/data
 
 ![via0](yolo/experiments/test.png)
 
-Mean average precision (mAP) measures average precision for recall value across all classes; mAP calculated at a default IoU of 0.5 = 67.82% 
+Mean average precision (mAP) measures average precision for recall value across all classes; mAP calculated at a default
+IoU of 0.5 = 67.82%
 
 F1 score measures balance between precision and recall; F1 score = 0.84
 
@@ -291,7 +293,7 @@ libdarknet.so obtained after compilation. (you can't use the libdarknet.so of th
 To get the image with a bounding box and the text extract
 
 ```shell
-python3 predict.py
+python3 -m yolo.predict --img image_path
 ```
 
 ![darknet](yolo/result/darknet.png)
@@ -310,7 +312,7 @@ opencv [here](https://opencv-tutorial.readthedocs.io/en/latest/yolo/yolo.html)).
 3.
 
 ```shell
-python3 predict_opencv.py
+python3 -m yolo.predict_opencv --img image_path
 ```
 
 ![opencv](yolo/result/opencv.png)
@@ -326,31 +328,42 @@ information of the receipts on top of the spatial positionning of the words.
 
 ### 2.2.1 Data preprocessing
 
-The annotation files from step 1 are first pre-processed to obtain a grid of words with their associated classes. The resulting grid of each picture is stored in a JSON files. 
+The annotation files from step 1 are first pre-processed to obtain a grid of words with their associated classes. The
+resulting grid of each picture is stored in a JSON files.
 ![image](tools/cutie/grid.png)
 
 The json files are then used as inputs for a pytorch dataset module. This module takes care of :
+
 - The word embedding, using a DistilBERT pretrained embedding
 - The formatting of the data into an input and a target tensor
-![image](tools/cutie/pre-processing.png)
+  ![image](tools/cutie/pre-processing.png)
 
 ### 2.1.2 Model training
 
-1. put the .JSON annotation files in cutie/data/train and cutie/data/val folders. Example files can be found in cutie/data/example.
+1. put the .JSON annotation files in cutie/data/train and cutie/data/val folders. Example files can be found in
+   cutie/data/example.
 2. Build the docker image
+
 ```shell
 cd cutie
 docker-compose build
 ```
+
 3. Start the container
+
 ```shell
 docker-compose up -d
 ```
+
 4. Enter in bash (replace container_name by the name of the container)
+
 ```shell
 docker exec -it container_name bash
 ```
-5. launch training (replace N_epochs, B_size, G_size by the number of epochs, the batch size and the grid size wanted for the training)
+
+5. launch training (replace N_epochs, B_size, G_size by the number of epochs, the batch size and the grid size wanted
+   for the training)
+
 ```shell
 python -m cutie.train --epochs N_epochs --batch_size B_size --grid_size G_size
 ```
@@ -361,10 +374,49 @@ After the training, the metrics file and the model checkpoints can be found in c
 
 ## 2.4 Conclusion
 
-# Step 3: Web application deployment (TBD)
+# Step 3: Web application deployment
 
-:::info Please add details
-:::
+We build a serverless API with aws lambda functions and a static web app to consume this API.
+
+In this app it is possible to choose between darknet or opencv in order to see the difference in terms of result and
+time.
+
+## 3.1 Deployement
+
+### 3.1.1 lambda
+
+1. build the container
+
+```shell
+docker build -t opteeq .    
+```
+
+Use the dockerfile at the racine of the project, don't use the docker file with cuda support this container is too big.
+
+This container has runtime interface emulator you can test your lambda function localy with.
+
+```shell
+docker run -p 9000:8080 opteeq
+curl -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" -d '{}'
+```
+
+2. push the container to AWS ECR (more info [here](2. push the container to AWS ECR (more info [here]())))
+3. create a lambda function which use this image
+4. create an API gateway
+
+### 3.1.2 Static file
+
+We choose to distribute the static file with AWS s3 for simplicity and cost.
+
+1. upload the two file of serverless/static folder in a bucket
+2. follow [this](https://docs.aws.amazon.com/AmazonS3/latest/userguide/HostingWebsiteOnS3Setup.html) tutorial to serve
+   static files
+
+credit: app.html inspiration [link](https://github.com/amtam0/lambda-tesseract-api/blob/master/webapp/app.html)
+
+### 3.1.3 Demo
+
+You can access to a demo [here](http://api-opteeq.s3-website.eu-west-3.amazonaws.com/).
 
 # License
 
@@ -373,11 +425,13 @@ After the training, the metrics file and the model checkpoints can be found in c
 
 # Team
 
-This project was developed for the DSTI S21 Python Labs class by S. Adimabua Anonyai, P. Bayona, L. Bonnand Germain, J. Griffiths, W. Hu, S. Koffi Fanoukoe  & J. Yates, under the supervision of A. Sanogo.
+This project was developed for the DSTI S21 Python Labs class by S. Adimabua Anonyai, P. Bayona, L. Bonnand Germain, J.
+Griffiths, W. Hu, S. Koffi Fanoukoe & J. Yates, under the supervision of A. Sanogo.
 
 # Sphinx Documentation
 
-The documentation is in docs folder. It is also hosted [here](https://assansanogo.github.io/Opteeq/build/html/info.html).
+The documentation is in docs folder. It is also hosted [here](https://assansanogo.github.io/Opteeq/build/html/info.html)
+.
 
 To generate documentation:
 

@@ -1,5 +1,0 @@
-classes = 4
-train = docker/data/train.txt
-valid = docker/data/test.txt
-names = docker/data/obj.names
-backup = docker/data/training

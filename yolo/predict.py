@@ -1,11 +1,11 @@
 """
 Use yolo python wrapper to make prediction
 """
+import argparse
 import os.path
 import random
 
 import cv2
-import matplotlib.pyplot as plt
 import numpy as np
 from pytesseract import pytesseract
 
@@ -103,7 +103,10 @@ def extract_text(detection: list, image: np.ndarray) -> str:
     bbox = detection[2]
     left, top, right, bottom = bbox2points(bbox)
     img = image[top:bottom, left:right]
-    text = pytesseract.image_to_string(img, config=configuration)
+    try:
+        text = pytesseract.image_to_string(img, config=configuration)
+    except:
+        text = "tesseract error"
     text = text.replace('\n\x0c', '').replace('\n', ' ')
     return text
 
@@ -175,14 +178,23 @@ def image_detection_dont_show(image_path: str, network, class_names: dict, thres
 
 
 if __name__ == '__main__':
-    weights_path = 'docker/data/yolov4-custom_best.weights'
-    input_path = '/home/souff/darknet/obj/0a865cb9-0afc-4791-bec1-c88a2a07b3ee.jpg'
-    datafile_path = 'obj.data'
-    cfg_path = 'docker/data/yolov4-custom.cfg'
-    input_file_path = 'docker/data/validation.txt'
+    import matplotlib.pyplot as plt
 
+    weights_path = 'yolo/docker/data/yolov4-custom_best.weights'
+    datafile_path = 'yolo/docker/obj.data'
+    cfg_path = 'yolo/docker/data/yolov4-custom.cfg'
+    input_file_path = 'yolo/docker/data/validation.txt'
+
+    parser = argparse.ArgumentParser(description='yolo parameters')
+    parser.add_argument('--img', type=str,
+                        default='yolo/docker/data/0a865cb9-0afc-4791-bec1-c88a2a07b3ee.jpg')
+
+    params = parser.parse_args()
+
+    input_path = params.img
     # detect with path
     image, result = recipe_process(weights_path, input_path, datafile_path,
                                    cfg_path)
+    print(result)
     plt.imshow(image)
     plt.show()

@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /* https://stackoverflow.com/a/1964871 */
+        /* http://ajaxload.info/ spinner examples*/
+        /* Start by setting display:none to make this hidden.
+          Then we position it in relation to the viewport window
+          with position:fixed. Width, height, top and left speak
+          for themselves. Background we set to 80% white with
+          our animation centered, and no-repeating */
+        .spinner {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: rgba(255, 255, 255, .8) url('ajax-loader.gif') 50% 50% no-repeat;
+        }
+
+        /* When the body has the loading class, we turn
+          the scrollbar off with overflow:hidden */
+        body.loading .spinner {
+            overflow: hidden;
+        }
+
+        /* Anytime the body has the loading class, our
+          spinner element will be visible */
+        body.loading .spinner {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container-fluid p-5">
+    <h1><a href="https://github.com/assansanogo/Opteeq">Opteeq</a> serverless Api</h1>
+    <hr>
+    <hr>
+    <form id="formElem">
+        <div class="row justify-content-around">
+            <div class="col sm form-inline">
+                <select class="form-control form-control-sm" style="width:auto;" name="opencv" id="opencv" required>
+                    <option value="" selected>Use Opencv</option>
+                    <option value='true'>True</option>
+                    <option value='false'>False</option>
+                </select>
+                <input type="file" name="imguploader" id="imguploader" accept="image/*" onchange="displayimage();"
+                       required>
+            </div>
+        </div>
+
+        <hr>
+        <input class="btn btn-warning" type="submit" value="Start">
+        <hr>
+        <div class="row justify-content-around">
+            <div id="dummy" class="col-sm"></div>
+        </div>
+        <hr>
+        <div class="row justify-content-around">
+            <div class="col-sm">
+                <div id="decodedresult"></div>
+                <div id="time"></div>
+            </div>
+        </div>
+    </form>
+    <div class="spinner"><!-- Place at bottom of page --></div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script>
+
+    $body = $("body");
+
+
+    // https://stackoverflow.com/a/63255139/7358899
+    function displayimage() {
+        var selectedfile = document.getElementById("imguploader").files;
+        if (selectedfile.length > 0) {
+            var imageFile = selectedfile[0];
+            var fileReader = new FileReader();
+            fileReader.onload = function (fileLoadedEvent) {
+                //   var base64data = fileLoadedEvent.target.result.split(',')[1];
+                var srcData = fileLoadedEvent.target.result;
+                var newImage = document.createElement('img');
+                newImage.src = srcData;
+                newImage.className = "img-fluid";
+                newImage.height = "500";
+                newImage.width = "500";
+                document.getElementById("dummy").innerHTML = newImage.outerHTML;
+            }
+            fileReader.readAsDataURL(imageFile);
+        }
+    }
+
+    function displayimagebase64(imgbase64) {
+        var newImage = document.createElement('img');
+        newImage.src = "data:image/png;base64, " + imgbase64;
+        newImage.className = "img-fluid";
+        newImage.height = "500";
+        newImage.width = "500";
+        document.getElementById("dummy").innerHTML = newImage.outerHTML;
+    }
+
+    function getBase64(file, onLoadCallback) {
+        return new Promise(function (resolve, reject) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                resolve(reader.result);
+            };
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+        });
+    }
+
+
+    formElem.onsubmit = async (e) => {
+        e.preventDefault();
+        $body.addClass("loading");
+        var form = document.querySelector("#formElem");
+        var selectedfile = form.querySelector('#imguploader').files[0];
+        var promise = getBase64(selectedfile);
+        promise.then(function (image64) {
+            // console.log(image64);
+        });
+        let image64 = await promise
+
+        data = {
+            opencv: JSON.parse(form.querySelector('#opencv').value),
+            image: image64.split(',')[1],
+        }
+        let response = await fetch('https://ijpyxqofji.execute-api.eu-west-3.amazonaws.com/opteeq', {
+            method: 'POST', // or 'PUT'
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        let text = await response.text(); // read response body as text
+        try {
+            let results = JSON.parse(text);
+            let body_result = JSON.parse(results["body"]);
+            $body.removeClass("loading");
+            displayimagebase64(body_result["image64"]);
+            document.querySelector("#decodedresult").innerHTML = "Total: " + body_result["message"].TOTAL +
+                " Date: " + body_result["message"].DATE + " Place: " + body_result["message"].PLACE;
+            document.querySelector("#time").innerHTML = "Time: " + body_result["time"] + " seconde";
+        } catch (error) {
+            $body.removeClass("loading");
+            document.querySelector("#decodedresult").innerHTML = "Error: " + text;
+            document.querySelector("#time").innerHTML = "";
+
+        }
+    };
+</script>
+</body>
+</html>
