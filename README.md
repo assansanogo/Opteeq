@@ -198,12 +198,15 @@ probabilities for each region.
 
 ### 2.1.1 Data preprocessing
 
-Annotation files obtained after step 1 need to be reformatted to the YOLO input format. | Annotation files format | YOLO
-input format |
+Annotation files obtained after step 1 need to be reformatted to the YOLO input format.
+
+| Annotation files format                      | YOLO input format                                                             |
 |----------------------------------------------|-------------------------------------------------------------------------------|
-| .csv files | .txt files | | Several images / file | 1 image / file | | Polygonal bounding boxes | Rectangle bounding
-boxes | | Absolute coordinates of bounding box corners | Relative coordinates of bounding boxes center, width and height
-| | Boxes can be partially outside the picture | Boxes must be completely inside the picture |
+| .csv files                                   | .txt files                                                                    |
+| Several images / file                        | 1 image / file                                                                |
+| Polygonal bounding boxes                     | Rectangle bounding boxes                                                      |
+| Absolute coordinates of bounding box corners | Relative coordinates of bounding boxes center, width and height               |
+| Boxes can be partially outside the picture   | Boxes must be completely inside the picture                                   |
 
 The final format is a .txt file containing one line by bounding box with the following format :
 {box-class} {x} {y} {box-width} {box-height} Each picture with its associated .txt annotation file must have the same
