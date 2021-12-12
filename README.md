@@ -400,7 +400,8 @@ docker run -p 9000:8080 opteeq
 curl -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" -d '{}'
 ```
 
-2. push the container to AWS ECR (more info [here](2. push the container to AWS ECR (more info [here]())))
+2. push the container to AWS ECR (more
+   info [here](https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html))
 3. create a lambda function which use this image
 4. create an API gateway
 
